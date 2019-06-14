@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://iifatree.com/"/>
-  <updated>2019-06-13T17:08:22.543Z</updated>
+  <updated>2019-06-14T16:01:49.910Z</updated>
   <id>http://iifatree.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>博客迁移到 Hexo</title>
+    <link href="http://iifatree.com/2019/06/14/blog-migration/"/>
+    <id>http://iifatree.com/2019/06/14/blog-migration/</id>
+    <published>2019-06-14T15:34:22.000Z</published>
+    <updated>2019-06-14T16:01:49.910Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://s2.ax1x.com/2019/06/14/V5Oibn.md.jpg" alt></p><p>想了很久，还是决定把博客换成静态的，这次选择了 <a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a>，几年前听了<a href="https://kernelpanic.fm/" target="_blank" rel="noopener">《内核恐慌》</a>的<a href="https://kernelpanic.fm/3" target="_blank" rel="noopener">《静态网页生成器》</a>，给自己弄过一个 <a href="https://github.com/jekyll/jekyll" target="_blank" rel="noopener">Jekyll</a> 的个人博客，但是很不幸地只写了两篇文章就荒废了。后来才有的这个博客。</p><p>现在回顾一下自己的个人博客之路，搞过不记得多少个了，文章写了又丢丢了又写。从最早的用国内某博客平台写，到后面初识 WordPress，再到这个博客的数次迁移之路。这次迁移的时候，因为把评论从 Typecho 迁移过来很麻烦，就直接放弃了，算是一点小小的损失吧，就只把文章弄过来了，界面也尽可能还原。于是就成了现在这个样子了。</p><p>还是希望自己以后可以多写博客吧，起码两年前说的想要记录一下玩过的游戏，就断断续续的，很多玩过的游戏也没有写。希望这次折腾后能多坚持一段时间。</p><p>看完了 E3，期待的东西很多，闹心的东西也有。还好有题图那样的游戏，光是在里面随便逛逛，都可以让人心情舒畅。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/06/14/V5Oibn.md.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;p&gt;想了很久，还是决定把博客换成静态的，这次选择了 &lt;a href=&quot;https://hexo.io/zh-cn/&quot; target=&quot;_bla
+      
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="http://iifatree.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>主机游戏的未来</title>
@@ -403,16 +427,16 @@
     <link href="http://iifatree.com/2016/02/25/winter-holiday-2016/"/>
     <id>http://iifatree.com/2016/02/25/winter-holiday-2016/</id>
     <published>2016-02-25T11:46:33.000Z</published>
-    <updated>2019-06-13T17:50:16.906Z</updated>
+    <updated>2019-06-14T15:49:26.708Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="https://s2.ax1x.com/2019/06/13/Vhi8iR.md.gif" alt></p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=579557&auto=0&height=32"></iframe><p>在我的记忆里，2006 一直都是很重要的一年，所以十年后的 2016 也免不了时常在脑中出现十年前如何如何的想法。在家的时候，大部分时间都在一个人整理一些过去的东西，常常会被一些小小的物件把思绪带回到过去，好像是看到小时候的自己。</p><p>我有时候会在想：十年前的我和现在的我有多大程度上的不同？年龄的增长带来的变化自然是天翻地覆，但是我却惊讶地发现我的兴趣爱好在十年前就已经基本上定型了，直到现在也没有什么变化。我不知道这算好事还是坏事，但是从我自己内心深处来看，我还是很高兴的，真的。</p><p>最近在重看当年的入宅神作《凉宫春日的忧郁》，即便是时隔十年以后，看着还是神作，到处都是感动的细节，十年啊整整十年。</p><p>这次配的这首歌就是十年前在某杂志附增的 CD 上听到的，番没看过，就记得这首 ED 了。似乎这番还是泽野弘之做的配乐，真是神奇。</p>]]></content>
+    <content type="html"><![CDATA[<p><img src="https://s2.ax1x.com/2019/06/14/V5OPDs.png" alt></p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=579557&auto=0&height=32"></iframe><p>在我的记忆里，2006 一直都是很重要的一年，所以十年后的 2016 也免不了时常在脑中出现十年前如何如何的想法。在家的时候，大部分时间都在一个人整理一些过去的东西，常常会被一些小小的物件把思绪带回到过去，好像是看到小时候的自己。</p><p>我有时候会在想：十年前的我和现在的我有多大程度上的不同？年龄的增长带来的变化自然是天翻地覆，但是我却惊讶地发现我的兴趣爱好在十年前就已经基本上定型了，直到现在也没有什么变化。我不知道这算好事还是坏事，但是从我自己内心深处来看，我还是很高兴的，真的。</p><p>最近在重看当年的入宅神作《凉宫春日的忧郁》，即便是时隔十年以后，看着还是神作，到处都是感动的细节，十年啊整整十年。</p><p>这次配的这首歌就是十年前在某杂志附增的 CD 上听到的，番没看过，就记得这首 ED 了。似乎这番还是泽野弘之做的配乐，真是神奇。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/06/13/Vhi8iR.md.gif&quot; alt&gt;&lt;/p&gt;
-&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; wid
+        &lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/06/14/V5OPDs.png&quot; alt&gt;&lt;/p&gt;
+&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=
       
     
     </summary>
