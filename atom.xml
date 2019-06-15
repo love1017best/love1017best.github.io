@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://iifatree.com/"/>
-  <updated>2019-06-14T16:01:49.910Z</updated>
+  <updated>2019-06-15T04:53:51.557Z</updated>
   <id>http://iifatree.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://iifatree.com/2019/06/14/blog-migration/"/>
     <id>http://iifatree.com/2019/06/14/blog-migration/</id>
     <published>2019-06-14T15:34:22.000Z</published>
-    <updated>2019-06-14T16:01:49.910Z</updated>
+    <updated>2019-06-15T04:53:51.557Z</updated>
     
     <content type="html"><![CDATA[<p><img src="https://s2.ax1x.com/2019/06/14/V5Oibn.md.jpg" alt></p><p>想了很久，还是决定把博客换成静态的，这次选择了 <a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a>，几年前听了<a href="https://kernelpanic.fm/" target="_blank" rel="noopener">《内核恐慌》</a>的<a href="https://kernelpanic.fm/3" target="_blank" rel="noopener">《静态网页生成器》</a>，给自己弄过一个 <a href="https://github.com/jekyll/jekyll" target="_blank" rel="noopener">Jekyll</a> 的个人博客，但是很不幸地只写了两篇文章就荒废了。后来才有的这个博客。</p><p>现在回顾一下自己的个人博客之路，搞过不记得多少个了，文章写了又丢丢了又写。从最早的用国内某博客平台写，到后面初识 WordPress，再到这个博客的数次迁移之路。这次迁移的时候，因为把评论从 Typecho 迁移过来很麻烦，就直接放弃了，算是一点小小的损失吧，就只把文章弄过来了，界面也尽可能还原。于是就成了现在这个样子了。</p><p>还是希望自己以后可以多写博客吧，起码两年前说的想要记录一下玩过的游戏，就断断续续的，很多玩过的游戏也没有写。希望这次折腾后能多坚持一段时间。</p><p>看完了 E3，期待的东西很多，闹心的东西也有。还好有题图那样的游戏，光是在里面随便逛逛，都可以让人心情舒畅。</p>]]></content>
     
