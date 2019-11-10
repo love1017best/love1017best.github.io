@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://iifatree.com/"/>
-  <updated>2019-11-10T12:59:03.822Z</updated>
+  <updated>2019-11-10T13:03:51.153Z</updated>
   <id>http://iifatree.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://iifatree.com/2019/11/10/Tomcat-multiple-instances/"/>
     <id>http://iifatree.com/2019/11/10/Tomcat-multiple-instances/</id>
     <published>2019-11-10T12:55:15.000Z</published>
-    <updated>2019-11-10T12:59:03.822Z</updated>
+    <updated>2019-11-10T13:03:51.153Z</updated>
     
-    <content type="html"><![CDATA[<p>对于 Tomcat 的运行而言，需要两个路径：<code>CATALINA_HOME</code> 和 <code>CATALINA_BASE</code>。 <code>CATALINA_HOME</code> 代表 Tomcat 的安装根路径，例如 <code>/home/tomcat/apache-tomcat-9.0.27</code>。</p><p><code>CATALINA_BASE</code> 代表某个 Tomcat 运行实例的配置根路径。在默认情况下，<code>CATALINA_HOME</code> 和 <code>CATALINA_BASE</code> 是指向同一路径的，即 Tomcat 的安装路径。</p><p>当需要开启多个实例的时候，可以分别指定 <code>CATALINA_HOME</code> 和 <code>CATALINA_BASE</code>。相对于同时复制多个 Tomcat，这样做的好处是在需要升级 Tomcat 版本的时候，只需要更新 <code>CATALINA_HOME</code> 下的文件即可。所有的 Tomcat 实例都会共享一个 <code>CATALINA_HOME</code>。</p><p>而对于 <code>CATALINA_BASE</code>，可以为每个不同的 Tomcat 实例指定不同的路径。<code>CATALINA_BASE</code> 应当包含以下文件夹：logs、webapps、work、temp 和 conf。<code>CATALINA_BASE</code> 至少应该包含 conf/server.xml 和 conf/web.xml。</p><p>说了那么多，实际上部署多实例非常简单，进入 Tomcat 的安装路径，例如 <code>/home/tomcat/apache-tomcat-9.0.27</code>，首先创建一个文件夹，并将 logs、webapps、work、temp 和 conf 这几个文件夹复制到其中：</p><pre><code class="language">mkdir catalina_base_1mv logs webapps work temp conf catalina_base_1/</code></pre><p>如果有修改过 conf/server.xml 中的 Context path，记得根据新的路径进行更改。接下来就可以启动实例了，在 Tomcat 安装路径下执行：</p><pre><code class="language">CATALINA_BASE=catalina_base_1 bin/catalina.sh start</code></pre><p>停止等操作同理，例如：</p><pre><code class="language">CATALINA_BASE=catalina_base_1 bin/shutdown.sh</code></pre><p>如果需要配置第二个实例，同样创建 catalina_base_2 文件夹即可，只要在启动之前指定对应的 <code>CATALINA_BASE</code> 即可，例如：</p><pre><code class="language">CATALINA_BASE=catalina_base_2 bin/catalina.sh run`</code></pre>]]></content>
+    <content type="html"><![CDATA[<p>对于 Tomcat 的运行而言，需要两个路径：<code>CATALINA_HOME</code> 和 <code>CATALINA_BASE</code>。 <code>CATALINA_HOME</code> 代表 Tomcat 的安装根路径，例如 <code>/home/tomcat/apache-tomcat-9.0.27</code>。</p><p><code>CATALINA_BASE</code> 代表某个 Tomcat 运行实例的配置根路径。在默认情况下，<code>CATALINA_HOME</code> 和 <code>CATALINA_BASE</code> 是指向同一路径的，即 Tomcat 的安装路径。</p><p>当需要开启多个实例的时候，可以分别指定 <code>CATALINA_HOME</code> 和 <code>CATALINA_BASE</code>。相对于同时复制多个 Tomcat，这样做的好处是在需要升级 Tomcat 版本的时候，只需要更新 <code>CATALINA_HOME</code> 下的文件即可。所有的 Tomcat 实例都会共享一个 <code>CATALINA_HOME</code>。</p><p>而对于 <code>CATALINA_BASE</code>，可以为每个不同的 Tomcat 实例指定不同的路径。<code>CATALINA_BASE</code> 应当包含以下文件夹：logs、webapps、work、temp 和 conf。<code>CATALINA_BASE</code> 至少应该包含 conf/server.xml 和 conf/web.xml。</p><p>说了那么多，实际上部署多实例非常简单，进入 Tomcat 的安装路径，例如 <code>/home/tomcat/apache-tomcat-9.0.27</code>，首先创建一个文件夹，并将 logs、webapps、work、temp 和 conf 这几个文件夹复制到其中：</p><pre><code class="language">mkdir catalina_base_1mv logs webapps work temp conf catalina_base_1/</code></pre><p>如果有修改过 conf/server.xml 中的 Context path，记得根据新的路径进行更改。接下来就可以启动实例了，在 Tomcat 安装路径下执行：</p><pre><code class="language">CATALINA_BASE=catalina_base_1 bin/catalina.sh start</code></pre><p>停止等操作同理，例如：</p><pre><code class="language">CATALINA_BASE=catalina_base_1 bin/shutdown.sh</code></pre><p>如果需要配置第二个实例，同样创建 catalina_base_2 文件夹即可，只要在启动之前指定对应的 <code>CATALINA_BASE</code> 即可，例如：</p><pre><code class="language">CATALINA_BASE=catalina_base_2 bin/catalina.sh run</code></pre>]]></content>
     
     <summary type="html">
     
