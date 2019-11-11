@@ -120,17 +120,17 @@
     <link href="http://iifatree.com/2019/06/20/slacking-off-remote-play/"/>
     <id>http://iifatree.com/2019/06/20/slacking-off-remote-play/</id>
     <published>2019-06-20T08:18:50.000Z</published>
-    <updated>2019-06-20T12:30:32.235Z</updated>
+    <updated>2019-11-11T10:23:20.490Z</updated>
     
-    <content type="html"><![CDATA[<p><del>摸鱼一时爽，一直摸鱼一直爽。</del></p><p><img src="https://s2.ax1x.com/2019/06/20/VvtwDO.md.jpg" alt></p><p>伴随着 <a href="https://www.apple.com/ipados/ipados-preview/" target="_blank" rel="noopener">iPadOS</a> 的到来，我一直梦寐以求的<del>摸鱼</del>玩游戏方式终于得到了实现。效果如图所示。简单补充，这是我在学校的实验室工位利用 iPad 串流我放在宿舍里的 PS4，并且使用 Xbox One 的手柄来操作的效果。这样我就可以愉快地坐在实验室玩一公里以外宿舍里的 PS4 上的游戏，而不用为了玩游戏非要待在宿舍了。</p><p>实现这一效果需要的一个 iOS 软件叫做 <a href="https://apps.apple.com/cn/app/r-play-remote-play-for-ps4/id1222889057" target="_blank" rel="noopener">R-Play</a>，这是一个收费软件，当时买它的时候，SONY 官方的 PS4 Remote Play 还没有推出 iOS 版，彼时我只能用 PSV 来串流 PS4。虽然当时我的需求只是在离 PS4 距离不超过五米的床上躺着玩游戏，然而 PSV 串流的质量还是没办法很好地满足我的需求，实在是非常无奈。后来发现了这个软件，一开始只把它当作普通的串流软件来用，但是后来就突然发现 R-Play 的设定中有一个非常重要的项目叫做手动 PS4 IP 地址，使用这个配置，就可以完美地让我在校园局域网内实现我想要的游玩体验。</p><p>发现这个方法是在几个月前，但是当时距离一个好的体验最后的一块拼图就是操控方式。R-Play 自带的触控操作自不必说是非常难用，为了使用手柄游玩买了一个 mfi 手柄，但是手感实在是一言难尽。直到 iPadOS 的出现，支持 Xbox One 和 PS4 手柄对我而言是 iOS 13 和 iPadOS 最重要的更新之一。</p><p>于是，我就把前段时间买的『白丝』Xbox One 手柄（<a href="https://www.xbox.com/zh-CN/xbox-one/accessories/controllers/phantom-white" target="_blank" rel="noopener">Xbox 无线控制器 – 绝对领域：白</a>）给我的 iPad 用了，电脑只要委屈一下用另一个 Xbox 手柄啦！</p><p>完美。</p>]]></content>
+    <content type="html"><![CDATA[<p>2019-11-11 更新：R-Play 已于近日更新 2.0，支持 PS4 7.0 以上系统的远程遥控。</p><p><del>摸鱼一时爽，一直摸鱼一直爽。</del></p><p><img src="https://s2.ax1x.com/2019/06/20/VvtwDO.md.jpg" alt></p><p>伴随着 <a href="https://www.apple.com/ipados/ipados-preview/" target="_blank" rel="noopener">iPadOS</a> 的到来，我一直梦寐以求的<del>摸鱼</del>玩游戏方式终于得到了实现。效果如图所示。简单补充，这是我在学校的实验室工位利用 iPad 串流我放在宿舍里的 PS4，并且使用 Xbox One 的手柄来操作的效果。这样我就可以愉快地坐在实验室玩一公里以外宿舍里的 PS4 上的游戏，而不用为了玩游戏非要待在宿舍了。</p><p>实现这一效果需要的一个 iOS 软件叫做 <a href="https://apps.apple.com/cn/app/r-play-remote-play-for-ps4/id1222889057" target="_blank" rel="noopener">R-Play</a>，这是一个收费软件，当时买它的时候，SONY 官方的 PS4 Remote Play 还没有推出 iOS 版，彼时我只能用 PSV 来串流 PS4。虽然当时我的需求只是在离 PS4 距离不超过五米的床上躺着玩游戏，然而 PSV 串流的质量还是没办法很好地满足我的需求，实在是非常无奈。后来发现了这个软件，一开始只把它当作普通的串流软件来用，但是后来就突然发现 R-Play 的设定中有一个非常重要的项目叫做手动 PS4 IP 地址，使用这个配置，就可以完美地让我在校园局域网内实现我想要的游玩体验。</p><p>发现这个方法是在几个月前，但是当时距离一个好的体验最后的一块拼图就是操控方式。R-Play 自带的触控操作自不必说是非常难用，为了使用手柄游玩买了一个 mfi 手柄，但是手感实在是一言难尽。直到 iPadOS 的出现，支持 Xbox One 和 PS4 手柄对我而言是 iOS 13 和 iPadOS 最重要的更新之一。</p><p>于是，我就把前段时间买的『白丝』Xbox One 手柄（<a href="https://www.xbox.com/zh-CN/xbox-one/accessories/controllers/phantom-white" target="_blank" rel="noopener">Xbox 无线控制器 – 绝对领域：白</a>）给我的 iPad 用了，电脑只要委屈一下用另一个 Xbox 手柄啦！</p><p>完美。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;&lt;del&gt;摸鱼一时爽，一直摸鱼一直爽。&lt;/del&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/06/20/VvtwDO.md.jpg&quot; alt&gt;&lt;/p&gt;
-&lt;p&gt;伴随着 &lt;a href=&quot;https://www.apple.com/i
+        &lt;p&gt;2019-11-11 更新：R-Play 已于近日更新 2.0，支持 PS4 7.0 以上系统的远程遥控。&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;摸鱼一时爽，一直摸鱼一直爽。&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/06/20/Vv
       
     
     </summary>
