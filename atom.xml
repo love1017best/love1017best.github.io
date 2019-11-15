@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://iifatree.com/"/>
-  <updated>2019-11-10T13:03:51.153Z</updated>
+  <updated>2019-11-15T12:25:49.625Z</updated>
   <id>http://iifatree.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>《宝可梦 剑/盾》日记（1）</title>
+    <link href="http://iifatree.com/2019/11/15/pokemon-sw-sh-dairy-1/"/>
+    <id>http://iifatree.com/2019/11/15/pokemon-sw-sh-dairy-1/</id>
+    <published>2019-11-15T11:17:45.000Z</published>
+    <updated>2019-11-15T12:25:49.625Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>第一天游戏时间 10 小时，进度三个道馆结束，抵达拳关市。</li><li>《盾》版数字，昨天 23 点日服解锁第一时间进入游戏。</li><li>开头引导个人觉得过于啰嗦，节奏过慢。</li><li>画面第一感觉：贴图材质敷衍，视角不能旋转非常难受。</li><li>视角过近，掌机模式还好，主机模式在大屏幕上看总是感觉可见内容过少。</li><li>进入游戏后第一反应：怎么没有昼夜交替？</li><li>后来发现，本作在非旷野地带的昼夜是由剧情设定的，并非像以往作品一样跟随系统时间。<br>![][<a href="https://s2.ax1x.com/2019/11/15/Md0pGV.md.jpg]" target="_blank" rel="noopener">https://s2.ax1x.com/2019/11/15/Md0pGV.md.jpg]</a></li><li>UI 操作略有不便，但是总体而言比去年 LGPE 好看。还是怀念曾经的触屏操作。</li><li>没有了 GTS，对于完成图鉴来说太不方便，大退步。</li><li>奇迹交换变魔法交换更方便了。</li><li>旷野地带卡顿掉帧严重。</li><li>旷野地带比想象的有意思。</li><li>旷野地带缺少小地图，体验不好。</li><li>极巨团体战比预期的要简单。</li><li>玩到现在最满意的地方：出现的宝可梦数量够多。是的，这是目前感觉本作突出的优点之一。而且结合旷野地带，光是捕捉就有足够的可玩性了。当然，不能抱住所有人都对此有兴趣。</li><li>因为在捕捉上花了大量时间，导致进度不快。</li><li>旷野地带如之前媒体评测所说，是一个很有想法的系统，也是本作最核心的玩法之一，算是系列发展到第八世代的一个重大变化。</li><li>极巨化使用范围极其有限，存在感不是很高，感觉是前两个世代 Mega 进化和 Z 技能的结合，目前个人感觉一般，略好于 Z 技能，当然还是最喜欢 Mega 进化。</li><li>新旧怪结合出现，频率把握较好，新怪中不乏出色设计，伽勒尔型态相比于三年前的阿罗拉形态更有诚意，也更有惊喜，也终于不是无脑舔 G1 了。</li><li>提前看了资料，通关前图鉴数量 400 只，非常满意，对『断代』的愤怒少了很多。</li><li>画面是真的需要加强。</li><li>第一天总结而言，可以看出 GF 也并非一无是处，但是技术力落后是明摆着的事实。希望这次开个好头，后面的作品一步步变好。</li><li>存档 BUG 太吓人了，求求你赶紧推送补丁解决了。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;第一天游戏时间 10 小时，进度三个道馆结束，抵达拳关市。&lt;/li&gt;
+&lt;li&gt;《盾》版数字，昨天 23 点日服解锁第一时间进入游戏。&lt;/li&gt;
+&lt;li&gt;开头引导个人觉得过于啰嗦，节奏过慢。&lt;/li&gt;
+&lt;li&gt;画面第一感觉：贴图材质敷衍，视角不能旋转非常难受。&lt;/
+      
+    
+    </summary>
+    
+    
+      <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+      <category term="评论" scheme="http://iifatree.com/tags/%E8%AF%84%E8%AE%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>Tomcat 多实例配置方式</title>
@@ -120,17 +149,17 @@
     <link href="http://iifatree.com/2019/06/20/slacking-off-remote-play/"/>
     <id>http://iifatree.com/2019/06/20/slacking-off-remote-play/</id>
     <published>2019-06-20T08:18:50.000Z</published>
-    <updated>2019-11-11T10:23:20.490Z</updated>
+    <updated>2019-11-11T10:24:21.475Z</updated>
     
-    <content type="html"><![CDATA[<p>2019-11-11 更新：R-Play 已于近日更新 2.0，支持 PS4 7.0 以上系统的远程遥控。</p><p><del>摸鱼一时爽，一直摸鱼一直爽。</del></p><p><img src="https://s2.ax1x.com/2019/06/20/VvtwDO.md.jpg" alt></p><p>伴随着 <a href="https://www.apple.com/ipados/ipados-preview/" target="_blank" rel="noopener">iPadOS</a> 的到来，我一直梦寐以求的<del>摸鱼</del>玩游戏方式终于得到了实现。效果如图所示。简单补充，这是我在学校的实验室工位利用 iPad 串流我放在宿舍里的 PS4，并且使用 Xbox One 的手柄来操作的效果。这样我就可以愉快地坐在实验室玩一公里以外宿舍里的 PS4 上的游戏，而不用为了玩游戏非要待在宿舍了。</p><p>实现这一效果需要的一个 iOS 软件叫做 <a href="https://apps.apple.com/cn/app/r-play-remote-play-for-ps4/id1222889057" target="_blank" rel="noopener">R-Play</a>，这是一个收费软件，当时买它的时候，SONY 官方的 PS4 Remote Play 还没有推出 iOS 版，彼时我只能用 PSV 来串流 PS4。虽然当时我的需求只是在离 PS4 距离不超过五米的床上躺着玩游戏，然而 PSV 串流的质量还是没办法很好地满足我的需求，实在是非常无奈。后来发现了这个软件，一开始只把它当作普通的串流软件来用，但是后来就突然发现 R-Play 的设定中有一个非常重要的项目叫做手动 PS4 IP 地址，使用这个配置，就可以完美地让我在校园局域网内实现我想要的游玩体验。</p><p>发现这个方法是在几个月前，但是当时距离一个好的体验最后的一块拼图就是操控方式。R-Play 自带的触控操作自不必说是非常难用，为了使用手柄游玩买了一个 mfi 手柄，但是手感实在是一言难尽。直到 iPadOS 的出现，支持 Xbox One 和 PS4 手柄对我而言是 iOS 13 和 iPadOS 最重要的更新之一。</p><p>于是，我就把前段时间买的『白丝』Xbox One 手柄（<a href="https://www.xbox.com/zh-CN/xbox-one/accessories/controllers/phantom-white" target="_blank" rel="noopener">Xbox 无线控制器 – 绝对领域：白</a>）给我的 iPad 用了，电脑只要委屈一下用另一个 Xbox 手柄啦！</p><p>完美。</p>]]></content>
+    <content type="html"><![CDATA[<p><strong>2019-11-11 更新：R-Play 已于近日更新 2.0，支持 PS4 7.0 以上系统的远程遥控。</strong></p><p><del>摸鱼一时爽，一直摸鱼一直爽。</del></p><p><img src="https://s2.ax1x.com/2019/06/20/VvtwDO.md.jpg" alt></p><p>伴随着 <a href="https://www.apple.com/ipados/ipados-preview/" target="_blank" rel="noopener">iPadOS</a> 的到来，我一直梦寐以求的<del>摸鱼</del>玩游戏方式终于得到了实现。效果如图所示。简单补充，这是我在学校的实验室工位利用 iPad 串流我放在宿舍里的 PS4，并且使用 Xbox One 的手柄来操作的效果。这样我就可以愉快地坐在实验室玩一公里以外宿舍里的 PS4 上的游戏，而不用为了玩游戏非要待在宿舍了。</p><p>实现这一效果需要的一个 iOS 软件叫做 <a href="https://apps.apple.com/cn/app/r-play-remote-play-for-ps4/id1222889057" target="_blank" rel="noopener">R-Play</a>，这是一个收费软件，当时买它的时候，SONY 官方的 PS4 Remote Play 还没有推出 iOS 版，彼时我只能用 PSV 来串流 PS4。虽然当时我的需求只是在离 PS4 距离不超过五米的床上躺着玩游戏，然而 PSV 串流的质量还是没办法很好地满足我的需求，实在是非常无奈。后来发现了这个软件，一开始只把它当作普通的串流软件来用，但是后来就突然发现 R-Play 的设定中有一个非常重要的项目叫做手动 PS4 IP 地址，使用这个配置，就可以完美地让我在校园局域网内实现我想要的游玩体验。</p><p>发现这个方法是在几个月前，但是当时距离一个好的体验最后的一块拼图就是操控方式。R-Play 自带的触控操作自不必说是非常难用，为了使用手柄游玩买了一个 mfi 手柄，但是手感实在是一言难尽。直到 iPadOS 的出现，支持 Xbox One 和 PS4 手柄对我而言是 iOS 13 和 iPadOS 最重要的更新之一。</p><p>于是，我就把前段时间买的『白丝』Xbox One 手柄（<a href="https://www.xbox.com/zh-CN/xbox-one/accessories/controllers/phantom-white" target="_blank" rel="noopener">Xbox 无线控制器 – 绝对领域：白</a>）给我的 iPad 用了，电脑只要委屈一下用另一个 Xbox 手柄啦！</p><p>完美。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;2019-11-11 更新：R-Play 已于近日更新 2.0，支持 PS4 7.0 以上系统的远程遥控。&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;2019-11-11 更新：R-Play 已于近日更新 2.0，支持 PS4 7.0 以上系统的远程遥控。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;del&gt;摸鱼一时爽，一直摸鱼一直爽。&lt;/del&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/06/20/Vv
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.
       
     
     </summary>
