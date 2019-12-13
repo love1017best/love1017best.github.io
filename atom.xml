@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://iifatree.com/"/>
-  <updated>2019-12-12T13:31:29.329Z</updated>
+  <updated>2019-12-13T04:43:43.729Z</updated>
   <id>http://iifatree.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>多个 Github Pages 项目主页 DNS 配置方式</title>
+    <link href="http://iifatree.com/2019/12/13/dns-configuration-for-github-pages-project/"/>
+    <id>http://iifatree.com/2019/12/13/dns-configuration-for-github-pages-project/</id>
+    <published>2019-12-13T04:25:40.000Z</published>
+    <updated>2019-12-13T04:43:43.729Z</updated>
+    
+    <content type="html"><![CDATA[<p>昨天干了件事情，把博客从主域名（<a href="https://iifatree.com/">https://iifatree.com/</a>）切换到了二级域名（<a href="https://blog.iifatree.com/" target="_blank" rel="noopener">https://blog.iifatree.com/</a>），然后想在主域名放另一个用 Github Pages 托管的页面。迁移过程中发现 Github 官方关于这种需求的 DNS 配置方式说得有点不太清楚，摸索了一段时间才搞定。</p><p>博客托管于自己的 Github Pages 项目，也就是仓库名为 <code>&lt;username&gt;.github.io</code> 的仓库，我想把它绑定到自定义的二级域名 <code>blog.iifatree.com</code>，另一个项目用于托管网站的静态主页，Github 的访问路径为 <code>&lt;username&gt;.github.io/&lt;projectname&gt;</code>，我想将其绑定到自己的域名 <code>iifatree.com</code>。</p><p>配置方法如下：</p><ol><li>在 Github 给两个项目 <code>&lt;username&gt;.github.io</code> 和 <code>&lt;projectname&gt;</code> 都设置 Custom Domain，分别指向需要的域名；</li><li>在 DNS 管理商处，添加 A 记录，指向 Github Pages 的 IP 地址：<code>185.199.108.153</code>、<code>185.199.109.153</code>、<code>185.199.110.153</code>、<code>185.199.111.153</code>；</li><li>添加 CNAME 记录，域名 <code>subdomain.domain.com</code>，指向 <code>&lt;username&gt;.github.io</code>；</li><li>至此其实已经完成了，Github 会自动处理两个项目各自对应的域名，当然也可以再添加一条 www 二级域名的 CNAME 记录，仍旧指向 <code>&lt;username&gt;.github.io</code>；</li><li>同理，如果还有一个项目位于 <code>&lt;username&gt;.github.io/&lt;project2&gt;</code>，需要用 <code>subdomain2.domain.com</code> 访问，同样添加一条 CNAME 记录让 <code>subdomain2.domain.com</code> 指向 <code>&lt;username&gt;.github.io</code> 即可；</li><li>总结一下就是，只要是要用某个域名 <code>domain.com</code> 来访问某个 Github Pages 项目，无论是一级域名还是二级域名，都只要首先添加 CNAME 记录使其指向 <code>&lt;username&gt;.github.io</code>，然后对应仓库的 Settings 里设置对应域名即可，剩下的交给 Github 处理即可。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;昨天干了件事情，把博客从主域名（&lt;a href=&quot;https://iifatree.com/&quot;&gt;https://iifatree.com/&lt;/a&gt;）切换到了二级域名（&lt;a href=&quot;https://blog.iifatree.com/&quot; target=&quot;_blank&quot; r
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>2019 年 12 月的 iPad Pro 体验</title>
