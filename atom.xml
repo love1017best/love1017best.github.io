@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://iifatree.com/"/>
-  <updated>2019-12-13T04:43:43.729Z</updated>
+  <updated>2020-01-03T14:24:14.296Z</updated>
   <id>http://iifatree.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2020 来了，我很期待</title>
+    <link href="http://iifatree.com/2020/01/03/2020s-are-coming/"/>
+    <id>http://iifatree.com/2020/01/03/2020s-are-coming/</id>
+    <published>2020-01-03T14:01:51.000Z</published>
+    <updated>2020-01-03T14:24:14.296Z</updated>
+    
+    <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=438466464&auto=0&height=32"></iframe><p>21 世纪的 20 年代就这样来了，在我毫无准备的情况下。十年前进入 2010 年，我在杂志上看着对 2000 年代的十年盘点，也在自己心中盘点着自己的 2000 年代，怀念着 2000 年代。一转眼，怀念着过去的那时候也成了需要被怀念的过去了。</p><p>2019 年的最后几天，总觉得这次跨年意味着很多，一个十年的交替是件大事，忐忑又有点期待，甚至有种还未准备好的感觉，2010 年代的最后一天就不真实地到来了。后来仔细想了一下，大概是因为 2020 年的元旦只有一天假期，所以会有这种毫无准备的感觉。</p><p>2010 年代对于我自己而言还是发生了很多事情，好的坏的，哪一个更多一点我也记不清楚。大概发生了很多足以改变未来人生走向的事情。不过从不后悔，因为历史不可以假设，人生当然也不可以假设，后悔没有意义，一切已经做出的选择都是最好的选择。</p><p>2019 对于身边的很多人来说是极为关键的一年，于我倒未必，接下来的 2020 可能更关键一点。最近总有人在说小时候都写过的畅想未来的作文，似乎到了 2020 这个听起来颇为科幻的年代什么都没实现。但是，从别的角度而言，也发生了很多以前即使是天马行空也想象不到的事情，这似乎更为重要吧。于是，2020 年，我还是喜欢我不知道的事情。</p><p>现在的互联网不如十年前有意思了，不知道是真的这样，还是只是因为我自己变得无趣了。不过最真实的那些乐趣始终都在，倒是不必太过担心。</p><p>希望越来越好。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;298&quot; height=&quot;52&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;id=
+      
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="http://iifatree.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>多个 Github Pages 项目主页 DNS 配置方式</title>
