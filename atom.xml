@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://iifatree.com/"/>
-  <updated>2020-01-03T14:39:14.803Z</updated>
+  <updated>2020-02-17T05:22:15.297Z</updated>
   <id>http://iifatree.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>即点即用 Office 365 与 Visio 2016 共存问题</title>
+    <link href="http://iifatree.com/2020/02/17/Office-click-to-run-and-visio-2016/"/>
+    <id>http://iifatree.com/2020/02/17/Office-click-to-run-and-visio-2016/</id>
+    <published>2020-02-17T05:01:03.000Z</published>
+    <updated>2020-02-17T05:22:15.297Z</updated>
+    
+    <content type="html"><![CDATA[<p>自己从 2014 年开始一直订购了 Office 365，其中并不包含 Visio。同时，写论文避免不了要用到 Visio，学校提供了集体授权的正版 Visio，于是从学校的正版软件站下载 Visio 2016 的安装镜像，安装时候发现提示说不能和即点即用的 Office 共准。卸载 Office 365 是不可能的，太麻烦了，于是查了一下微软的官方文档，发现可以<a href="https://docs.microsoft.com/zh-cn/DeployOffice/use-the-office-deployment-tool-to-install-volume-licensed-editions-of-visio-2016?redirectSourcePath=%25252fzh-cn%25252farticle%25252f82691bd7-a3d5-47ca-8d8a-0ee43ec2c01f" target="_blank" rel="noopener">通过 Office 部署工具来安装 Visio 和 Project 的批量许可版本</a>。</p><p>步骤简单记录如下：</p><ol><li><p>下载 <a href="https://www.microsoft.com/en-us/download/details.aspx?id=49117" target="_blank" rel="noopener">Office 部署工具（Office Deployment Tool）</a>；</p></li><li><p>打开下载到的部署工具安装文件，选择任意路径解压；</p></li><li><p>解压后路径内有一个 Setup.exe 文件和若干个配置文件；</p></li><li><p>新建配置文件，例如命名为 configuration.xml，内容如下：</p><pre><code class="xml">&lt;Configuration&gt;&lt;Add OfficeClientEdition=&quot;64&quot; Channel=&quot;Monthly&quot;&gt; &lt;Product ID=&quot;VisioProXVolume&quot; PIDKEY=&quot;69WXN-MBYV6-22PQG-3WGHK-RM6XC&quot;&gt;   &lt;Language ID=&quot;zh-cn&quot; /&gt; &lt;/Product&gt;&lt;/Add&gt;&lt;/Configuration&gt;</code></pre></li><li><p>在当前路径下运行<code>setup.exe/download configuration.xml</code>，等待命令运行完成，需要下载，可能时间较长；</p></li><li><p>运行<code>setup.exe/configure configuration.xml</code>，完成安装。</p></li></ol><p>其实就是通过配置文件来指定 Office 部署工具需要部署哪个软件及其版本，此示例指定的是 Visio 2016 专业版。如果需要安装标准版或者 Project 也是同理，参考以下表格更改对应参数即可：</p><table><thead><tr><th><strong>Product</strong></th><th><strong>ID</strong></th><th><strong>PIDKEY</strong></th></tr></thead><tbody><tr><td>Project Standard 2016</td><td>ProjectStdXVolume</td><td>D8NRQ-JTYM3-7J2DX-646CT-6836M</td></tr><tr><td>Project Professional 2016</td><td>ProjectProXVolume</td><td>WGT24-HCNMF-FQ7XH-6M8K7-DRTW9</td></tr><tr><td>Visio Standard 2016</td><td>VisioStdXVolume</td><td>NY48V-PPYYH-3F4PX-XJRKJ-W4423</td></tr><tr><td>Visio Professional 2016</td><td>VisioProXVolume</td><td>69WXN-MBYV6-22PQG-3WGHK-RM6XC</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;自己从 2014 年开始一直订购了 Office 365，其中并不包含 Visio。同时，写论文避免不了要用到 Visio，学校提供了集体授权的正版 Visio，于是从学校的正版软件站下载 Visio 2016 的安装镜像，安装时候发现提示说不能和即点即用的 Office 
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>2020 来了，我很期待</title>
@@ -393,9 +416,9 @@
     </summary>
     
     
-      <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
-    
       <category term="随笔" scheme="http://iifatree.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
     
   </entry>
   

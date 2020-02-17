@@ -23,7 +23,7 @@
     
     <title>
     
-        Tomcat 多实例配置方式 - Iifa Tree
+        即点即用 Office 365 与 Visio 2016 共存问题 - Iifa Tree
     
     </title>
     <meta name="keywords" content>
@@ -81,16 +81,16 @@
 <article class="main-content page-page" itemscope itemtype="http://schema.org/Article">
 	<div class="post-header">
 		<h1 class="post-title" itemprop="name headline">
-			Tomcat 多实例配置方式
+			即点即用 Office 365 与 Visio 2016 共存问题
 		</h1>
 		<div class="post-data">
 			
-            <time datetime="1573390515" itemprop="datePublished">Published on Nov 10, 2019</time>
+            <time datetime="1581915663" itemprop="datePublished">Published on Feb 17, 2020</time>
 			
 			with <a id="page-title-comment" href="#vcomments"></a>
 			
 			<div style="font-size: 13px;">
-				<span class="post-count">本文字数：382 字</span>
+				<span class="post-count">本文字数：414 字</span>
 				<span>|</span>
 				<span class="post-count">阅读时长 ≈ 1 min</span>
 			</div>
@@ -104,19 +104,59 @@
             
             
         </p>
-		<p>对于 Tomcat 的运行而言，需要两个路径：<code>CATALINA_HOME</code> 和 <code>CATALINA_BASE</code>。 <code>CATALINA_HOME</code> 代表 Tomcat 的安装根路径，例如 <code>/home/tomcat/apache-tomcat-9.0.27</code>。</p>
-<p><code>CATALINA_BASE</code> 代表某个 Tomcat 运行实例的配置根路径。在默认情况下，<code>CATALINA_HOME</code> 和 <code>CATALINA_BASE</code> 是指向同一路径的，即 Tomcat 的安装路径。</p>
-<p>当需要开启多个实例的时候，可以分别指定 <code>CATALINA_HOME</code> 和 <code>CATALINA_BASE</code>。相对于同时复制多个 Tomcat，这样做的好处是在需要升级 Tomcat 版本的时候，只需要更新 <code>CATALINA_HOME</code> 下的文件即可。所有的 Tomcat 实例都会共享一个 <code>CATALINA_HOME</code>。</p>
-<p>而对于 <code>CATALINA_BASE</code>，可以为每个不同的 Tomcat 实例指定不同的路径。<code>CATALINA_BASE</code> 应当包含以下文件夹：logs、webapps、work、temp 和 conf。<code>CATALINA_BASE</code> 至少应该包含 conf/server.xml 和 conf/web.xml。</p>
-<p>说了那么多，实际上部署多实例非常简单，进入 Tomcat 的安装路径，例如 <code>/home/tomcat/apache-tomcat-9.0.27</code>，首先创建一个文件夹，并将 logs、webapps、work、temp 和 conf 这几个文件夹复制到其中：</p>
-<pre><code class="language">mkdir catalina_base_1
-mv logs webapps work temp conf catalina_base_1/</code></pre>
-<p>如果有修改过 conf/server.xml 中的 Context path，记得根据新的路径进行更改。接下来就可以启动实例了，在 Tomcat 安装路径下执行：</p>
-<pre><code class="language">CATALINA_BASE=catalina_base_1 bin/catalina.sh start</code></pre>
-<p>停止等操作同理，例如：</p>
-<pre><code class="language">CATALINA_BASE=catalina_base_1 bin/shutdown.sh</code></pre>
-<p>如果需要配置第二个实例，同样创建 catalina_base_2 文件夹即可，只要在启动之前指定对应的 <code>CATALINA_BASE</code> 即可，例如：</p>
-<pre><code class="language">CATALINA_BASE=catalina_base_2 bin/catalina.sh run</code></pre>
+		<p>自己从 2014 年开始一直订购了 Office 365，其中并不包含 Visio。同时，写论文避免不了要用到 Visio，学校提供了集体授权的正版 Visio，于是从学校的正版软件站下载 Visio 2016 的安装镜像，安装时候发现提示说不能和即点即用的 Office 共准。卸载 Office 365 是不可能的，太麻烦了，于是查了一下微软的官方文档，发现可以<a href="https://docs.microsoft.com/zh-cn/DeployOffice/use-the-office-deployment-tool-to-install-volume-licensed-editions-of-visio-2016?redirectSourcePath=%25252fzh-cn%25252farticle%25252f82691bd7-a3d5-47ca-8d8a-0ee43ec2c01f" target="_blank" rel="noopener">通过 Office 部署工具来安装 Visio 和 Project 的批量许可版本</a>。</p>
+<p>步骤简单记录如下：</p>
+<ol>
+<li><p>下载 <a href="https://www.microsoft.com/en-us/download/details.aspx?id=49117" target="_blank" rel="noopener">Office 部署工具（Office Deployment Tool）</a>；</p>
+</li>
+<li><p>打开下载到的部署工具安装文件，选择任意路径解压；</p>
+</li>
+<li><p>解压后路径内有一个 Setup.exe 文件和若干个配置文件；</p>
+</li>
+<li><p>新建配置文件，例如命名为 configuration.xml，内容如下：</p>
+<pre><code class="xml">&lt;Configuration&gt;
+&lt;Add OfficeClientEdition=&quot;64&quot; Channel=&quot;Monthly&quot;&gt;
+ &lt;Product ID=&quot;VisioProXVolume&quot; PIDKEY=&quot;69WXN-MBYV6-22PQG-3WGHK-RM6XC&quot;&gt;
+   &lt;Language ID=&quot;zh-cn&quot; /&gt;
+ &lt;/Product&gt;
+&lt;/Add&gt;
+&lt;/Configuration&gt;</code></pre>
+</li>
+<li><p>在当前路径下运行<code>setup.exe/download configuration.xml</code>，等待命令运行完成，需要下载，可能时间较长；</p>
+</li>
+<li><p>运行<code>setup.exe/configure configuration.xml</code>，完成安装。</p>
+</li>
+</ol>
+<p>其实就是通过配置文件来指定 Office 部署工具需要部署哪个软件及其版本，此示例指定的是 Visio 2016 专业版。如果需要安装标准版或者 Project 也是同理，参考以下表格更改对应参数即可：</p>
+<table>
+<thead>
+<tr>
+<th><strong>Product</strong></th>
+<th><strong>ID</strong></th>
+<th><strong>PIDKEY</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Project Standard 2016</td>
+<td>ProjectStdXVolume</td>
+<td>D8NRQ-JTYM3-7J2DX-646CT-6836M</td>
+</tr>
+<tr>
+<td>Project Professional 2016</td>
+<td>ProjectProXVolume</td>
+<td>WGT24-HCNMF-FQ7XH-6M8K7-DRTW9</td>
+</tr>
+<tr>
+<td>Visio Standard 2016</td>
+<td>VisioStdXVolume</td>
+<td>NY48V-PPYYH-3F4PX-XJRKJ-W4423</td>
+</tr>
+<tr>
+<td>Visio Professional 2016</td>
+<td>VisioProXVolume</td>
+<td>69WXN-MBYV6-22PQG-3WGHK-RM6XC</td>
+</tr>
+</tbody></table>
 
 		
 		<div style="text-align: center; margin: 20px 0;">
@@ -136,7 +176,7 @@ mv logs webapps work temp conf catalina_base_1/</code></pre>
 		
 		
 		<p class="post-info">
-			本文由 <a href="http://iifatree.com">拾与拾柒</a> 创作，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="external nofollow">知识共享署名 - 非商业性 - 相同方式共享 4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为: Nov 10, 2019 09:03 pm
+			本文由 <a href="http://iifatree.com">拾与拾柒</a> 创作，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="external nofollow">知识共享署名 - 非商业性 - 相同方式共享 4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为: Feb 17, 2020 01:22 pm
 		</p>
 	</div>
 </article>
@@ -144,17 +184,15 @@ mv logs webapps work temp conf catalina_base_1/</code></pre>
 	<div class="bottom-bar-inner">
 		<div class="bottom-bar-items social-share left">
 			<span class="bottom-bar-item">Share : </span>
-			<span class="bottom-bar-item bottom-bar-facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://iifatree.com/2019/11/10/tomcat-multiple-instances-guide/index.html" target="_blank" title="Tomcat 多实例配置方式" rel="nofollow">facebook</a></span>
-			<span class="bottom-bar-item bottom-bar-twitter"><a href="https://twitter.com/intent/tweet?url=http://iifatree.com/2019/11/10/tomcat-multiple-instances-guide/&text=Tomcat 多实例配置方式" target="_blank" title="Tomcat 多实例配置方式" rel="nofollow">Twitter</a></span>
-			<span class="bottom-bar-item bottom-bar-weibo"><a href="http://service.weibo.com/share/share.php?url=&amp;title=Tomcat 多实例配置方式" target="_blank" title="Tomcat 多实例配置方式" rel="nofollow">Weibo</a></span>
-			<!-- <span class="bottom-bar-item bottom-bar-qrcode"><a href="//sapi.k780.com/?app=qr.get&data=http://iifatree.com/2019/11/10/tomcat-multiple-instances-guide/index.html" target="_blank" rel="nofollow">QRcode</a></span> -->
+			<span class="bottom-bar-item bottom-bar-facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://iifatree.com/2020/02/17/Office-click-to-run-and-visio-2016/index.html" target="_blank" title="即点即用 Office 365 与 Visio 2016 共存问题" rel="nofollow">facebook</a></span>
+			<span class="bottom-bar-item bottom-bar-twitter"><a href="https://twitter.com/intent/tweet?url=http://iifatree.com/2020/02/17/Office-click-to-run-and-visio-2016/&text=即点即用 Office 365 与 Visio 2016 共存问题" target="_blank" title="即点即用 Office 365 与 Visio 2016 共存问题" rel="nofollow">Twitter</a></span>
+			<span class="bottom-bar-item bottom-bar-weibo"><a href="http://service.weibo.com/share/share.php?url=&amp;title=即点即用 Office 365 与 Visio 2016 共存问题" target="_blank" title="即点即用 Office 365 与 Visio 2016 共存问题" rel="nofollow">Weibo</a></span>
+			<!-- <span class="bottom-bar-item bottom-bar-qrcode"><a href="//sapi.k780.com/?app=qr.get&data=http://iifatree.com/2020/02/17/Office-click-to-run-and-visio-2016/index.html" target="_blank" rel="nofollow">QRcode</a></span> -->
 		</div>
 		<div class="bottom-bar-items right">
             
-            <span class="bottom-bar-item"><a href="/2019/11/15/pokemon-sw-sh-dairy-1/">←</a></span>
             
-            
-            <span class="bottom-bar-item"><a href="/2019/07/11/nintendo-switch-lite-announced/">→</a></span>
+            <span class="bottom-bar-item"><a href="/2020/01/03/2020s-are-coming/">→</a></span>
             
 			<span class="bottom-bar-item"><a href="#footer">↓</a></span>
 			<span class="bottom-bar-item"><a href="#">↑</a></span>
@@ -170,9 +208,9 @@ mv logs webapps work temp conf catalina_base_1/</code></pre>
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-label">
-						<div class="item-title"><a href="/2020/02/17/Office-click-to-run-and-visio-2016/">即点即用 Office 365 与 Visio 2016 共存问题</a></div>
+						<div class="item-title"><a href="/2019/12/13/dns-configuration-for-github-pages-project/">多个 Github Pages 项目主页 DNS 配置方式</a></div>
 						<div class="item-meta clearfix">
-							<div class="item-meta-date" style="color: #5f5f5f;">Feb 17, 2020</div>
+							<div class="item-meta-date" style="color: #5f5f5f;">Dec 13, 2019</div>
 							<div class="item-meta-ico bg-ico-code" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
                             <div class="item-meta-cat">
                                 
@@ -185,9 +223,9 @@ mv logs webapps work temp conf catalina_base_1/</code></pre>
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-label">
-						<div class="item-title"><a href="/2019/12/13/dns-configuration-for-github-pages-project/">多个 Github Pages 项目主页 DNS 配置方式</a></div>
+						<div class="item-title"><a href="/2019/11/10/tomcat-multiple-instances-guide/">Tomcat 多实例配置方式</a></div>
 						<div class="item-meta clearfix">
-							<div class="item-meta-date" style="color: #5f5f5f;">Dec 13, 2019</div>
+							<div class="item-meta-date" style="color: #5f5f5f;">Nov 10, 2019</div>
 							<div class="item-meta-ico bg-ico-code" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
                             <div class="item-meta-cat">
                                 
@@ -527,7 +565,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 
 // 获取文章评论数
 var query1 = new AV.Query('Comment');
-query1.equalTo('url', '/2019/11/10/tomcat-multiple-instances-guide/');
+query1.equalTo('url', '/2020/02/17/Office-click-to-run-and-visio-2016/');
 query1.doesNotExist('pid');
 query1.count().then(function (count) {
     document.getElementById('page-title-comment').innerText = count + ' comment';
