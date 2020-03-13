@@ -23,7 +23,7 @@
     
     <title>
     
-        梦之 Zanarkand - Iifa Tree
+        OpenWrt 路由器作为无线 AP 的配置 - Iifa Tree
     
     </title>
     <meta name="keywords" content>
@@ -81,16 +81,16 @@
 <article class="main-content page-page" itemscope itemtype="http://schema.org/Article">
 	<div class="post-header">
 		<h1 class="post-title" itemprop="name headline">
-			梦之 Zanarkand
+			OpenWrt 路由器作为无线 AP 的配置
 		</h1>
 		<div class="post-data">
 			
-            <time datetime="1489036988" itemprop="datePublished">Published on Mar 09, 2017</time>
+            <time datetime="1584091263" itemprop="datePublished">Published on Mar 13, 2020</time>
 			
 			with <a id="page-title-comment" href="#vcomments"></a>
 			
 			<div style="font-size: 13px;">
-				<span class="post-count">本文字数：823 字</span>
+				<span class="post-count">本文字数：613 字</span>
 				<span>|</span>
 				<span class="post-count">阅读时长 ≈ 2 min</span>
 			</div>
@@ -100,23 +100,28 @@
 		<p class="post-tags">
             
             
-            <a href="/tags/游戏/">游戏</a>
-            
-            <a href="/tags/评论/">评论</a>
+            <a href="/tags/技术/">技术</a>
             
             
         </p>
-		<p><a data-fancybox="gallery" href="https://s2.ax1x.com/2019/06/13/VhP3gf.md.jpg" data-height="800"><img src="https://s2.ax1x.com/2019/06/13/VhP3gf.md.jpg"></a></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=540418&auto=0&height=32"></iframe>
-
-<p>从 17 年开始，想把自己玩过的好游戏记录一下。会有这个想法，主要是现在玩游戏的时间实在不多，所以会更加珍惜每一个游戏的过程。 15 年的时候在 PSV 上玩 FFXHD，虽然都在博客里写了<a href="http://iifatree.com/index.php/2015/04/29/press-start.html">一篇相关文章</a>，但是最后还是因为一些原因烂尾了。这次再捡起来的原因是在 Steam 上看到 FFXHD 合集打折，两部作品加起来也就不到 60 人民币的价格，这就没有什么理由不买了。上一次在 PC 上好好玩《最终幻想》还是很多年前用 PS 模拟器补 FF9 的时候了，这次再来玩 10 代这样的名作，确意外地没有太浮躁，100 多小时的流程，前后持续了一个月，实属难得。</p>
-<p>作品本身的地位无需赘述，虽然是 16 年前的作品，但是在今天依然好玩，作为一个 RPG 而言该具备的要素都具备了。十多年前的战斗系统，在很多人看来节奏过慢了，不过我本身就是个喜欢慢节奏游戏的人，所以也就并没有太多的感觉。游戏的剧情就是那样，很多年前看过游戏杂志的全剧情视频，但是远没有自己玩来得印象深刻，一方面是当年年纪还小，另一方面也是直接看剧情 CG 代入感不足吧。这一次玩的时候，拿完了所有的成就，当然其实还是依靠了 Steam 版自带的金手指，要不然 100 小时肯定是不够的。</p>
-<p>剧情方面没什么多说的了，很多人评价 10 代的剧情过于慢热，确实有这个问题，前期有些不知所以，不过我倒是觉得这就是 10 代的特色。玩家和主角是在同样的立场，来到一个什么都不了解的世界，然后一步步解答心中的疑问。至于爱情、父子情等元素，玩过的人自然印象深刻了。尤娜在今天来看仍旧是那么让人喜欢的女孩，而最后的结局还是一样催泪。</p>
-<p>FF X 是 FF XIV 之前植松伸夫作曲的最后一代正统游戏，除了人人皆知的催泪主题曲《素敌だね》（据说这是冲绳唱腔），配乐也是相当出彩，比如这首《萌动》，每次在地图上响起的时候，都让人忍不住停下来听一会，然后再接着玩。</p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=540276&auto=0&height=32"></iframe>
-
-<p>整个系列每一作不同的风格是很有意思的事情，这一代有一点后启示录的意思，不是欧洲中世纪，也不是现代风格，总之也是系列中独树一帜了。重制版的画面在高分辨率下虽然清晰了，但是由于分辨率的提高建模上的生硬也更加明显，反而不如当年 PS2 上的原版，不过完全 16:9 化还算是良心吧。</p>
-<p>X-2 的 HD 版还没玩，准备过一段时间再说，画风有些突变，最重要的还是编剧换了的原因，有点偏离野岛一成自己的想法了。</p>
+		<p>需求描述：把 OpenWrt 系统的路由器设置为二级路由，使用 LAN 口连接主路由的 LAN 口，同时保留 OpenWrt 路由器的 SSH 和 Web 访问功能，方便修改各种配置和 opkg 升级等操作。局域网网段为非 192.168.1.1 的其他网段。</p>
+<p>网络描述：光猫连接主路由，主路由拨号并作为 DHCP 服务器自动分配 IP 地址，主路由 LAN 口连接二级路由 LAN 口，其他设备通过 LAN 口或 WLAN 连接二级路由访问局域网和互联网，主路由 IP 地址为 192.168.7.1，设置后希望二级路由地址也位于该网段内，方便范文。</p>
+<p>设备：主路由 + 二级路由（我的测试设备是斐讯 K2）</p>
+<p>OpenWrt 版本：OpenWrt 19.07.2（发布于 2020 年 2 月 29 日）</p>
+<p>准备工作：主路由已经配置完毕，二级路由已经刷好 OpenWrt 固件</p>
+<p>具体步骤（以 LuCI 中的配置为例，命令行配置请参看<a href="https://openwrt.org/docs/guide-user/network/wifi/dumbap" target="_blank" rel="noopener">官方文档</a>）：</p>
+<ol>
+<li>二级路由的 LAN 口与主路由 LAN 口直连，并将另一个 LAN 口连接到设备；</li>
+<li>此时 OpenWrt 会自动设置，设备应该已经可以上网，自动分配 IP 地址为 192.168.7.100；</li>
+<li>手动设置设备 IP 地址为 192.168.1.100/24，网关和 DNS 服务器均为 192.168.1.1，之后设备无法连接互联网；</li>
+<li>设备访问 192.168.1.1，进入 OpenWrt LuCI 界面；</li>
+<li>进入 Network-&gt;Interfaces，此时 LAN 口设置应为静态 IP 192.168.1.1，更改设置为静态 IP 192.168.7.2（此处必须设置为紧邻主路由地址的地址，若主路由为 192.168.7.1 则必须设置为 192.168.7.2），网关与 DNS 服务器均为 192.168.7.1；</li>
+<li>在 DHCP Server 选项卡中的 General Setup 中勾选 Ignore interface，并在 IPv6 Settings 中将前三项设为 disabled，保存；</li>
+<li>进入 System-&gt;startup，将 dnsmasq、firewall 和 odhcpd 设为 Disabled；</li>
+<li>点击右上角，Save &amp; Apply，如果遇到 rollback 的提示，选择 Apply unchecked；</li>
+<li>将设备的 IP 地址重新设为自动获取，大功告成，以后可以通过 192.168.77.2 访问或者连接二级路由了。</li>
+</ol>
+<p>P.S.  因为我自己用的网段是非 192.168.1.1 的网段，所以设置步骤和官方教程略有不同，如果直接使用 196.168.1.1 网段，则直接参看<a href="https://openwrt.org/docs/guide-user/network/wifi/dumbap" target="_blank" rel="noopener">官方文档</a>即可。</p>
 
 		
 		<div style="text-align: center; margin: 20px 0;">
@@ -136,7 +141,7 @@
 		
 		
 		<p class="post-info">
-			本文由 <a href="http://iifatree.com">拾与拾柒</a> 创作，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="external nofollow">知识共享署名 - 非商业性 - 相同方式共享 4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为: Jul 10, 2019 12:26 pm
+			本文由 <a href="http://iifatree.com">拾与拾柒</a> 创作，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="external nofollow">知识共享署名 - 非商业性 - 相同方式共享 4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为: Mar 13, 2020 05:04 pm
 		</p>
 	</div>
 </article>
@@ -144,17 +149,15 @@
 	<div class="bottom-bar-inner">
 		<div class="bottom-bar-items social-share left">
 			<span class="bottom-bar-item">Share : </span>
-			<span class="bottom-bar-item bottom-bar-facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://iifatree.com/2017/03/09/final-fantasy-x-hd-remaster-notes/index.html" target="_blank" title="梦之 Zanarkand" rel="nofollow">facebook</a></span>
-			<span class="bottom-bar-item bottom-bar-twitter"><a href="https://twitter.com/intent/tweet?url=http://iifatree.com/2017/03/09/final-fantasy-x-hd-remaster-notes/&text=梦之 Zanarkand" target="_blank" title="梦之 Zanarkand" rel="nofollow">Twitter</a></span>
-			<span class="bottom-bar-item bottom-bar-weibo"><a href="http://service.weibo.com/share/share.php?url=&amp;title=梦之 Zanarkand" target="_blank" title="梦之 Zanarkand" rel="nofollow">Weibo</a></span>
-			<!-- <span class="bottom-bar-item bottom-bar-qrcode"><a href="//sapi.k780.com/?app=qr.get&data=http://iifatree.com/2017/03/09/final-fantasy-x-hd-remaster-notes/index.html" target="_blank" rel="nofollow">QRcode</a></span> -->
+			<span class="bottom-bar-item bottom-bar-facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://iifatree.com/2020/03/13/openwrt-dumb-ap/index.html" target="_blank" title="OpenWrt 路由器作为无线 AP 的配置" rel="nofollow">facebook</a></span>
+			<span class="bottom-bar-item bottom-bar-twitter"><a href="https://twitter.com/intent/tweet?url=http://iifatree.com/2020/03/13/openwrt-dumb-ap/&text=OpenWrt 路由器作为无线 AP 的配置" target="_blank" title="OpenWrt 路由器作为无线 AP 的配置" rel="nofollow">Twitter</a></span>
+			<span class="bottom-bar-item bottom-bar-weibo"><a href="http://service.weibo.com/share/share.php?url=&amp;title=OpenWrt 路由器作为无线 AP 的配置" target="_blank" title="OpenWrt 路由器作为无线 AP 的配置" rel="nofollow">Weibo</a></span>
+			<!-- <span class="bottom-bar-item bottom-bar-qrcode"><a href="//sapi.k780.com/?app=qr.get&data=http://iifatree.com/2020/03/13/openwrt-dumb-ap/index.html" target="_blank" rel="nofollow">QRcode</a></span> -->
 		</div>
 		<div class="bottom-bar-items right">
             
-            <span class="bottom-bar-item"><a href="/2017/05/21/life-will-change/">←</a></span>
             
-            
-            <span class="bottom-bar-item"><a href="/2016/08/26/death-and-strawberry/">→</a></span>
+            <span class="bottom-bar-item"><a href="/2020/02/17/Office-click-to-run-and-visio-2016/">→</a></span>
             
 			<span class="bottom-bar-item"><a href="#footer">↓</a></span>
 			<span class="bottom-bar-item"><a href="#">↑</a></span>
@@ -170,10 +173,10 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-label">
-						<div class="item-title"><a href="/2019/11/19/pokemon-sw-sh-dairy-345/">《宝可梦 剑/盾》日记（一周目总结篇）</a></div>
+						<div class="item-title"><a href="/2020/02/17/Office-click-to-run-and-visio-2016/">即点即用 Office 365 与 Visio 2016 共存问题</a></div>
 						<div class="item-meta clearfix">
-							<div class="item-meta-date" style="color: #5f5f5f;">Nov 19, 2019</div>
-							<div class="item-meta-ico bg-ico-game" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
+							<div class="item-meta-date" style="color: #5f5f5f;">Feb 17, 2020</div>
+							<div class="item-meta-ico bg-ico-code" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
                             <div class="item-meta-cat">
                                 
                             </div>
@@ -185,10 +188,10 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-label">
-						<div class="item-title"><a href="/2019/11/16/pokemon-sw-sh-dairy-2/">《宝可梦 剑/盾》日记（2）</a></div>
+						<div class="item-title"><a href="/2019/12/13/dns-configuration-for-github-pages-project/">多个 Github Pages 项目主页 DNS 配置方式</a></div>
 						<div class="item-meta clearfix">
-							<div class="item-meta-date" style="color: #5f5f5f;">Nov 16, 2019</div>
-							<div class="item-meta-ico bg-ico-game" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
+							<div class="item-meta-date" style="color: #5f5f5f;">Dec 13, 2019</div>
+							<div class="item-meta-ico bg-ico-code" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
                             <div class="item-meta-cat">
                                 
                             </div>
@@ -200,10 +203,10 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-label">
-						<div class="item-title"><a href="/2019/11/15/pokemon-sw-sh-dairy-1/">《宝可梦 剑/盾》日记（1）</a></div>
+						<div class="item-title"><a href="/2019/11/10/tomcat-multiple-instances-guide/">Tomcat 多实例配置方式</a></div>
 						<div class="item-meta clearfix">
-							<div class="item-meta-date" style="color: #5f5f5f;">Nov 15, 2019</div>
-							<div class="item-meta-ico bg-ico-game" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
+							<div class="item-meta-date" style="color: #5f5f5f;">Nov 10, 2019</div>
+							<div class="item-meta-ico bg-ico-code" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
                             <div class="item-meta-cat">
                                 
                             </div>
@@ -215,25 +218,10 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-label">
-						<div class="item-title"><a href="/2019/07/11/nintendo-switch-lite-announced/">【视点】Nintendo Switch Lite 与未来的 Nintendo Switch</a></div>
+						<div class="item-title"><a href="/2019/06/29/install-google-play-service-manually/">手动安装 Google Play 服务</a></div>
 						<div class="item-meta clearfix">
-							<div class="item-meta-date" style="color: #5f5f5f;">Jul 11, 2019</div>
-							<div class="item-meta-ico bg-ico-game" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
-                            <div class="item-meta-cat">
-                                
-                            </div>
-                        </div>
-					</div>
-				</div>
-			</div>
-		
-			<div class="post-list-item">
-				<div class="post-list-item-container">
-					<div class="item-label">
-						<div class="item-title"><a href="/2019/07/09/pokemon-sword-shield-info-20190708/">【视点】《宝可梦 剑/盾》七月新情报和目前的一些争议</a></div>
-						<div class="item-meta clearfix">
-							<div class="item-meta-date" style="color: #5f5f5f;">Jul 09, 2019</div>
-							<div class="item-meta-ico bg-ico-game" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
+							<div class="item-meta-date" style="color: #5f5f5f;">Jun 29, 2019</div>
+							<div class="item-meta-ico bg-ico-code" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
                             <div class="item-meta-cat">
                                 
                             </div>
@@ -249,6 +237,21 @@
 						<div class="item-meta clearfix">
 							<div class="item-meta-date" style="color: #5f5f5f;">Jun 20, 2019</div>
 							<div class="item-meta-ico bg-ico-game" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
+                            <div class="item-meta-cat">
+                                
+                            </div>
+                        </div>
+					</div>
+				</div>
+			</div>
+		
+			<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="/2018/04/11/psp-6-61-infinity/">PSP 升级 6.61 并完美破解记录</a></div>
+						<div class="item-meta clearfix">
+							<div class="item-meta-date" style="color: #5f5f5f;">Apr 11, 2018</div>
+							<div class="item-meta-ico bg-ico-code" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
                             <div class="item-meta-cat">
                                 
                             </div>
@@ -527,7 +530,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 
 // 获取文章评论数
 var query1 = new AV.Query('Comment');
-query1.equalTo('url', '/2017/03/09/final-fantasy-x-hd-remaster-notes/');
+query1.equalTo('url', '/2020/03/13/openwrt-dumb-ap/');
 query1.doesNotExist('pid');
 query1.count().then(function (count) {
     document.getElementById('page-title-comment').innerText = count + ' comment';

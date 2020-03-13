@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://iifatree.com/"/>
-  <updated>2020-02-17T05:22:15.297Z</updated>
+  <updated>2020-03-13T09:04:46.977Z</updated>
   <id>http://iifatree.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OpenWrt 路由器作为无线 AP 的配置</title>
+    <link href="http://iifatree.com/2020/03/13/openwrt-dumb-ap/"/>
+    <id>http://iifatree.com/2020/03/13/openwrt-dumb-ap/</id>
+    <published>2020-03-13T09:21:03.000Z</published>
+    <updated>2020-03-13T09:04:46.977Z</updated>
+    
+    <content type="html"><![CDATA[<p>需求描述：把 OpenWrt 系统的路由器设置为二级路由，使用 LAN 口连接主路由的 LAN 口，同时保留 OpenWrt 路由器的 SSH 和 Web 访问功能，方便修改各种配置和 opkg 升级等操作。局域网网段为非 192.168.1.1 的其他网段。</p><p>网络描述：光猫连接主路由，主路由拨号并作为 DHCP 服务器自动分配 IP 地址，主路由 LAN 口连接二级路由 LAN 口，其他设备通过 LAN 口或 WLAN 连接二级路由访问局域网和互联网，主路由 IP 地址为 192.168.7.1，设置后希望二级路由地址也位于该网段内，方便范文。</p><p>设备：主路由 + 二级路由（我的测试设备是斐讯 K2）</p><p>OpenWrt 版本：OpenWrt 19.07.2（发布于 2020 年 2 月 29 日）</p><p>准备工作：主路由已经配置完毕，二级路由已经刷好 OpenWrt 固件</p><p>具体步骤（以 LuCI 中的配置为例，命令行配置请参看<a href="https://openwrt.org/docs/guide-user/network/wifi/dumbap" target="_blank" rel="noopener">官方文档</a>）：</p><ol><li>二级路由的 LAN 口与主路由 LAN 口直连，并将另一个 LAN 口连接到设备；</li><li>此时 OpenWrt 会自动设置，设备应该已经可以上网，自动分配 IP 地址为 192.168.7.100；</li><li>手动设置设备 IP 地址为 192.168.1.100/24，网关和 DNS 服务器均为 192.168.1.1，之后设备无法连接互联网；</li><li>设备访问 192.168.1.1，进入 OpenWrt LuCI 界面；</li><li>进入 Network-&gt;Interfaces，此时 LAN 口设置应为静态 IP 192.168.1.1，更改设置为静态 IP 192.168.7.2（此处必须设置为紧邻主路由地址的地址，若主路由为 192.168.7.1 则必须设置为 192.168.7.2），网关与 DNS 服务器均为 192.168.7.1；</li><li>在 DHCP Server 选项卡中的 General Setup 中勾选 Ignore interface，并在 IPv6 Settings 中将前三项设为 disabled，保存；</li><li>进入 System-&gt;startup，将 dnsmasq、firewall 和 odhcpd 设为 Disabled；</li><li>点击右上角，Save &amp; Apply，如果遇到 rollback 的提示，选择 Apply unchecked；</li><li>将设备的 IP 地址重新设为自动获取，大功告成，以后可以通过 192.168.77.2 访问或者连接二级路由了。</li></ol><p>P.S.  因为我自己用的网段是非 192.168.1.1 的网段，所以设置步骤和官方教程略有不同，如果直接使用 196.168.1.1 网段，则直接参看<a href="https://openwrt.org/docs/guide-user/network/wifi/dumbap" target="_blank" rel="noopener">官方文档</a>即可。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;需求描述：把 OpenWrt 系统的路由器设置为二级路由，使用 LAN 口连接主路由的 LAN 口，同时保留 OpenWrt 路由器的 SSH 和 Web 访问功能，方便修改各种配置和 opkg 升级等操作。局域网网段为非 192.168.1.1 的其他网段。&lt;/p&gt;
+&lt;p
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>即点即用 Office 365 与 Visio 2016 共存问题</title>
