@@ -43,12 +43,6 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-    <style>
-        html {
-            filter: progid:http://DXImageTransform.Microsoft.BasicImage(grayscale=1);
-            -webkit-filter: grayscale(100%);
-        }
-    </style>
 </head>
 <body class="bg-white" gtools_scp_screen_capture_injected="true">
 <!--[if lt IE 8]>
@@ -111,7 +105,7 @@
             
         </p>
 		<p>需求描述：把 OpenWrt 系统的路由器设置为二级路由，使用 LAN 口连接主路由的 LAN 口，同时保留 OpenWrt 路由器的 SSH 和 Web 访问功能，方便修改各种配置和 opkg 升级等操作。局域网网段为非 192.168.1.1 的其他网段。</p>
-<p>网络描述：光猫连接主路由，主路由拨号并作为 DHCP 服务器自动分配 IP 地址，主路由 LAN 口连接二级路由 LAN 口，其他设备通过 LAN 口或 WLAN 连接二级路由访问局域网和互联网，主路由 IP 地址为 192.168.7.1，设置后希望二级路由地址也位于该网段内，方便范文。</p>
+<p>网络描述：光猫连接主路由，主路由拨号并作为 DHCP 服务器自动分配 IP 地址，主路由 LAN 口连接二级路由 LAN 口，其他设备通过 LAN 口或 WLAN 连接二级路由访问局域网和互联网，主路由 IP 地址为 192.168.7.1，设置后希望二级路由地址也位于该网段内，方便访问。</p>
 <p>设备：主路由 + 二级路由（我的测试设备是斐讯 K2）</p>
 <p>OpenWrt 版本：OpenWrt 19.07.2（发布于 2020 年 2 月 29 日）</p>
 <p>准备工作：主路由已经配置完毕，二级路由已经刷好 OpenWrt 固件</p>
@@ -147,7 +141,7 @@
 		
 		
 		<p class="post-info">
-			本文由 <a href="http://iifatree.com">拾与拾柒</a> 创作，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="external nofollow">知识共享署名 - 非商业性 - 相同方式共享 4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为: Mar 13, 2020 05:04 pm
+			本文由 <a href="http://iifatree.com">拾与拾柒</a> 创作，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="external nofollow">知识共享署名 - 非商业性 - 相同方式共享 4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为: Jan 08, 2021 11:08 am
 		</p>
 	</div>
 </article>
@@ -162,6 +156,8 @@
 		</div>
 		<div class="bottom-bar-items right">
             
+            <span class="bottom-bar-item"><a href="/2021/01/08/double-pinyin/">←</a></span>
+            
             
             <span class="bottom-bar-item"><a href="/2020/02/17/Office-click-to-run-and-visio-2016/">→</a></span>
             
@@ -175,6 +171,21 @@
 <div class="related-post-lists">
 	<div class="post-lists">
 		<div class="post-lists-body">
+		
+			<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="/2021/01/08/double-pinyin/">从双拼到汉语拼音方案——日常使用双拼的几个小问题</a></div>
+						<div class="item-meta clearfix">
+							<div class="item-meta-date" style="color: #5f5f5f;">Jan 08, 2021</div>
+							<div class="item-meta-ico bg-ico-code" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
+                            <div class="item-meta-cat">
+                                
+                            </div>
+                        </div>
+					</div>
+				</div>
+			</div>
 		
 			<div class="post-list-item">
 				<div class="post-list-item-container">
@@ -251,21 +262,6 @@
 				</div>
 			</div>
 		
-			<div class="post-list-item">
-				<div class="post-list-item-container">
-					<div class="item-label">
-						<div class="item-title"><a href="/2018/04/11/psp-6-61-infinity/">PSP 升级 6.61 并完美破解记录</a></div>
-						<div class="item-meta clearfix">
-							<div class="item-meta-date" style="color: #5f5f5f;">Apr 11, 2018</div>
-							<div class="item-meta-ico bg-ico-code" style="background: url(/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
-                            <div class="item-meta-cat">
-                                
-                            </div>
-                        </div>
-					</div>
-				</div>
-			</div>
-		
 		</div>
 	</div>
 </div>
@@ -303,16 +299,18 @@
                     	<p>Theme is <a href="https://github.com/cccyb/hexo-theme-pinghsu" target="_blank">Pinghsu</a></p>
                         <p>走遍千山万水，还想在此重逢</p>
                         <p>Powered by <a href="http://iifatree.com" target="_blank">拾与拾柒</a></p>
-                        <p style="margin-top: 10px">站点总字数：26.1k</p>
+                        <p style="margin-top: 10px">站点总字数：28.9k</p>
                         
                         
-                        <p style="margin-top: 10px">&copy; 2010 - 2020 <a href="http://iifatree.com">Iifa Tree</a></p>
+                        <p style="margin-top: 10px">&copy; 2010 - 2021 <a href="http://iifatree.com">Iifa Tree</a></p>
                     </div>
 				</div>
             </div>
             
             <div class="meta-item meta-posts">
                 <h3 class="meta-title">RECENT POSTS</h3>
+                
+                <li><a href="/2021/01/08/double-pinyin/">从双拼到汉语拼音方案——日常使用双拼的几个小问题</a></li>
                 
                 <li><a href="/2020/03/13/openwrt-dumb-ap/">OpenWrt 路由器作为无线 AP 的配置</a></li>
                 
@@ -327,8 +325,6 @@
                 <li><a href="/2019/11/19/pokemon-sw-sh-dairy-345/">《宝可梦 剑/盾》日记（一周目总结篇）</a></li>
                 
                 <li><a href="/2019/11/16/pokemon-sw-sh-dairy-2/">《宝可梦 剑/盾》日记（2）</a></li>
-                
-                <li><a href="/2019/11/15/pokemon-sw-sh-dairy-1/">《宝可梦 剑/盾》日记（1）</a></li>
                 
             </div>
             
