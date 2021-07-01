@@ -6,7 +6,7 @@
   <link href="http://iifatree.com/atom.xml" rel="self"/>
   
   <link href="http://iifatree.com/"/>
-  <updated>2021-06-13T15:28:54.778Z</updated>
+  <updated>2021-07-01T08:26:10.306Z</updated>
   <id>http://iifatree.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在 M1 芯片的 Mac 上通过 Parallel Desktop 体验 Windows 11</title>
+    <link href="http://iifatree.com/2021/07/01/win11-arm-on-parallels-desktop/"/>
+    <id>http://iifatree.com/2021/07/01/win11-arm-on-parallels-desktop/</id>
+    <published>2021-07-01T07:52:09.000Z</published>
+    <updated>2021-07-01T08:26:10.306Z</updated>
+    
+    <content type="html"><![CDATA[<p><a class="link"   href="https://www.microsoft.com/en-us/windows/windows-11" >Windows 11<i class="fas fa-external-link-alt"></i></a> 发布了，自然也想要在第一时间体验一番，最终决定在 M1 芯片的 MacBook Air 上用 Parallels Desktop 安装 ARM 版本的 Windows 11 体验一番。</p><p>注意：以下所有内容都是在虚拟机内测试的，不建议使用主力电脑进行操作！！！</p><h1 id="安装-Windows-11-on-ARM"><a href="#安装-Windows-11-on-ARM" class="headerlink" title="安装 Windows 11 on ARM"></a>安装 Windows 11 on ARM</h1><p>首先是正常下载 Windows 11 的安装镜像，由于想在 M1 芯片的 mac 上体验，所以需要下载 ARM 版本的镜像，这里下载的是微软提供的 <a class="link"   href="https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewARM64" >Windows 11 Insider Preview ARM64<i class="fas fa-external-link-alt"></i></a>，注意需要首先登录微软账户并加入 Windows 预览计划。</p><p>之后就是正常在 Parallels Desktop 中进行安装工作了，安装过程中会遇到提示：此设备无法运行 Windows 11。</p><p>众所周知本次的 Windows 11 要求 TPM 2.0，虽然 Parallels Desktop 提供了虚拟 vTPM，但是是 Pro 版本专享功能，我个人的订阅是标准版，并不包含 vTPM 的支持，因此还是需要想办法绕过这一限制才能体验 Windows 11。（希望 Parallels 官方早日把 vTPM 下放标准版啊！）</p><p>解决方法如下：</p><ol><li><p>使用组合键 Shift+F10，打开命令行界面，输入 regedit 打开注册表；</p></li><li><p>定位到<code>HKEY_LOCAL_MACHINE\SYSTEM\Setup</code>，创建一个名为<code>LabConfig</code>的项；</p></li><li><p>在<code>LabConfig</code>下创建两个<code>DWORD</code>值：</p><ul><li><p>键为<code>BypassTPMCheck</code>，值为<code>00000001</code></p></li><li><p>键为<code>BypassSecure BootCheck</code>，值为<code>00000001</code></p></li></ul></li><li><p>保存，回到上一步，重新点击下一步，之后正常安装即可。</p></li></ol><h1 id="加入-Dev-预览通道"><a href="#加入-Dev-预览通道" class="headerlink" title="加入 Dev 预览通道"></a>加入 Dev 预览通道</h1><p>安装成功，进入系统后，版本为<code>10.0.22000.1</code>，目前的最新版本为<code>10.0.22000.51</code>，进入设置检查更新发现无法检测到更新内容，需要加入 Windows Insider Preview Dev 通道才能正常检测到更新。然而目前在不支持 TPM 的环境中，是无法切换到 Dev 通道的，但是也有解决办法：</p><ol><li>登录微软账户，在设置中加入 Insider 计划并选择 Release Preview 通道；</li><li>重启，然后打开注册表编辑器（Win+R，运行<code>regedit</code>）</li><li>定位到<code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection</code>：<ol><li>将<code>UIBranch</code>中的值更改为<code>Dev</code></li><li>将<code>ContentType</code>中的值更改为<code>Mainline</code></li><li>将<code>Ring</code>中的文本更改为<code>External</code></li></ol></li><li>定位到<code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsSelfHost\Applicability</code>：<ol><li>将<code>BranchName</code>中的值更改<code> Dev</code></li><li>将<code>ContentType</code>中的值更改为 <code>Mainline</code></li><li>将<code>Ring</code>中的值更改为<code>External</code></li></ol></li><li>退出注册表编辑器，重启;</li><li>重新检查更新，如无意外，可以更新到<code>10.0.22000.51</code>，即本次推送的预览版本，enjoy it！</li></ol><p><img                       lazyload                     src="/images/loading.svg"                     data-src="/images/win11.png"                                     ></p><p>#参考资料</p><ol><li><a class="link"   href="https://www.ithome.com/0/559/669.htm" >绕过 TPM 2.0 安装微软 Win11 的三种方法，注册表大法回归<i class="fas fa-external-link-alt"></i></a></li><li><a class="link"   href="https://www.ithome.com/0/559/679.htm" >Win11 预览版即将到来：即使不满足最低硬件要求，你仍可升级 Dev（附方法）<i class="fas fa-external-link-alt"></i></a></li><li><a class="link"   href="https://changewindows.org/timeline/pc" >Change Windows<i class="fas fa-external-link-alt"></i></a></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;a class=&quot;link&quot;   href=&quot;https://www.microsoft.com/en-us/windows/windows-11&quot; &gt;Windows 11&lt;i class=&quot;fas fa-external-link-alt&quot;&gt;&lt;/i&gt;&lt;/a&gt; 发布了，自</summary>
+      
+    
+    
+    
+    
+    <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="体验" scheme="http://iifatree.com/tags/%E4%BD%93%E9%AA%8C/"/>
+    
+  </entry>
   
   <entry>
     <title>Unity 找不到 Android SDK 及编译失败的终极解决方案</title>
@@ -487,9 +511,9 @@
     
     
     
-    <category term="随笔" scheme="http://iifatree.com/tags/%E9%9A%8F%E7%AC%94/"/>
-    
     <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+    <category term="随笔" scheme="http://iifatree.com/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
