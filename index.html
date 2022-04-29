@@ -151,6 +151,47 @@
                 
 
                 <h3 class="home-article-title">
+                    <a href="/2022/04/29/trojan-and-nginx-listen-to-the-same-port/">
+                        trojan 和 nginx 共用 443 端口的简单方法
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        需求：trojan 服务与一个正常的 nginx 站点共用 443 端口，且 nginx 使用 certbot 安装 Let’s Encrypt 证书实现 HTTPS。
+首先安装 nginx，正确配置站点，并使用 certbot 申请证书，certb...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 29 2022 20:33:38 GMT+0800">2022-04-29</span></span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E6%8A%80%E6%9C%AF/">技术</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/04/29/trojan-and-nginx-listen-to-the-same-port/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
                     <a href="/2021/12/26/sum-2021/">
                         游戏与消费电子产品 2021 小结
                     </a>
@@ -488,47 +529,6 @@ Windows 11 发布了，自然也想要在第一时间体验一番，最终决定
 
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2019/12/12/ipad-productivity-on-dec-2019/">
-                        2019 年 12 月的 iPad Pro 体验
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        因为双十一给 iPad Pro （11 英寸）购入了键盘式智能双面夹，所以终于在购入接近一年以后把 iPad Pro 进化为了完全体，于是这几周内一直尝试在跑到另一个校区上自习的时候故意不带电脑，来看看完全使用 iPad 办公的体验如何。
-先说结论：...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Dec 12 2019 22:16:43 GMT+0800">2019-12-12</span></span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E4%BD%93%E9%AA%8C/">体验</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2019/12/12/ipad-productivity-on-dec-2019/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
     </ul>
 
     <div class="home-paginator">
@@ -575,119 +575,54 @@ Windows 11 发布了，自然也想要在第一时间体验一番，最终决定
     
 
     <div class="right-bottom-side-tools">
-        $tools-item-width = 32px;
-$tools-item-font-size = 1.1rem;
-$tools-item-border-radius = 1px;
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
 
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
 
-.side-tools-container {
-  position: relative;
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
-  .tools-item {
-    width: $tools-item-width;
-    height: $tools-item-width;
-    font-size: $tools-item-font-size;
-    margin-bottom: 3px;
-    cursor: pointer;
-    border-right: none;
-    border-radius: $tools-item-border-radius;
-    box-shadow: 1px 1px 3px var(--shadow-color);
-    color: var(--default-text-color);
-    background: var(--background-color);
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
 
-    i {
-      color: var(--default-text-color);
-    }
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
 
-    &:hover {
-      color: var(--background-color);
-      background: var(--primary-color);
-      box-shadow: 2px 2px 6px var(--shadow-color);
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
 
-      i {
-        color: var(--background-color);
-      }
-    }
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
 
-    +keep-tablet() {
-      width: $tools-item-width * 0.9;
-      height: $tools-item-width * 0.9;
-      font-size: $tools-item-font-size * 0.9;
-      margin-bottom: 2px;
-    }
-
-    &.rss {
-
-      a {
-        border-radius: $tools-item-border-radius;
-        width: 100%;
-        height: 100%;
-
-        &:hover {
-          color: var(--background-color);
-          background: var(--primary-color);
-          box-shadow: 2px 2px 6px var(--shadow-color);
-        }
-      }
-    }
-  }
-
-
-  .side-tools-list {
-    opacity: 0;
-    transform: translateX(100%);
-    transition-t("transform, opacity", "0, 0", "0.2, 0.2", "linear, linear");
-
-    .tool-expand-width {
-      +keep-tablet() {
-        display: none;
-      }
-    }
-
-
-    &.show {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-
-  .exposed-tools-list {
-
-    if (hexo-config('style.scroll.percent.enable') == true) {
-      .tool-scroll-to-top {
-        display: none;
-
-        &.show {
-          display: flex;
-        }
-
-        &:hover {
-
-          .percent {
-            display: none;
-          }
-
-          .arrow-up {
-            display: flex;
-          }
-
-        }
-
-        .arrow-up {
-          display: none;
-        }
-
-        .percent {
-          display: flex;
-          font-size: 1rem;
-        }
-
-      }
-
-    }
-  }
-}
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
 
     </div>
 

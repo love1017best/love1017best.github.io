@@ -284,68 +284,143 @@
     
 
         
-            
-    <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
-        <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'tx45B726pL0RmCTHG335fU83-gzGzoHsz',
-                    appKey: 'Uh3potIItHbtubdoBz1LB1QB',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '',
-                    lang: 'zh-CN'.toLowerCase()
-                });
+            .valine-container {
 
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
+  #vcomments {
 
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = '拾与拾柒';
+    .vwrap {
 
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
+      border: 1px solid var(--third-text-color);
+
+      .vheader {
+
+        .vinput {
+
+          color: var(--default-text-color);
+          border-color: var(--third-text-color);
+
+          &:focus {
+            border-bottom: 1px dashed var(--primary-color) !important;
+          }
+        }
+      }
+
+
+      .vedit {
+
+        .veditor {
+          color: var(--default-text-color);
+        }
+
+        .vctrl {
+
+          .vicon {
+
+            fill: var(--default-text-color);
+
+            &.actived {
+              fill: var(--primary-color);
             }
+          }
+        }
 
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
-            } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
-            }
-        </script>
-    </div>
+      }
 
+
+      button.vsubmit {
+
+        background: transparent !important;
+        color: var(--default-text-color) !important;
+        border: 1px solid var(--default-text-color) !important;
+
+        &:hover {
+          color: var(--primary-color) !important;
+          border: 1px solid var(--primary-color) !important;
+        }
+      }
+
+
+    }
+
+
+    .vcount {
+      color: var(--default-text-color);
+
+      .vnum {
+        color: var(--second-text-color);
+      }
+    }
+
+
+    .vcard {
+
+      .vnick {
+        .author {
+          font-weight: 450;
+          font-size: 12px;
+          padding: 2px;
+          background: -webkit-linear-gradient(45deg, #e3565e, #ee854b, #f6c258, #90c68a, #5fb3b3, #6699cc, #c594c5);
+          background: linear-gradient(45deg, #e3565e, #ee854b, #f6c258, #90c68a, #5fb3b3, #6699cc, #c594c5);
+          color: #fff;
+          margin-left: 2px;
+          border-radius: 2px;
+        }
+      }
+
+
+      .vhead {
+
+        .vnick {
+          color: var(--primary-color);
+        }
+
+        .vsys {
+          color: var(--default-text-color);
+          background: var(--fourth-text-color) !important;
+        }
+      }
+
+
+      .vcontent {
+        P {
+          color: var(--default-text-color);
+
+          code {
+            color: var(--code-foreground);
+            background: var(--code-background);
+          }
+        }
+      }
+
+
+      .vh {
+        border-bottom-color: var(--border-color);
+      }
+
+      .vquote {
+        border-left-color: var(--border-color);
+      }
+    }
+
+
+    .vcopy {
+      color: var(--third-text-color);
+    }
+
+
+    .vpage {
+
+      .vmore {
+        border: 1px solid var(--border-color);
+        color: var(--second-text-color);
+      }
+    }
+
+
+  }
+
+
+}
 
 
         
@@ -408,119 +483,54 @@
     
 
     <div class="right-bottom-side-tools">
-        $tools-item-width = 32px;
-$tools-item-font-size = 1.1rem;
-$tools-item-border-radius = 1px;
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
 
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
 
-.side-tools-container {
-  position: relative;
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
-  .tools-item {
-    width: $tools-item-width;
-    height: $tools-item-width;
-    font-size: $tools-item-font-size;
-    margin-bottom: 3px;
-    cursor: pointer;
-    border-right: none;
-    border-radius: $tools-item-border-radius;
-    box-shadow: 1px 1px 3px var(--shadow-color);
-    color: var(--default-text-color);
-    background: var(--background-color);
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
 
-    i {
-      color: var(--default-text-color);
-    }
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
 
-    &:hover {
-      color: var(--background-color);
-      background: var(--primary-color);
-      box-shadow: 2px 2px 6px var(--shadow-color);
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
 
-      i {
-        color: var(--background-color);
-      }
-    }
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
 
-    +keep-tablet() {
-      width: $tools-item-width * 0.9;
-      height: $tools-item-width * 0.9;
-      font-size: $tools-item-font-size * 0.9;
-      margin-bottom: 2px;
-    }
-
-    &.rss {
-
-      a {
-        border-radius: $tools-item-border-radius;
-        width: 100%;
-        height: 100%;
-
-        &:hover {
-          color: var(--background-color);
-          background: var(--primary-color);
-          box-shadow: 2px 2px 6px var(--shadow-color);
-        }
-      }
-    }
-  }
-
-
-  .side-tools-list {
-    opacity: 0;
-    transform: translateX(100%);
-    transition-t("transform, opacity", "0, 0", "0.2, 0.2", "linear, linear");
-
-    .tool-expand-width {
-      +keep-tablet() {
-        display: none;
-      }
-    }
-
-
-    &.show {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-
-  .exposed-tools-list {
-
-    if (hexo-config('style.scroll.percent.enable') == true) {
-      .tool-scroll-to-top {
-        display: none;
-
-        &.show {
-          display: flex;
-        }
-
-        &:hover {
-
-          .percent {
-            display: none;
-          }
-
-          .arrow-up {
-            display: flex;
-          }
-
-        }
-
-        .arrow-up {
-          display: none;
-        }
-
-        .percent {
-          display: flex;
-          font-size: 1rem;
-        }
-
-      }
-
-    }
-  }
-}
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
 
     </div>
 
