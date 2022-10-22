@@ -6,7 +6,7 @@
   <link href="http://iifatree.com/atom.xml" rel="self"/>
   
   <link href="http://iifatree.com/"/>
-  <updated>2022-04-29T12:41:58.883Z</updated>
+  <updated>2022-10-22T06:54:51.373Z</updated>
   <id>http://iifatree.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在 Apple Silicon 上使用 Conda 搭建 tensorflow 环境</title>
+    <link href="http://iifatree.com/2022/10/22/install-tensorflow-on-apple-silicon-with-conda/"/>
+    <id>http://iifatree.com/2022/10/22/install-tensorflow-on-apple-silicon-with-conda/</id>
+    <published>2022-10-22T06:49:22.000Z</published>
+    <updated>2022-10-22T06:54:51.373Z</updated>
+    
+    <content type="html"><![CDATA[<p>首先根据自己需要创建环境</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda create -n tensorflow python=3.9</span><br><span class="line">conda install -c apple tensorflow-deps</span><br><span class="line">pip install tensorflow-macos tensorflow-metal</span><br><span class="line">conda install tensorflow</span><br></pre></td></tr></table></figure><p>测试一下</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="built_in">print</span>(tf.__version__)</span><br></pre></td></tr></table></figure><p>enjoy it!</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;首先根据自己需要创建环境&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/s</summary>
+      
+    
+    
+    
+    
+    <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>trojan 和 nginx 共用 443 端口的简单方法</title>

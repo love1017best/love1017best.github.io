@@ -9,7 +9,7 @@
     
     <title>
         
-            trojan 和 nginx 共用 443 端口的简单方法 |
+            在 Apple Silicon 上使用 Conda 搭建 tensorflow 环境 |
         
         Iifa Tree
     </title>
@@ -149,7 +149,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">trojan 和 nginx 共用 443 端口的简单方法</span>
+            <span class="title-hover-animation">在 Apple Silicon 上使用 Conda 搭建 tensorflow 环境</span>
         </div>
 
         
@@ -165,7 +165,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2022-04-29 20:33:38
+        <i class="fas fa-edit"></i>&nbsp;2022-10-22 14:49:22
     </span>
     
     
@@ -184,7 +184,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>190 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>43 字</span>
         </span>
     
     
@@ -201,14 +201,13 @@
         
 
         <div class="article-content markdown-body">
-            <p>需求：trojan 服务与一个正常的 nginx 站点共用 443 端口，且 nginx 使用 certbot 安装 Let’s Encrypt 证书实现 HTTPS。</p>
-<p>首先安装 nginx，正确配置站点，并使用 certbot 申请证书，certbot 会自动修改 nginx 的站点设置。</p>
-<p>之后正常搭建 trojan 服务并配置，使用服务器模式，本地端口设置为 443.</p>
-<p>启动 trojan 服务的时候，可能会遇到提示 443 端口已被占用。</p>
-<p>此时只需要前往 nginx 的站点配置文件中，将 certbot 自动配置的 443 端口监听部分注释掉即可：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">listen [::]:443 ssl ipv6only=on; # managed by Certbot</span><br><span class="line">listen 443 ssl; # managed by Certbot</span><br></pre></td></tr></table></figure>
+            <p>首先根据自己需要创建环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda create -n tensorflow python=3.9</span><br><span class="line">conda install -c apple tensorflow-deps</span><br><span class="line">pip install tensorflow-macos tensorflow-metal</span><br><span class="line">conda install tensorflow</span><br></pre></td></tr></table></figure>
 
-<p>注释掉这一部分后，再重启 nginx 和 trojan 服务，443 端口的访问就会被 trojan 接管。</p>
+<p>测试一下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="built_in">print</span>(tf.__version__)</span><br></pre></td></tr></table></figure>
+
+<p>enjoy it!</p>
 
         </div>
 
@@ -216,11 +215,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：trojan 和 nginx 共用 443 端口的简单方法</li>
+        <li>本文标题：在 Apple Silicon 上使用 Conda 搭建 tensorflow 环境</li>
         <li>本文作者：拾与拾柒</li>
-        <li>创建时间：2022-04-29 20:33:38</li>
+        <li>创建时间：2022-10-22 14:49:22</li>
         <li>
-            本文链接：https://blog.iifatree.com/2022/04/29/trojan-and-nginx-listen-to-the-same-port/
+            本文链接：https://blog.iifatree.com/2022/10/22/install-tensorflow-on-apple-silicon-with-conda/
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -234,29 +233,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/10/22/install-tensorflow-on-apple-silicon-with-conda/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">在 Apple Silicon 上使用 Conda 搭建 tensorflow 环境</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2021/12/26/sum-2021/"
+                           href="/2022/04/29/trojan-and-nginx-listen-to-the-same-port/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">游戏与消费电子产品 2021 小结</span>
+                                <span class="post-nav-title-item">trojan 和 nginx 共用 443 端口的简单方法</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
