@@ -6,7 +6,7 @@
   <link href="http://iifatree.com/atom.xml" rel="self"/>
   
   <link href="http://iifatree.com/"/>
-  <updated>2022-10-22T06:58:09.209Z</updated>
+  <updated>2022-11-12T13:03:57.335Z</updated>
   <id>http://iifatree.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux 环境下 tomcat 保存 MultipartFile 报 FileNotFoundException 问题解决</title>
+    <link href="http://iifatree.com/2022/11/12/linux-tomcat-filenotfound/"/>
+    <id>http://iifatree.com/2022/11/12/linux-tomcat-filenotfound/</id>
+    <published>2022-11-12T12:39:42.000Z</published>
+    <updated>2022-11-12T13:03:57.335Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前发现一个问题，项目中接收前端发送的 MultipartFile，需要转换为 File 保存，并进行后续的操作，于是使用</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">multiPartFile.transferTo(newFile);</span><br></pre></td></tr></table></figure><p>将 MultipartFile 转换为 File，在本地编译部署，测试均无问题。</p><p>打包部署到 linux 环境后，出现 java.io.FileNotFoundException，且提示 </p><p>CatalinaBase/work/<strong>Catalina</strong>/<strong>localhost</strong>/<strong>projectName/upload/fileName (No such file or directory)</strong></p><p>经过检查，发现最终的解决方法为使用</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FileUtils.copyInputStreamToFile(multiPartFile.getInputStream(), newFile);</span><br></pre></td></tr></table></figure><p>替换原来的 transferTo() 方法。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;之前发现一个问题，项目中接收前端发送的 MultipartFile，需要转换为 File 保存，并进行后续的操作，于是使用&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
+      
+    
+    
+    
+    
+    <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>在 Apple Silicon 上使用 Conda 搭建 tensorflow 环境</title>
