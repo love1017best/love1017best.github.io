@@ -145,246 +145,198 @@
             <div class="main-content">
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
+                    $avatarWidth = 46px;
+$arrow-icon-width = 16px;
+$post-nav-max-width = 220px;
+$article-title-font-size = 1.6rem;
 
-        <div class="article-title">
-            <span class="title-hover-animation">新作传言和我想要的 Pokémon 游戏作品</span>
-        </div>
+.article-content-container {
 
-        
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/avatar.jpeg">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">拾与拾柒</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        .article-meta-info {
-  font-size: 0.8rem;
-  color: var(--third-text-color);
+  keep-container(false, 0, 0, 30px, 30px);
 
-  .article-meta-item {
-    margin-right: 10px;
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-
-
-  .article-tags, .article-categories {
-    display: inline;
-
-    ul, li {
-      display: inline;
-    }
-
-    a {
-      color: var(--third-text-color);
-
-      &:hover {
-        color: var(--primary-color);
-      }
-    }
-  }
-
-
-  .article-wordcount, .article-tags {
-    +keep-mobile() {
-      display: none;
-    }
-  }
-
-  .article-min2read, .article-categories {
+  .article-title {
+    color: var(--second-text-color);
+    font-weight: 600;
+    font-size: $article-title-font-size;
 
     +keep-tablet() {
-      display: none;
+      font-size: $article-title-font-size * 0.9;
+    }
+
+    +keep-mobile() {
+      font-size: $article-title-font-size * 0.8;
+    }
+  }
+
+
+  .article-header {
+    position: relative;
+    padding-left: $avatarWidth;
+    width: 100%;
+    height: $avatarWidth;
+    box-sizing: border-box;
+
+    .avatar {
+      position: absolute;
+      top: 0
+      left: 0;
+      width: $avatarWidth;
+      height: $avatarWidth;
+      padding: 1px;
+      box-sizing: border-box;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+
+      img {
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        background: var(--avatar-background-color);
+      }
+
+    }
+
+
+    .info {
+      padding: 2px 0;
+      margin-left: 10px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+
+      .author {
+        font-weight: 600;
+        font-size: 1.18rem;
+        display: flex;
+        align-items: center;
+
+        .name {
+          color: var(--default-text-color);
+        }
+
+        .author-label {
+          margin-left: 10px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          padding: 0 5px;
+          border-radius: 5px;
+          color: #fff;
+          background: var(--selection-color);
+        }
+
+      }
     }
 
   }
+
+
+  .article-header, .article-header-meta-info {
+    margin-top: 16px;
+    +keep-tablet() {
+      transform: scale(0.9);
+      transform-origin: left top;
+    }
+  }
+
+
+  .article-content {
+    margin-top: $component-spacing-value;
+    padding-bottom: 10px;
+    word-wrap: break-word;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--default-text-color);
+  }
+
+  .post-copyright-info {
+    margin-top: $component-spacing-value;
+    width: 100%;
+  }
+
+  .article-nav {
+    height: 40px;
+    margin-top: $component-spacing-value;
+
+    .article-prev, .article-next {
+      max-width: $post-nav-max-width;
+      height: 100%;
+      box-sizing: border-box;
+
+      keep-container(true, 1.03, 1.03, 10px, 0);
+
+      a {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+
+        &.prev {
+          padding-left: $arrow-icon-width;
+        }
+
+        &.next {
+          padding-right: $arrow-icon-width;
+        }
+
+        .arrow-icon {
+          position: absolute;
+          top: 0;
+          height: 100%;
+          width: $arrow-icon-width;
+
+          &.left {
+            left: 0;
+          }
+
+          &.right {
+            right: 0;
+          }
+        }
+
+        .title {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+    }
+
+    .article-prev {
+      float: left;
+    }
+
+    .article-next {
+      float: right;
+    }
+
+    .post-nav-item {
+      display: none;
+
+      +keep-tablet() {
+        display: inline-block;
+      }
+
+    }
+
+
+    .post-nav-title-item {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      +keep-tablet() {
+        display: none;
+      }
+    }
+
+  }
+
+
 }
 
-                    </div>
-                </div>
-            </div>
-        
-
-        <div class="article-content markdown-body">
-            <p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2019/06/13/VhwOTU.jpg"
-                      alt="pokemon switch rumour logo"
-                ></p>
-<p>最近 Pokémon 新作的传言是越传越多越传越真了，一方面 Emily Rogers 的消息曝出来，一方面官方也在不断暗示，如此看来今年出新作是板上钉钉的事情了。如此看来系列上 Switch 的第一款作品会比我预想得要早一些出现（宝拳就暂且不算了）。<br>传闻挺有意思的，一点点说说自己的看法（条目来自 4chan）：</p>
-<ul>
-<li>Yellow remakes for Switch</li>
-<li>Two versions, Pikachu and Eevee</li>
-<li>Red and Blue play a role in the story, you and your rival are new trainers</li>
-</ul>
-<p>以上三点其实是最有意思的，这其实是我从黑白 2 之后就设想过无数次的旧世界新故事套路，也是我最想看到的 PM 正统续作形态，也许自己真的年纪大了，对新的地区真的没什么太多激情了。GEN1 到 GEN4 的地图现在都能直接画出来，GEN5 勉强，GEN6 以后真的是没太多印象了，当然也跟自己玩得少有关。我一直觉得以前塑造的几个地区拿出来再用一次完全不是什么太大的问题，旧瓶装新酒挺好的。如果真的是这样，也就没必要强调是什么黄的重制了，既然已经是全新的主角，那也就是全新的作品了。双版本与否不太重要，有也挺好，没有也没什么。卖情怀来一波皮神也没什么的。</p>
-<ul>
-<li>Following Pokémon return</li>
-<li>HMs still replaced with Pokeride from Alola</li>
-<li>Online has a hub for players</li>
-</ul>
-<p>这三点算是游戏机制的传闻，跟随系统能有自然是很妙，8012 年了加个自由选择我觉得挺好。HM 是应该想想怎么替代了，但是阿罗拉的那一套工具 PM 我是觉得不太好，毕竟不是自己的 PM，我觉得 HM 是不是考虑做成非战斗技能会好一点，还是让自己的 PM 学，然后就是地图上用就好了。Online hub 我希望还是能随时联机的好，别搞 SM 的那套圆庆广场了，实在难用，随时随地联机最好。</p>
-<ul>
-<li>Pokémon GO integration</li>
-<li>Catching Pokémon works like in GO</li>
-<li>Rewards in game and in GO for linking the two together</li>
-<li>New accessory can be used with both GO and the games</li>
-</ul>
-<p>和 GO 的联动其实也好也不好，我觉得加个联动的手游很有必要了，也会让代入感和耐玩性增加很多，甚至搞个官方 APP 什么的。但是如果是跟 GO 联动，国内这个大环境就始终很让人头疼了。游戏内加入和 GO 类似的小游戏也不错，但是我始终觉得这个不是很重要，小游戏玩一两次还行，多了也就腻了。</p>
-<ul>
-<li>Announcement soon, releasing this year</li>
-</ul>
-<p>最近公布的话，也就是 E3 前或者 E3 上了，然后年内发售，我觉得是挺好的节奏。<br>总而言之就是，希望新作好好做，上点心。虽然随便做做也能卖得不错，但是 GEN7 实在是有点失望。最好别着急上 GEN8，等等也无妨，旧 PM 挖掘一下，对新人也相对友好一点。<br>玩了那么多年了，还是希望这个系列好。<br>当然了，最后要是今年是个衍生作，其实我也能接受，好好提升一下画面吧，别掉帧了。</p>
-
-        </div>
-
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：新作传言和我想要的 Pokémon 游戏作品</li>
-        <li>本文作者：拾与拾柒</li>
-        <li>创建时间：2018-05-16 11:11:21</li>
-        <li>
-            本文链接：https://blog.iifatree.com/2018/05/16/pokemon-new-title/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
-        
-
-        
-            <div class="article-nav">
-                
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2018/11/18/pokemon-letsgo-review/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">评 Pokémon Let&#39;s Go Pikachu &amp; Let&#39;s Go Eevee</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2018/04/11/psp-6-61-infinity/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">PSP 升级 6.61 并完美破解记录</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
-
-        
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
-    </div>
-    
-
-        
-            
-    <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
-        <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'tx45B726pL0RmCTHG335fU83-gzGzoHsz',
-                    appKey: 'Uh3potIItHbtubdoBz1LB1QB',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '',
-                    lang: 'zh-CN'.toLowerCase()
-                });
-
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
-
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = '拾与拾柒';
-
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
-            }
-
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
-            } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
-            }
-        </script>
-    </div>
-
-
-
-        
-    
-</div>
-
-            </div>
-        
-    </div>
-</div>
 
 
                 

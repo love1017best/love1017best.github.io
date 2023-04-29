@@ -145,257 +145,198 @@
             <div class="main-content">
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
+                    $avatarWidth = 46px;
+$arrow-icon-width = 16px;
+$post-nav-max-width = 220px;
+$article-title-font-size = 1.6rem;
 
-        <div class="article-title">
-            <span class="title-hover-animation">【视点】Nintendo Switch Lite 与未来的 Nintendo Switch</span>
-        </div>
+.article-content-container {
 
-        
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/avatar.jpeg">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">拾与拾柒</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        .article-meta-info {
-  font-size: 0.8rem;
-  color: var(--third-text-color);
+  keep-container(false, 0, 0, 30px, 30px);
 
-  .article-meta-item {
-    margin-right: 10px;
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-
-
-  .article-tags, .article-categories {
-    display: inline;
-
-    ul, li {
-      display: inline;
-    }
-
-    a {
-      color: var(--third-text-color);
-
-      &:hover {
-        color: var(--primary-color);
-      }
-    }
-  }
-
-
-  .article-wordcount, .article-tags {
-    +keep-mobile() {
-      display: none;
-    }
-  }
-
-  .article-min2read, .article-categories {
+  .article-title {
+    color: var(--second-text-color);
+    font-weight: 600;
+    font-size: $article-title-font-size;
 
     +keep-tablet() {
-      display: none;
+      font-size: $article-title-font-size * 0.9;
+    }
+
+    +keep-mobile() {
+      font-size: $article-title-font-size * 0.8;
+    }
+  }
+
+
+  .article-header {
+    position: relative;
+    padding-left: $avatarWidth;
+    width: 100%;
+    height: $avatarWidth;
+    box-sizing: border-box;
+
+    .avatar {
+      position: absolute;
+      top: 0
+      left: 0;
+      width: $avatarWidth;
+      height: $avatarWidth;
+      padding: 1px;
+      box-sizing: border-box;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+
+      img {
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        background: var(--avatar-background-color);
+      }
+
+    }
+
+
+    .info {
+      padding: 2px 0;
+      margin-left: 10px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+
+      .author {
+        font-weight: 600;
+        font-size: 1.18rem;
+        display: flex;
+        align-items: center;
+
+        .name {
+          color: var(--default-text-color);
+        }
+
+        .author-label {
+          margin-left: 10px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          padding: 0 5px;
+          border-radius: 5px;
+          color: #fff;
+          background: var(--selection-color);
+        }
+
+      }
     }
 
   }
+
+
+  .article-header, .article-header-meta-info {
+    margin-top: 16px;
+    +keep-tablet() {
+      transform: scale(0.9);
+      transform-origin: left top;
+    }
+  }
+
+
+  .article-content {
+    margin-top: $component-spacing-value;
+    padding-bottom: 10px;
+    word-wrap: break-word;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--default-text-color);
+  }
+
+  .post-copyright-info {
+    margin-top: $component-spacing-value;
+    width: 100%;
+  }
+
+  .article-nav {
+    height: 40px;
+    margin-top: $component-spacing-value;
+
+    .article-prev, .article-next {
+      max-width: $post-nav-max-width;
+      height: 100%;
+      box-sizing: border-box;
+
+      keep-container(true, 1.03, 1.03, 10px, 0);
+
+      a {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+
+        &.prev {
+          padding-left: $arrow-icon-width;
+        }
+
+        &.next {
+          padding-right: $arrow-icon-width;
+        }
+
+        .arrow-icon {
+          position: absolute;
+          top: 0;
+          height: 100%;
+          width: $arrow-icon-width;
+
+          &.left {
+            left: 0;
+          }
+
+          &.right {
+            right: 0;
+          }
+        }
+
+        .title {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+    }
+
+    .article-prev {
+      float: left;
+    }
+
+    .article-next {
+      float: right;
+    }
+
+    .post-nav-item {
+      display: none;
+
+      +keep-tablet() {
+        display: inline-block;
+      }
+
+    }
+
+
+    .post-nav-title-item {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      +keep-tablet() {
+        display: none;
+      }
+    }
+
+  }
+
+
 }
 
-                    </div>
-                </div>
-            </div>
-        
-
-        <div class="article-content markdown-body">
-            <p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://www.nintendo.co.jp/hardware/switch/lite/img/08-local-galleryPhoto/gallery-pic01.jpg"
-                     
-                ></p>
-<p>昨晚又是在毫无预兆的情况下，任天堂<a class="link"   target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=59yuBFRSZdg" >公布<i class="fas fa-external-link-alt"></i></a>了期待和传言已久的 <a class="link"   target="_blank" rel="noopener" href="https://www.nintendo.co.jp/hardware/switch/lite/index.html" >Nintendo Switch Lite<i class="fas fa-external-link-alt"></i></a>。虽然名字和猜测中的 Nintendo Switch mini 有所出入，不过总体的形态还是跟传闻中差不多，甚至有人挖出了几个月前就已经泄露出来的保护壳外形，事实证明和最后公布的完全一致。</p>
-<p>这次的 Nintendo Switch Lite 是一个完完全全的掌机。在之前的传闻中大概都已经知道会有一个掌机版本的 Switch 出现，手柄不可拆卸，实际公布以后我们还知道了这个 Switch Lite 将完全不支持桌面模式和 TV 模式。外观方面，首发三种颜色，从渲染图和<a class="link"   target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=59yuBFRSZdg" >预告片<i class="fas fa-external-link-alt"></i></a>来看都非常好看。屏幕变小、续航提升。由于不再需要可拆卸的 Joy-Con 结构，十字键也终于回归。</p>
-<p>官方的<a class="link"   target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=59yuBFRSZdg" >预告片<i class="fas fa-external-link-alt"></i></a>风格，还是让人想起 Switch 两年多以前初公布时期的预告片，只不过这次更加强调的是可以『带出去玩』的体验，也就是掌机游戏的体验。预告片中的使用场景：运动之后在球场边和朋友联机玩一下马车、攀岩的间隙拿出 Switch Lite 在海拉鲁冒险一番、和朋友随时随地联机玩大乱斗、野营休闲之时玩一玩马里奥奥德赛、躺在床上玩火纹风花雪月……</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://www.nintendo.co.jp/hardware/switch/lite/img/08-local-galleryPhoto/gallery-pic02.jpg"
-                     
-                ></p>
-<p>而官网上的宣传图片也随时在提醒我们：这就是一台掌机，一台可以放进包里带出去玩的掌机。虽然官方说 <a class="link"   target="_blank" rel="noopener" href="https://www.theverge.com/2019/7/10/20687937/nintendo-switch-lite-3ds-2ds-future" >Nintendo Switch Lite 并不会替代 3DS<i class="fas fa-external-link-alt"></i></a>，但是任天堂继续再推出一个新掌机的可能性已经无限接近于零了。我们当然可以把 Switch Lite 就当作任天堂的新掌机，但是这个新掌机和之前的掌机家族又有着显著的不同：这是一个和一台主机共享游戏阵容的掌机。</p>
-<p>前天在<a href="/2019/07/09/pokemon-sword-shield-info-20190708/">讨论《宝可梦 剑/盾》的一些争议</a>的时候，就提到了很多 Switch 游戏，尤其是从任系掌机平台上延续下来的作品续作现在会面临的一个尴尬境地：从一个掌机游戏变成了一个家用机游戏。登录了 Switch 平台，几乎所有的游戏定价都会按照家用机的标准来，对于厂商来说，每份游戏可以多卖 20 美元。但是问题是，玩家愿意为了这 20 美元买账吗？原来是在一个家用机上花了家用机的价格买到了一个掌机游戏品质的游戏，而现在问题会进一步复杂化，在一台掌机上花家用机游戏的价格来买一个掌机游戏，是不是会有一些问题？还是回到那个问题，玩家愿不愿意多花这个钱呢？</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://www.nintendo.co.jp/hardware/switch/modal/img/lineup/img-gallery--soadselad_01.jpg"
-                     
-                ></p>
-<p>Switch Lite 将在 9 月 20 日和《塞尔达传说 织梦岛》一起发售，《织梦岛》虽然和《旷野之息》同属《塞尔达传说》系列，但是二者显然不是一个级别的游戏。《织梦岛》足够优秀，但是显然不够一个 3A 家用机游戏的级别。Switch Lite 选在这一天发售，再加上昨天一同公布的<a class="link"   target="_blank" rel="noopener" href="https://www.nintendo.com/switch/buy-now/#nintendo-switch-lite-zacian-and-zamazenta-edition" >《宝可梦 剑/盾》限定机<i class="fas fa-external-link-alt"></i></a>，任天堂的想法也耐人寻味。</p>
-<p>Switch Lite 以低于标准版 Switch 100 美元的售价带来了大致相同甚至更好一些的掌机游戏体验，但是也缺失了连接电视游玩的功能。不得不说这样的定位还是非常精准的。对于我个人而言，如果这次的 Switch Lite 还是可以连接电视，那么原版 Switch 会瞬间失去竞争力，但是就是这个 TV 模式的存在，把两台设备的定位差异做得非常清晰。是不是要多花这 100 美元，就看玩家具体的使用场景了。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://www.nintendo.com/content/dam/noa/en_US/images/switch/lite/lite-photo-01.jpg"
-                     
-                ></p>
-<p>Switch Lite 的目标人群到底是谁呢？我认为大概是三类人：第一类自然是儿童和青少年群体，较低的售价加上更加便携的特性、更加亮丽的外观，都更加符合之前任系掌机类似于『玩具』的定位；第二类就是不那么在意 TV 模式的、希望拥有更加优秀的掌机游戏体验的玩家；第三类应该是已经拥有一台标准版 Switch 并且追求更佳的便携体验的核心玩家。</p>
-<p>不过，对于已经拥有一台 Switch 的玩家而言，以目前任天堂的账户和云存档系统，拥有第二台 Switch 其实显得不是那么方便。理想的情况当然是能像 iOS 设备那样提供无缝的跨设备同账户体验，但是至少目前看起来，距离这一步还有很远，希望任天堂在网络服务方面继续努力吧。</p>
-<p>至于传闻中的另一款改良款 Switch Pro，起码在今年之内不会出现。而在未来，相比于出一个售价更高的 Pro 版本，我更倾向于会推出一个改良版本直接取代标准版本的 Switch，而售价保持不变。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://www.nintendo.co.jp/hardware/switch/lite/img/08-local-galleryPhoto/gallery-pic05.jpg"
-                     
-                ></p>
-<p>Switch Lite 真的好像 PS Vita 啊。</p>
-
-        </div>
-
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：【视点】Nintendo Switch Lite 与未来的 Nintendo Switch</li>
-        <li>本文作者：拾与拾柒</li>
-        <li>创建时间：2019-07-11 14:10:19</li>
-        <li>
-            本文链接：https://blog.iifatree.com/2019/07/11/nintendo-switch-lite-announced/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
-        
-
-        
-            <div class="article-nav">
-                
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2019/11/10/tomcat-multiple-instances-guide/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">Tomcat 多实例配置方式</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2019/07/09/pokemon-sword-shield-info-20190708/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">【视点】《宝可梦 剑/盾》七月新情报和目前的一些争议</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
-
-        
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
-    </div>
-    
-
-        
-            
-    <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
-        <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'tx45B726pL0RmCTHG335fU83-gzGzoHsz',
-                    appKey: 'Uh3potIItHbtubdoBz1LB1QB',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '',
-                    lang: 'zh-CN'.toLowerCase()
-                });
-
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
-
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = '拾与拾柒';
-
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
-            }
-
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
-            } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
-            }
-        </script>
-    </div>
-
-
-
-        
-    
-</div>
-
-            </div>
-        
-    </div>
-</div>
 
 
                 
