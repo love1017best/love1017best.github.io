@@ -9,7 +9,7 @@
     
     <title>
         
-            多个 Github Pages 项目主页 DNS 配置方式 |
+            为了解决微软双拼中的几个痛点,我切换到了自然码双拼 |
         
         Iifa Tree
     </title>
@@ -149,7 +149,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">多个 Github Pages 项目主页 DNS 配置方式</span>
+            <span class="title-hover-animation">为了解决微软双拼中的几个痛点,我切换到了自然码双拼</span>
         </div>
 
         
@@ -214,17 +214,31 @@
         
 
         <div class="article-content markdown-body">
-            <p>昨天干了件事情，把博客从主域名（<a href="https://iifatree.com/">https://iifatree.com/</a>）切换到了二级域名（<a class="link"   target="_blank" rel="noopener" href="https://blog.iifatree.com/" >https://blog.iifatree.com/<i class="fas fa-external-link-alt"></i></a>），然后想在主域名放另一个用 Github Pages 托管的页面。迁移过程中发现 Github 官方关于这种需求的 DNS 配置方式说得有点不太清楚，摸索了一段时间才搞定。</p>
-<p>博客托管于自己的 Github Pages 项目，也就是仓库名为 <code>&lt;username&gt;.github.io</code> 的仓库，我想把它绑定到自定义的二级域名 <code>blog.iifatree.com</code>，另一个项目用于托管网站的静态主页，Github 的访问路径为 <code>&lt;username&gt;.github.io/&lt;projectname&gt;</code>，我想将其绑定到自己的域名 <code>iifatree.com</code>。</p>
-<p>配置方法如下：</p>
+            <p>两年多以前写过<a href="/2021/01/08/double-pinyin/">一篇博客</a>说过日常使用微软双拼的过程中发现的一些问题，后来其实一直在忍受着这几个问题，直到今年都没有看到任何可以得到改善的可能。</p>
+<p>总结来说，微软双拼存在的问题主要是：</p>
 <ol>
-<li>在 Github 给两个项目 <code>&lt;username&gt;.github.io</code> 和 <code>&lt;projectname&gt;</code> 都设置 Custom Domain，分别指向需要的域名；</li>
-<li>在 DNS 管理商处，添加 A 记录，指向 Github Pages 的 IP 地址：<code>185.199.108.153</code>、<code>185.199.109.153</code>、<code>185.199.110.153</code>、<code>185.199.111.153</code>；</li>
-<li>添加 CNAME 记录，域名 <code>subdomain.domain.com</code>，指向 <code>&lt;username&gt;.github.io</code>；</li>
-<li>至此其实已经完成了，Github 会自动处理两个项目各自对应的域名，当然也可以再添加一条 www 二级域名的 CNAME 记录，仍旧指向 <code>&lt;username&gt;.github.io</code>；</li>
-<li>同理，如果还有一个项目位于 <code>&lt;username&gt;.github.io/&lt;project2&gt;</code>，需要用 <code>subdomain2.domain.com</code> 访问，同样添加一条 CNAME 记录让 <code>subdomain2.domain.com</code> 指向 <code>&lt;username&gt;.github.io</code> 即可；</li>
-<li>总结一下就是，只要是要用某个域名 <code>domain.com</code> 来访问某个 Github Pages 项目，无论是一级域名还是二级域名，都只要首先添加 CNAME 记录使其指向 <code>&lt;username&gt;.github.io</code>，然后对应仓库的 Settings 里设置对应域名即可，剩下的交给 Github 处理即可。</li>
+<li>微软双拼使用键盘上的分号键作为韵母 ing，对分号键的占用在依赖虚拟键盘的手机等移动设备上带来了体验的割裂。除了 iOS/iPadOS 的系统自带输入法在选择简体中文-全拼-微软双拼方案时会自动在虚拟键盘的第二行最右侧添加分号键以外，其他的移动端主流输入法包括 Gboard、各大流行的国产输入法都只能使用虚拟键盘第三排最左侧的分词键来输入韵母 ing，造成了输入体验上的割裂；</li>
+<li>韵母 üe 的处理方法问题，详见我之前的<a href="/2021/01/08/double-pinyin/">博文</a>，细说的话。</li>
 </ol>
+<p>从去年的 iOS/iPadOS 16 和 macOS 13 开始，苹果操作系统自带中文输入法的双拼中增加了自然码的方案（在系统中的名称叫做「常用双拼」），我在前段时候偶然的机会发现自然码的双拼方案和微软双拼相似度有 95% 以上，并且很好地解决了上述两个问题。自然码方案完全不需要占用非字母按键，将韵母 ing 放到了 Y 键之上</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://i.ssjz8.com/upload/1/img2.baidu.com%2Fit%2Fu%3D1666037997%2C2795801659%26amp%3Bfm%3D253%26amp%3Bfmt%3Dauto%26amp%3Bapp%3D138%26amp%3Bf%3DPNG%3Fw%3D1137%26amp%3Bh%3D500https://upload.wikimedia.org/wikipedia/commons/0/00/Natural_Code_Double_Pinyin_Scheme.png"
+                      alt="自然码双拼方案"
+                ></p>
+<p>在微软双拼中，Y 键对应的韵母是 uai 和 ü(v)，这个处理极其不合理，因为 ü(v) 本身就是单韵母，应该可以直接放在 V 键之上。而之所以会出现这种情况，是因为微软双拼在 V 键上分配了 üe(ve) 和 ui 两个韵母，因此就没有放第三个韵母。</p>
+<p>而微软双拼中的 T 键则是分配了韵母 ue，在之前的博文中提到过，汉语拼音方案中并不存在 ue 这个韵母，它实际上只是 üe 在和 j/q/x 组合的时候省略 ü 上两点的写法，二者是不会混淆的，也就没有必要区分开来。</p>
+<p>自然码双拼的处理显然更为合适，将 ue 和 üe(ve) 都放到了 T 键之上，这样 V 键不再需要承担 üe(ve)，就可以将其本身作为 ü(v) 来进行使用。而原本在分号键上的 ing，则因为 Y 键无需再对应 ü(v)，也可以放到了 Y 键上，解决了分号键占用的问题。</p>
+<p>除此以外就是零声母的处理不同，微软双拼的方案是零声母一律用 O 键作为声母，然后接上韵母对应的按键；自然码则是分为三种情况：</p>
+<ol>
+<li>零声母是单韵母，如 a/o/e，则输入两遍对应按键，即 AA/OO/EE；</li>
+<li>零声母是双字母韵母，如 ai/ei/ou 等，则直接输入；</li>
+<li>零声母是三字母韵母，如 ang/eng，则先输入 a/e，再输入韵母本身，即输入 AH/EG。</li>
+</ol>
+<p>虽然总体来说个人认为对零声母的处理微软双拼更为合理，但是适应自然码的方案也就几分钟的事情。除此以外自然码完美解决了微软双拼的两大主要痛点，所以切换是完全值得的。</p>
+<p>这次切换大概只用了两三分钟熟悉自然码的方案，然后在<a class="link"   target="_blank" rel="noopener" href="https://api.ihint.me/shuang/" >双拼练习工具<i class="fas fa-external-link-alt"></i></a>上进行了不到十分钟的练习，之后就将所有设备的输入法切换到自然码方案了，可以说非常流畅。</p>
+<p>我从 2019 年开始使用双拼，之前的三年一直都是用微软双拼方案，这下终于解决了微软双拼中个人不满意的地方，找到了最适合我的「完美」双拼方案了。</p>
 
         </div>
 
@@ -232,11 +246,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：多个 Github Pages 项目主页 DNS 配置方式</li>
+        <li>本文标题：为了解决微软双拼中的几个痛点,我切换到了自然码双拼</li>
         <li>本文作者：拾与拾柒</li>
-        <li>创建时间：2019-12-13 12:25:40</li>
+        <li>创建时间：2023-04-29 20:49:20</li>
         <li>
-            本文链接：https://blog.iifatree.com/2019/12/13/dns-configuration-for-github-pages-project/
+            本文链接：https://blog.iifatree.com/2023/04/29/switch-to-ziranma-double-pinyin/
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -250,29 +264,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2020/01/03/2020s-are-coming/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">2020 来了，我很期待</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2019/12/12/ipad-productivity-on-dec-2019/"
+                           href="/2022/11/12/linux-tomcat-filenotfound/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">2019 年 12 月的 iPad Pro 体验</span>
+                                <span class="post-nav-title-item">Linux 环境下 tomcat 保存 MultipartFile 报 FileNotFoundException 问题解决</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
