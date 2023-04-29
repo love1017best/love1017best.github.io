@@ -145,198 +145,263 @@
             <div class="main-content">
 
                 
-                    $avatarWidth = 46px;
-$arrow-icon-width = 16px;
-$post-nav-max-width = 220px;
-$article-title-font-size = 1.6rem;
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
 
-.article-content-container {
+        <div class="article-title">
+            <span class="title-hover-animation">在 M1 芯片的 Mac 上通过 Parallels Desktop 16 体验 Windows 11</span>
+        </div>
 
-  keep-container(false, 0, 0, 30px, 30px);
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">拾与拾柒</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-07-01 15:52:09
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%8A%80%E6%9C%AF/">技术</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E4%BD%93%E9%AA%8C/">体验</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
 
-  .article-title {
-    color: var(--second-text-color);
-    font-weight: 600;
-    font-size: $article-title-font-size;
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>690 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>2 分钟</span>
+        </span>
+    
+    
+</div>
 
-    +keep-tablet() {
-      font-size: $article-title-font-size * 0.9;
-    }
+                    </div>
+                </div>
+            </div>
+        
 
-    +keep-mobile() {
-      font-size: $article-title-font-size * 0.8;
-    }
-  }
+        <div class="article-content markdown-body">
+            <hr>
+<p><strong>Update: Parallels Desktop 17 已经发布，可以直接安装 Windows 11。</strong></p>
+<hr>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/windows/windows-11" >Windows 11<i class="fas fa-external-link-alt"></i></a> 发布了，自然也想要在第一时间体验一番，最终决定在 M1 芯片的 MacBook Air 上用 Parallels Desktop 安装 ARM 版本的 Windows 11 体验一番。</p>
+<p>注意：以下所有内容都是在虚拟机内测试的，不建议使用主力电脑进行操作！！！</p>
+<h1 id="安装-Windows-11-on-ARM"><a href="#安装-Windows-11-on-ARM" class="headerlink" title="安装 Windows 11 on ARM"></a>安装 Windows 11 on ARM</h1><p>首先是正常下载 Windows 11 的安装镜像，由于想在 M1 芯片的 mac 上体验，所以需要下载 ARM 版本的镜像，这里下载的是微软提供的 <a class="link"   target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewARM64" >Windows 11 Insider Preview ARM64<i class="fas fa-external-link-alt"></i></a>，注意需要首先登录微软账户并加入 Windows 预览计划。</p>
+<p>之后就是正常在 Parallels Desktop 中进行安装工作了，安装过程中会遇到提示：此设备无法运行 Windows 11。</p>
+<p>众所周知本次的 Windows 11 要求 TPM 2.0，虽然 Parallels Desktop 提供了虚拟 vTPM，但是是 Pro 版本专享功能，我个人的订阅是标准版，并不包含 vTPM 的支持，因此还是需要想办法绕过这一限制才能体验 Windows 11。（希望 Parallels 官方早日把 vTPM 下放标准版啊！）</p>
+<p>解决方法如下：</p>
+<ol>
+<li><p>使用组合键 Shift+F10，打开命令行界面，输入 regedit 打开注册表；</p>
+</li>
+<li><p>定位到<code>HKEY_LOCAL_MACHINE\SYSTEM\Setup</code>，创建一个名为<code>LabConfig</code>的项；</p>
+</li>
+<li><p>在<code>LabConfig</code>下创建两个<code>DWORD</code>值：</p>
+<ul>
+<li><p>键为<code>BypassTPMCheck</code>，值为<code>00000001</code></p>
+</li>
+<li><p>键为<code>BypassSecure BootCheck</code>，值为<code>00000001</code></p>
+</li>
+</ul>
+</li>
+<li><p>保存，回到上一步，重新点击下一步，之后正常安装即可。</p>
+</li>
+</ol>
+<h1 id="加入-Dev-预览通道"><a href="#加入-Dev-预览通道" class="headerlink" title="加入 Dev 预览通道"></a>加入 Dev 预览通道</h1><p>安装成功，进入系统后，版本为<code>10.0.22000.1</code>，目前的最新版本为<code>10.0.22000.51</code>，进入设置检查更新发现无法检测到更新内容，需要加入 Windows Insider Preview Dev 通道才能正常检测到更新。然而目前在不支持 TPM 的环境中，是无法切换到 Dev 通道的，但是也有解决办法：</p>
+<ol>
+<li>登录微软账户，在设置中加入 Insider 计划并选择 Release Preview 通道；</li>
+<li>重启，然后打开注册表编辑器（Win+R，运行<code>regedit</code>）</li>
+<li>定位到<code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection</code>：<ol>
+<li>将<code>UIBranch</code>中的值更改为<code>Dev</code></li>
+<li>将<code>ContentType</code>中的值更改为<code>Mainline</code></li>
+<li>将<code>Ring</code>中的文本更改为<code>External</code></li>
+</ol>
+</li>
+<li>定位到<code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsSelfHost\Applicability</code>：<ol>
+<li>将<code>BranchName</code>中的值更改<code> Dev</code></li>
+<li>将<code>ContentType</code>中的值更改为 <code>Mainline</code></li>
+<li>将<code>Ring</code>中的值更改为<code>External</code></li>
+</ol>
+</li>
+<li>退出注册表编辑器，重启;</li>
+<li>重新检查更新，如无意外，可以更新到<code>10.0.22000.51</code>，即本次推送的预览版本，enjoy it！</li>
+</ol>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/win11.png"
+                     
+                ></p>
+<p>#参考资料</p>
+<ol>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.ithome.com/0/559/669.htm" >绕过 TPM 2.0 安装微软 Win11 的三种方法，注册表大法回归<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.ithome.com/0/559/679.htm" >Win11 预览版即将到来：即使不满足最低硬件要求，你仍可升级 Dev（附方法）<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://changewindows.org/timeline/pc" >Change Windows<i class="fas fa-external-link-alt"></i></a></li>
+</ol>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：在 M1 芯片的 Mac 上通过 Parallels Desktop 16 体验 Windows 11</li>
+        <li>本文作者：拾与拾柒</li>
+        <li>创建时间：2021-07-01 15:52:09</li>
+        <li>
+            本文链接：https://blog.iifatree.com/2021/07/01/win11-arm-on-parallels-desktop/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/12/26/sum-2021/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">游戏与消费电子产品 2021 小结</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/01/10/unity-android-sdk/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Unity 找不到 Android SDK 及编译失败的终极解决方案</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'tx45B726pL0RmCTHG335fU83-gzGzoHsz',
+                    appKey: 'Uh3potIItHbtubdoBz1LB1QB',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = '拾与拾柒';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
 
 
-  .article-header {
-    position: relative;
-    padding-left: $avatarWidth;
-    width: 100%;
-    height: $avatarWidth;
-    box-sizing: border-box;
 
-    .avatar {
-      position: absolute;
-      top: 0
-      left: 0;
-      width: $avatarWidth;
-      height: $avatarWidth;
-      padding: 1px;
-      box-sizing: border-box;
-      border: 1px solid var(--border-color);
-      border-radius: 50%;
+        
+    
+</div>
 
-      img {
-        border-radius: 50%;
-        width: 100%;
-        height: 100%;
-        background: var(--avatar-background-color);
-      }
-
-    }
-
-
-    .info {
-      padding: 2px 0;
-      margin-left: 10px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 100%;
-      height: 100%;
-
-      .author {
-        font-weight: 600;
-        font-size: 1.18rem;
-        display: flex;
-        align-items: center;
-
-        .name {
-          color: var(--default-text-color);
-        }
-
-        .author-label {
-          margin-left: 10px;
-          font-size: 0.8rem;
-          font-weight: 500;
-          padding: 0 5px;
-          border-radius: 5px;
-          color: #fff;
-          background: var(--selection-color);
-        }
-
-      }
-    }
-
-  }
-
-
-  .article-header, .article-header-meta-info {
-    margin-top: 16px;
-    +keep-tablet() {
-      transform: scale(0.9);
-      transform-origin: left top;
-    }
-  }
-
-
-  .article-content {
-    margin-top: $component-spacing-value;
-    padding-bottom: 10px;
-    word-wrap: break-word;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--default-text-color);
-  }
-
-  .post-copyright-info {
-    margin-top: $component-spacing-value;
-    width: 100%;
-  }
-
-  .article-nav {
-    height: 40px;
-    margin-top: $component-spacing-value;
-
-    .article-prev, .article-next {
-      max-width: $post-nav-max-width;
-      height: 100%;
-      box-sizing: border-box;
-
-      keep-container(true, 1.03, 1.03, 10px, 0);
-
-      a {
-        position: relative;
-        display: block;
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-
-        &.prev {
-          padding-left: $arrow-icon-width;
-        }
-
-        &.next {
-          padding-right: $arrow-icon-width;
-        }
-
-        .arrow-icon {
-          position: absolute;
-          top: 0;
-          height: 100%;
-          width: $arrow-icon-width;
-
-          &.left {
-            left: 0;
-          }
-
-          &.right {
-            right: 0;
-          }
-        }
-
-        .title {
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-    }
-
-    .article-prev {
-      float: left;
-    }
-
-    .article-next {
-      float: right;
-    }
-
-    .post-nav-item {
-      display: none;
-
-      +keep-tablet() {
-        display: inline-block;
-      }
-
-    }
-
-
-    .post-nav-title-item {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-
-      +keep-tablet() {
-        display: none;
-      }
-    }
-
-  }
-
-
-}
-
+            </div>
+        
+    </div>
+</div>
 
 
                 
