@@ -1,0 +1,1039 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Iifa Tree</title>
+  <icon>http://iifatree.com/images/favicon.png</icon>
+  <subtitle>走遍千山万水，还想在此重逢</subtitle>
+  <link href="http://iifatree.com/atom.xml" rel="self"/>
+  
+  <link href="http://iifatree.com/"/>
+  <updated>2024-12-22T11:52:54.251Z</updated>
+  <id>http://iifatree.com/</id>
+  
+  <author>
+    <name>拾与拾柒</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Steam Deck 使用 Pacman 时的 PGP signature 问题解决</title>
+    <link href="http://iifatree.com/2024/12/22/Steam-deck-signature-error/"/>
+    <id>http://iifatree.com/2024/12/22/Steam-deck-signature-error/</id>
+    <published>2024-12-22T10:57:00.000Z</published>
+    <updated>2024-12-22T11:52:54.251Z</updated>
+    
+    <content type="html"><![CDATA[<p>Steam Deck 在桌面模式下，使用 Pacman 包管理器安装软件，需要初始化密钥，一般的教程中操作方法为：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化密钥</span></span><br><span class="line">sudo pacman-key --init</span><br><span class="line"><span class="comment"># 应用 archlinux 密钥</span></span><br><span class="line">sudo pacman-key --populate archlinux</span><br></pre></td></tr></table></figure><p>进行上述操作后，使用 Pacman 安装软件包可能遇到错误信息如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">error: archlinux-keyring: signature from <span class="string">&quot;Christian Hesse eworm@archlinux.org&quot;</span> is unknown trust</span><br><span class="line">File /var/cache/pacman/pkg/archlinux-keyring-20220125-1-any.pkg.tar.zst is corrupted (invalid or corrupted package (PGP signature)).</span><br><span class="line">Do you want to delete it? [Y/n] Y</span><br><span class="line">error: failed to commit transaction (invalid or corrupted package (PGP signature))</span><br><span class="line">Errors occurred, no packages were upgraded.</span><br></pre></td></tr></table></figure><p>此时需要进一步应用 SteamOS 3.0 (Holo) 的密钥：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman-key --populate holo</span><br></pre></td></tr></table></figure><p>holo 正是 Steam Deck 搭载的 SteamOS 3.0 的 codename。</p><p>之后就可以愉快地使用 Pacman 安装软件了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Steam Deck 在桌面模式下，使用 Pacman 包管理器安装软件，需要初始化密钥，一般的教程中操作方法为：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span cla</summary>
+      
+    
+    
+    
+    
+    <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>为了解决微软双拼中的几个痛点,我切换到了自然码双拼</title>
+    <link href="http://iifatree.com/2023/04/29/switch-to-ziranma-double-pinyin/"/>
+    <id>http://iifatree.com/2023/04/29/switch-to-ziranma-double-pinyin/</id>
+    <published>2023-04-29T12:49:20.000Z</published>
+    <updated>2023-04-29T13:23:02.105Z</updated>
+    
+    <content type="html"><![CDATA[<p>两年多以前写过<a href="/2021/01/08/double-pinyin/">一篇博客</a>说过日常使用微软双拼的过程中发现的一些问题，后来其实一直在忍受着这几个问题，直到今年都没有看到任何可以得到改善的可能。</p><p>总结来说，微软双拼存在的问题主要是：</p><ol><li>微软双拼使用键盘上的分号键作为韵母 ing，对分号键的占用在依赖虚拟键盘的手机等移动设备上带来了体验的割裂。除了 iOS/iPadOS 的系统自带输入法在选择简体中文-全拼-微软双拼方案时会自动在虚拟键盘的第二行最右侧添加分号键以外，其他的移动端主流输入法包括 Gboard、各大流行的国产输入法都只能使用虚拟键盘第三排最左侧的分词键来输入韵母 ing，造成了输入体验上的割裂；</li><li>韵母 üe 的处理方法问题，详见我之前的<a href="/2021/01/08/double-pinyin/">博文</a>。</li></ol><p>从去年的 iOS/iPadOS 16 和 macOS 13 开始，苹果操作系统自带中文输入法的双拼中增加了自然码的方案（在系统中的名称叫做「常用双拼」），我在前段时候偶然的机会发现自然码的双拼方案和微软双拼相似度有 95% 以上，并且很好地解决了上述两个问题。自然码方案完全不需要占用非字母按键，将韵母 ing 放到了 Y 键之上</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://i.ssjz8.com/upload/1/img2.baidu.com%2Fit%2Fu%3D1666037997%2C2795801659%26amp%3Bfm%3D253%26amp%3Bfmt%3Dauto%26amp%3Bapp%3D138%26amp%3Bf%3DPNG%3Fw%3D1137%26amp%3Bh%3D500https://upload.wikimedia.org/wikipedia/commons/0/00/Natural_Code_Double_Pinyin_Scheme.png"                      alt="自然码双拼方案"                ></p><p>在微软双拼中，Y 键对应的韵母是 uai 和 ü(v)，这个处理极其不合理，因为 ü(v) 本身就是单韵母，应该可以直接放在 V 键之上。而之所以会出现这种情况，是因为微软双拼在 V 键上分配了 üe(ve) 和 ui 两个韵母，因此就没有放第三个韵母。</p><p>而微软双拼中的 T 键则是分配了韵母 ue，在之前的博文中提到过，汉语拼音方案中并不存在 ue 这个韵母，它实际上只是 üe 在和 j/q/x 组合的时候省略 ü 上两点的写法，二者是不会混淆的，也就没有必要区分开来。</p><p>自然码双拼的处理显然更为合适，将 ue 和 üe(ve) 都放到了 T 键之上，这样 V 键不再需要承担 üe(ve)，就可以将其本身作为 ü(v) 来进行使用。而原本在分号键上的 ing，则因为 Y 键无需再对应 ü(v)，也可以放到了 Y 键上，解决了分号键占用的问题。</p><p>除此以外就是零声母的处理不同，微软双拼的方案是零声母一律用 O 键作为声母，然后接上韵母对应的按键；自然码则是分为三种情况：</p><ol><li>零声母是单韵母，如 a/o/e，则输入两遍对应按键，即 AA/OO/EE；</li><li>零声母是双字母韵母，如 ai/ei/ou 等，则直接输入；</li><li>零声母是三字母韵母，如 ang/eng，则先输入 a/e，再输入韵母本身，即输入 AH/EG。</li></ol><p>虽然总体来说个人认为对零声母的处理微软双拼更为合理，但是适应自然码的方案也就几分钟的事情。除此以外自然码完美解决了微软双拼的两大主要痛点，所以切换是完全值得的。</p><p>这次切换大概只用了两三分钟熟悉自然码的方案，然后在<a class="link"   href="https://api.ihint.me/shuang/" >双拼练习工具<i class="fas fa-external-link-alt"></i></a>上进行了不到十分钟的练习，之后就将所有设备的输入法切换到自然码方案了，可以说非常流畅。</p><p>我从 2019 年开始使用双拼，之前的三年一直都是用微软双拼方案，这下终于解决了微软双拼中个人不满意的地方，找到了最适合我的「完美」双拼方案了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;两年多以前写过&lt;a href=&quot;/2021/01/08/double-pinyin/&quot;&gt;一篇博客&lt;/a&gt;说过日常使用微软双拼的过程中发现的一些问题，后来其实一直在忍受着这几个问题，直到今年都没有看到任何可以得到改善的可能。&lt;/p&gt;
+&lt;p&gt;总结来说，微软双拼存在的问题主要是：</summary>
+      
+    
+    
+    
+    
+    <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux 环境下 tomcat 保存 MultipartFile 报 FileNotFoundException 问题解决</title>
+    <link href="http://iifatree.com/2022/11/12/linux-tomcat-filenotfound/"/>
+    <id>http://iifatree.com/2022/11/12/linux-tomcat-filenotfound/</id>
+    <published>2022-11-12T12:39:42.000Z</published>
+    <updated>2022-11-12T13:03:57.335Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前发现一个问题，项目中接收前端发送的 MultipartFile，需要转换为 File 保存，并进行后续的操作，于是使用</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">multiPartFile.transferTo(newFile);</span><br></pre></td></tr></table></figure><p>将 MultipartFile 转换为 File，在本地编译部署，测试均无问题。</p><p>打包部署到 linux 环境后，出现 java.io.FileNotFoundException，且提示 </p><p>CatalinaBase/work/<strong>Catalina</strong>/<strong>localhost</strong>/<strong>projectName/upload/fileName (No such file or directory)</strong></p><p>经过检查，发现最终的解决方法为使用</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FileUtils.copyInputStreamToFile(multiPartFile.getInputStream(), newFile);</span><br></pre></td></tr></table></figure><p>替换原来的 transferTo() 方法。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;之前发现一个问题，项目中接收前端发送的 MultipartFile，需要转换为 File 保存，并进行后续的操作，于是使用&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
+      
+    
+    
+    
+    
+    <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在 Apple Silicon 上使用 Conda 搭建 tensorflow 环境</title>
+    <link href="http://iifatree.com/2022/10/22/install-tensorflow-on-apple-silicon-with-conda/"/>
+    <id>http://iifatree.com/2022/10/22/install-tensorflow-on-apple-silicon-with-conda/</id>
+    <published>2022-10-22T06:49:22.000Z</published>
+    <updated>2022-10-22T06:58:09.209Z</updated>
+    
+    <content type="html"><![CDATA[<p>首先根据自己需要创建环境</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n tensorflow python=3.9</span><br></pre></td></tr></table></figure><p>安装相关的包</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda install -c apple tensorflow-deps</span><br><span class="line">pip install tensorflow-macos tensorflow-metal</span><br><span class="line">conda install tensorflow</span><br></pre></td></tr></table></figure><p>测试一下</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="built_in">print</span>(tf.__version__)</span><br></pre></td></tr></table></figure><p>enjoy it!</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;首先根据自己需要创建环境&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;c</summary>
+      
+    
+    
+    
+    
+    <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>trojan 和 nginx 共用 443 端口的简单方法</title>
+    <link href="http://iifatree.com/2022/04/29/trojan-and-nginx-listen-to-the-same-port/"/>
+    <id>http://iifatree.com/2022/04/29/trojan-and-nginx-listen-to-the-same-port/</id>
+    <published>2022-04-29T12:33:38.000Z</published>
+    <updated>2022-04-29T12:41:58.883Z</updated>
+    
+    <content type="html"><![CDATA[<p>需求：trojan 服务与一个正常的 nginx 站点共用 443 端口，且 nginx 使用 certbot 安装 Let’s Encrypt 证书实现 HTTPS。</p><p>首先安装 nginx，正确配置站点，并使用 certbot 申请证书，certbot 会自动修改 nginx 的站点设置。</p><p>之后正常搭建 trojan 服务并配置，使用服务器模式，本地端口设置为 443.</p><p>启动 trojan 服务的时候，可能会遇到提示 443 端口已被占用。</p><p>此时只需要前往 nginx 的站点配置文件中，将 certbot 自动配置的 443 端口监听部分注释掉即可：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">listen [::]:443 ssl ipv6only=on; # managed by Certbot</span><br><span class="line">listen 443 ssl; # managed by Certbot</span><br></pre></td></tr></table></figure><p>注释掉这一部分后，再重启 nginx 和 trojan 服务，443 端口的访问就会被 trojan 接管。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;需求：trojan 服务与一个正常的 nginx 站点共用 443 端口，且 nginx 使用 certbot 安装 Let’s Encrypt 证书实现 HTTPS。&lt;/p&gt;
+&lt;p&gt;首先安装 nginx，正确配置站点，并使用 certbot 申请证书，certbot 会自</summary>
+      
+    
+    
+    
+    
+    <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>游戏与消费电子产品 2021 小结</title>
+    <link href="http://iifatree.com/2021/12/26/sum-2021/"/>
+    <id>http://iifatree.com/2021/12/26/sum-2021/</id>
+    <published>2021-12-26T06:52:22.000Z</published>
+    <updated>2021-12-27T07:18:28.894Z</updated>
+    
+    <content type="html"><![CDATA[<p>2021 结束之际，总结一下这一年内通关过的主要游戏作品和购买的主要的消费电子产品，纯粹个人向，纯粹主观感受。</p><h1 id="电子游戏"><a href="#电子游戏" class="headerlink" title="电子游戏"></a>电子游戏</h1><p>相比于过去的几年，今年因为种种原因，玩通的游戏实在是少之又少了。这里只列通关了的游戏。实际上还有一些游戏在玩，比如《机战 30》，但是因为还没通关，就暂时不在这里列出了。</p><h2 id="怪物猎人-崛起｜Monster-Hunter-Rise｜モンスターハンターライズ（Nintendo-Switch）"><a href="#怪物猎人-崛起｜Monster-Hunter-Rise｜モンスターハンターライズ（Nintendo-Switch）" class="headerlink" title="怪物猎人 崛起｜Monster Hunter Rise｜モンスターハンターライズ（Nintendo Switch）"></a>怪物猎人 崛起｜Monster Hunter Rise｜モンスターハンターライズ（Nintendo Switch）</h2><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s4.ax1x.com/2021/12/26/TwTIMQ.jpg"                      alt="TwTIMQ.jpg"                ></p><p>说实话，这是我第一次认真玩 MH 系列。从 PSP 时代的久闻大名，到 3DS 时代的浅尝辄止，这次是第一次认真玩，发售后即沉迷，零基础开始，玩了太刀、狩猎笛、轻弩三种武器，发售后玩到了 2.0 更新然后逐渐搁置。前段时间又捡起来，补完了 3.0 更新时期的主要内容。总体感受就是好玩，现在完全能够理解这个游戏的乐趣所在以及人气那么高的原因了，集中玩起来的时间段内总是忍不住每天都打上几局，感觉非常开心。之前没深入玩过世界（会免送的就打开玩了几十分钟吧），所以也没什么对比。翔虫系统我很喜欢，飞来飞去的感觉真的很舒服。</p><p>总之是今年玩的时间最长的游戏，到目前为止玩了 180 多小时，非常满意的体验。很期待明年的 DLC 曙光。</p><h2 id="暗黑破坏神-3-永恒典藏版｜Diablo-III-External-Collection（Nintendo-Switch）"><a href="#暗黑破坏神-3-永恒典藏版｜Diablo-III-External-Collection（Nintendo-Switch）" class="headerlink" title="暗黑破坏神 3 永恒典藏版｜Diablo III External Collection（Nintendo Switch）"></a>暗黑破坏神 3 永恒典藏版｜Diablo III External Collection（Nintendo Switch）</h2><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s4.ax1x.com/2021/12/26/TwTWPf.jpg"                      alt="TwTWPf.jpg"                ></p><p>暑期的时候闲来无事捡起来玩的，之前因为种种因素错过的游戏。小时候自然有过一段暗黑系列的启蒙期，但是那个时候懂的不多，只是那么多年来对于故事还有一些零碎的记忆片段。这次完全是机缘巧合捡起来玩的，主要也是为了看看剧情，补完一下这个世界观，所以也只是打通关一遍而已。比起游戏本身，我更加在乎的是世界观和剧情吧，也是借此机会把全系列的一些设定剧情系统补完了一下，总体感觉就是三代虽然把整个系列串联起来了，但是在剧情上实在是乏善可陈。玩的 Switch 版，主机和掌机模式的手柄操作体验都非常好。</p><h2 id="暗黑破坏神-2-狱火重生｜Diablo-II-Resurrected（Nintendo-Switch）"><a href="#暗黑破坏神-2-狱火重生｜Diablo-II-Resurrected（Nintendo-Switch）" class="headerlink" title="暗黑破坏神 2 狱火重生｜Diablo II Resurrected（Nintendo Switch）"></a>暗黑破坏神 2 狱火重生｜Diablo II Resurrected（Nintendo Switch）</h2><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s4.ax1x.com/2021/12/26/TwT02D.jpg"                      alt="TwT02D.jpg"                ></p><p>跟上面的一起说了，其实中间隔了一段时间。玩三代也是看着二代要出重制了所以才提起来的兴趣，所以二代重制版出来以后也是第一时间买了然后在国庆假期打通了。相比三代，玩的时候就看了更多的社区讨论、攻略、视频等等，然后玩法也更加本质了，也体验了一下刷刷刷的乐趣。虽然整体游戏的口碑崩了，全程需要联网的游戏体验也实在是谈不上有多好，不过游戏本身的内容和玩法还是让人满意的，当然，这都是二十年前原作的功劳，跟重制没太大关系。还是玩的 Switch 版，手柄操作的优化虽然比不上三代，但是也算是给出了一个非常好的方案了，体验也非常不错。</p><p>不过通过这个游戏也发现了，回忆里面的游戏画面真的是有滤镜的，在这作里打开原作画质才看到当年的画面真的只有那个水平，不禁感慨记忆果然很多时候是靠不住的。</p><h2 id="宝可梦-白金｜Pokemon-Platinum-Version｜ポケットモンスタープラチナ（Nintendo-DS）"><a href="#宝可梦-白金｜Pokemon-Platinum-Version｜ポケットモンスタープラチナ（Nintendo-DS）" class="headerlink" title="宝可梦 白金｜Pokémon Platinum Version｜ポケットモンスタープラチナ（Nintendo DS）"></a>宝可梦 白金｜Pokémon Platinum Version｜ポケットモンスタープラチナ（Nintendo DS）</h2><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s4.ax1x.com/2021/12/26/TwT4xg.jpg"                      alt="TwT4xg.jpg"                ></p><p>接下来要提到的又是一对游戏，跟上面两个的关系很像。重玩白金的契机也是想着 DP 要重制了，把原作翻出来玩一玩。原作的白金是我第一款首发以后立刻玩的宝可梦主系列作品，当时还是发售后立刻玩的日文版，发售日我记得很清楚是 2008 年的 9 月 13 日。这次用模拟器玩的汉化的官译修改版，乐趣还是跟十三年前没有太大变化。</p><h2 id="宝可梦-晶灿钻石-明亮珍珠｜Pokemon-Brilliant-Diamond-Shining-Pearl｜ポケットモンスターブリリアントダイヤモンド-シャイニングパール（Nintendo-Switch）"><a href="#宝可梦-晶灿钻石-明亮珍珠｜Pokemon-Brilliant-Diamond-Shining-Pearl｜ポケットモンスターブリリアントダイヤモンド-シャイニングパール（Nintendo-Switch）" class="headerlink" title="宝可梦 晶灿钻石/明亮珍珠｜Pokémon Brilliant Diamond/Shining Pearl｜ポケットモンスターブリリアントダイヤモンド/シャイニングパール（Nintendo Switch）"></a>宝可梦 晶灿钻石/明亮珍珠｜Pokémon Brilliant Diamond/Shining Pearl｜ポケットモンスターブリリアントダイヤモンド/シャイニングパール（Nintendo Switch）</h2><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s4.ax1x.com/2021/12/26/TwTrKH.jpg"                      alt="TwTrKH.jpg"                ></p><p>发售前到发售后一直争议极大的作品。个人感觉就一句话：吃老本游戏。不是说游戏不好玩，但是它好的部分都来自于原作，跟重制没有什么关系。画面上比自己之前的预期要好，玩法丰富度上，就是原作的样子，稍微改动了一下，但是很多剑盾这个世代的改动没有跟进，很可惜。游戏明显是个半成品，直到现在游戏内的重要联机设施 GM Station 都是不可用状态，这在过去的作品里是不可想象的。跟上面的白金相比，没有引入很多白金对珍珠钻石做的修改和补充，导致很多地方体验不如 2008 年的白金，就是一件很诡异的事情（比如一周目的神奥图鉴 PM 数量过少，其实蛮影响游戏体验的）。当然，外包作品，游戏一打开就写着大大的 Based on the original game of game freak on 2006，也就没什么好抱怨的了。说到底，还是一句可惜。</p><p>题外话，玩了 70 个小时 BDSP 以后，我又重新捡起剑盾玩了十多个小时，感觉剑盾的很多改动真的是挺不错的。这里顺便也说说我觉得剑盾最大的不足，其实说到底只有一点：单机玩家的可探索内容过少。</p><h1 id="消费电子产品"><a href="#消费电子产品" class="headerlink" title="消费电子产品"></a>消费电子产品</h1><p>今年买的东西肯定不止这些，但是留下深刻印象的，现在想得起来的也就以下这些了，别的应该就都是一些不太重要的小东西了。</p><h2 id="Wireless-Charging-Case-For-AirPods"><a href="#Wireless-Charging-Case-For-AirPods" class="headerlink" title="Wireless Charging Case For AirPods"></a>Wireless Charging Case For AirPods</h2><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s4.ax1x.com/2021/12/26/TwTNUx.jpg"                      alt="TwTNUx.jpg"                ></p><p>年初的某一天，AirPods 第二代的充电盒突然就无法充电了，想着新的 AirPods 应该没多久就要出了，于是纠结再三只能买了个充电盒来替换。虽然性价比非常不高，但是是刚需，总不能没有耳机用，也实属是没有办法了。</p><h2 id="MacBook-Air-M1-2020-16GB-256GB"><a href="#MacBook-Air-M1-2020-16GB-256GB" class="headerlink" title="MacBook Air (M1, 2020) 16GB 256GB"></a>MacBook Air (M1, 2020) 16GB 256GB</h2><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s4.ax1x.com/2021/12/26/TwTgat.jpg"                      alt="TwTgat.jpg"                ></p><p>今年购入的最贵的设备，也是对日常体验改善最大的设备。一句话总结：完美的上网本。对于目前的我，大部分的工作和娱乐需求，它都可以完美解决，而且彻底治愈了多年来使用笔记本的电量焦虑。从我选的配置也可以看到，我现在使用电脑的需求其实是非常轻度的了，没有大容量存储的需求，也没有什么所谓的「生产力」需求，能用 Office 就够了，所以都没有去加硬盘，只是加了内存。总之好的工具就是这样的吧，其实也没什么太多可以说的，用着顺手就是最好的了。</p><h2 id="HP-Elite-65W-Thunderbolt-3-Dock"><a href="#HP-Elite-65W-Thunderbolt-3-Dock" class="headerlink" title="HP Elite 65W Thunderbolt 3 Dock"></a>HP Elite 65W Thunderbolt 3 Dock</h2><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s4.ax1x.com/2021/12/26/TwTBxe.jpg"                      alt="TwTBxe.jpg"                ></p><p>捡垃圾系列。入手 MacBook Air 以后，想要用扩展坞供电同时还继续使用 C 口连接显示器，查了一圈发现这种需求普通的 USB-C 扩展坞并不能满足，必须要上雷电 3 扩展坞，于是在各路大神的推荐下发现了惠普的这个洋垃圾扩展坞，价格可以说是相当便宜，使用体验可以说是相当好了。总之就是目前用过的扩展坞里最满意的一个了，没什么好说的，强烈推荐。</p><h2 id="塞尔达传说-御天之剑HD-限定版-Joy-con-手柄"><a href="#塞尔达传说-御天之剑HD-限定版-Joy-con-手柄" class="headerlink" title="塞尔达传说 御天之剑HD 限定版 Joy-con 手柄"></a>塞尔达传说 御天之剑HD 限定版 Joy-con 手柄</h2><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s4.ax1x.com/2021/12/26/TwTyqA.jpg"                      alt="TwTyqA.jpg"                ></p><p>Switch 原装的红蓝 Joy-con 我从 17 年购入以后一直用到了现在，因为相对来说 Pro 手柄用得更多一点，Joy-con 也就只有在少数游戏（比如《宝可梦 Let’s Go》和《马里奥 奥德赛》）以及派对、体感游戏的时候用到，所以利用率一直也不高。去年本来一直想要买动森的限定 Joy-con，因为真的很喜欢那个配色，不过也因为当时疫情在家给搁置了，后来过了冲动期也就不想这事了。今年是发现左摇杆终于也飘了，正好碰上这个限定版发售，所以连游戏都没定就赶紧定了限定手柄。说白了，就是个正常迭代吧，没有什么变化，找点新鲜感而已。</p><h2 id="华为随行-WiFi-3-with-物联网卡"><a href="#华为随行-WiFi-3-with-物联网卡" class="headerlink" title="华为随行 WiFi 3 with 物联网卡"></a>华为随行 WiFi 3 with 物联网卡</h2><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s4.ax1x.com/2021/12/26/TwTcVI.png"                      alt="TwTcVI.png"                ></p><p>被学校的校园网资费折磨了好多年，终于是无法忍受了，搞了个这个方案。总体来说资费尚可（包年情况下每月 50 元，每日流量上限 100G），使用体验则只能说是能用，谈不上好。这个华为随行 WiFi 3 支持有线无线两种连接，但是有线连接是通过 USB 连接，而且机身上还是 micro-USB 口，这就非常让人恼火。Wi-Fi 速度也就是 150Mbps 的水平（物联网卡本身的速度和设备速度都不能说高），所以我现在也基本只用它来进行一些大文件的下载。无奈的是，似乎也没有更好的选择了，毕竟有这个需求的人不多。不过总好过每个月在校园网内产生上百的网费，只能这么安慰自己了。</p><h2 id="Beelink-GK55-mini-PC"><a href="#Beelink-GK55-mini-PC" class="headerlink" title="Beelink GK55 mini PC"></a>Beelink GK55 mini PC</h2><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s4.ax1x.com/2021/12/26/TwTU56.jpg"                      alt="TwTU56.jpg"                ></p><p>第一次接触 Mini PC，买的是这台 J4125 CPU 的 Beelink GK55。本来看上的是同品牌的 GKmini，但是看着这个 GK55 多个双网口，想着本来就是买来折腾着玩的，于是就买了这款 GK55。目前就是当一个玩具以及放在宿舍的备用 PC 用，有时候应付一些没带电脑回来时候的应急需求。机器带了一个 2.5 寸硬盘位，本来想把闲置的一个 1T 机械放上去，结果发现机械硬盘太厚放不进去，又购入了一个西数的 2.5 寸绿盘 SSD，作为资源盘。使用上，基本是作为下载机的状态，跑了几个小服务，体验尚可。不能装 Win11 是个遗憾，不过考虑到 1000 出头的价格也无伤大雅了。</p><h2 id="Apple-Watch-Series-7-GPS-45mm-Starlight-Aluminum-Case-with-Nike-Sport-Band"><a href="#Apple-Watch-Series-7-GPS-45mm-Starlight-Aluminum-Case-with-Nike-Sport-Band" class="headerlink" title="Apple Watch Series 7 GPS, 45mm Starlight Aluminum Case with Nike Sport Band"></a>Apple Watch Series 7 GPS, 45mm Starlight Aluminum Case with Nike Sport Band</h2><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s4.ax1x.com/2021/12/26/TwTdPK.jpg"                      alt="TwTdPK.jpg"                ></p><p>之前戴的是蜂窝版的 4 代 44mm，今年早就想好了要升级，于是发布会后直接首发购入了，还算是今年挺期待也挺满意的一个产品。隔三代升级，体验提升还是不小的，4 代刚好是没有常亮屏幕的一代，所以这次感觉良好。增大的显示屏也很让人舒服，尤其是和 4 代对比的时候感觉明显（可以看我的[推文](<a class="link"   href="https://twitter.com/onkashiko/status/1448844013897801731" >音楽思考·7th 在 Twitter: “显示面积大得还挺明显 https://t.co/NT7TG3fpfL” / Twitter<i class="fas fa-external-link-alt"></i></a>)）。这一代我觉得最核心的升级是快充，因为戴 Apple Watch 监测睡眠已经快三年了，所以这个升级对于我来说还是很重要的，基本摆脱电量焦虑了。别的没什么好说，Apple Watch 这个设备我也从 16 年一直用到现在，从初代换 4 代到这次换 7 代，对我而言，除非特殊情况，不然每天都会去完成三个圆环，养成了很好的健康习惯，这个就非常值得了，其他的都不太重要。</p><h2 id="AirPods-3rd-generation"><a href="#AirPods-3rd-generation" class="headerlink" title="AirPods (3rd generation)"></a>AirPods (3rd generation)</h2><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s4.ax1x.com/2021/12/26/TwTw8O.jpg"                      alt="TwTw8O.jpg"                ></p><p>2 代是 19 年 618 前后入手的，当时是 1 代被偷刚需买的，过了不久就出了 Pro，到现在 2 代的电池确实不太行了，然后充电盒也坏过换过一次，其实用得性价比非常之不高了。这次看到发布会正常迭代，价格也不贵，也算是各方面彻底的一个提升，于是就首发买了。体验没有太大变化，操控方式用惯了之前 AirPods 基础款的轻触，改成捏耳机柄还适应了几天，之后就没有什么感觉了。要说体验上的区别可能也就是空间音频，确实很不错。总之还是比较满意，成为了一个「消失」的产品，感受不到存在，离不开。</p><h2 id="Nintendo-Switch-OLED-Model-White"><a href="#Nintendo-Switch-OLED-Model-White" class="headerlink" title="Nintendo Switch OLED Model White"></a>Nintendo Switch OLED Model White</h2><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s4.ax1x.com/2021/12/26/TwThRS.jpg"                      alt="TwThRS.jpg"                ></p><p>本来没想着要买，因为说实话我用掌机模式玩 Switch 不多，90% 以上时间都是用的主机模式。所以 OLED 款的购入完全是被价格吸引的一次冲动消费。不过实际上手以后不得不说还是很神奇，感觉体验提升真的巨大，最近一段时间甚至有时候会刻意让自己用掌机模式玩玩游戏。前面讲游戏的时候提到的重新捡起了 MHR（其实还重新捡起了动森），也都是因为新机型带来的新鲜感。总之老机器也陪伴我四年了，换一个想一下也没什么，更何况体验真的不错呢。实际也没有后悔，可以说是完全满意的一次换机。</p><h2 id="小米-11-8-256G"><a href="#小米-11-8-256G" class="headerlink" title="小米 11 8+256G"></a>小米 11 8+256G</h2><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s4.ax1x.com/2021/12/26/TwTfG8.jpg"                      alt="TwTfG8.jpg"                ></p><p>又是双十一期间的冲动消费，替换自己已经用了两年多的备用机 Redmi K20 Pro 的。当时在小米 MIX4、小米 11、小米 10S、Redmi K40 几款之间纠结了一下，最后选了小米 11，主要看中的还是 2K 屏。最后的体验基本还是挺满意的，作为备用机来说不需要用微信等毒瘤软件，纯粹用作影音娱乐用途，体验就还挺好。最近搭配新出的 PS2 模拟器 [AetherSX2](<a class="link"   href="https://play.google.com/store/apps/details?id=xyz.aethersx2.android&hl=en_US&gl=US" >AetherSX2 - Apps on Google Play<i class="fas fa-external-link-alt"></i></a>) 感觉良好，用它在玩机战 3alpha，可以 3 倍分辨率稳定 60 FPS（就是机身太长了，原先配合 K20 Pro 使用的拉伸手柄居然不能用了）。总之感觉又可以用上很长一段时间了。</p><h2 id="Redmi-Buds-3-青春版"><a href="#Redmi-Buds-3-青春版" class="headerlink" title="Redmi Buds 3 青春版"></a>Redmi Buds 3 青春版</h2><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s4.ax1x.com/2021/12/27/TBXq0O.png"                      alt="TBXq0O.png"                ></p><p>配合备用机小米 11 买的耳机，因为之前的备用机是有 3.5mm 耳机孔的，不需要再配一个无线耳机，而现在换了以后就不行了。选择这个 Redmi Buds 3 青春版看中的就是一个 99 的价格。实际体验以后感觉在这个价位还是很值了，充电盒的质感不太行，很浓重的塑料感，但是耳机本身佩戴起来感觉还好，音质就是听个响的水准，没什么要求。使用的频率不高，只是在一些少数需要用备用机配合耳机的情况下用，顺便还在有的时候连接 Switch 用一下。总体来说体验是满意的。</p><h2 id="Magic-Keyboard-for-iPad-Pro-11-inch-3rd-generation-and-iPad-Air-4th-generation-White"><a href="#Magic-Keyboard-for-iPad-Pro-11-inch-3rd-generation-and-iPad-Air-4th-generation-White" class="headerlink" title="Magic Keyboard for iPad Pro 11-inch (3rd generation) and iPad Air (4th generation) White"></a>Magic Keyboard for iPad Pro 11-inch (3rd generation) and iPad Air (4th generation) White</h2><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s4.ax1x.com/2021/12/26/TwT2IP.jpg"                      alt="TwT2IP.jpg"                ></p><p>跟之前说 AirPods 的情况很是类似，19 年双十一购入的 11 寸 iPad Pro 的键盘式智能双面夹（Smart Folio），当时还写了<a class="link"   href="https://blog.iifatree.com/2019/12/12/ipad-productivity-on-dec-2019/" >博文<i class="fas fa-external-link-alt"></i></a>，结果之后几个月就出了 Magic Keyboard。今年本来想升级 18 年购入的初代 11 寸 iPad Pro 的，但是今年 11 寸的升级幅度实在不给力，于是就想着忍忍算了。到了年底又偶然看到价格比较好的新款白色 Magic Keyboard，没忍住就又冲动消费了。不过用了以后还是不后悔，相比于 Smart Folio，键盘手感、键盘背光这些都是巨大的提升，更不用说触控板带来的体验提升了。我现在比较同意钟文泽的说法了，对于 iPad Pro 来说，Smart Keyboard 是比 Apple Pencil 更有用的外设。白色的颜值自己也很满意，就是希望不要脏得太快。唯一不如 Smart Folio 的地方也就在于不能翻转了，这个就只能是忍一忍了，当平板用的时候只好摘下来，也没什么别的办法了。</p><p>现在最大的愿望就是：明年初 iPad Pro 产品线更新的时候，别大改设计，别出新的键盘，这样这个 Magic Keyboard 就买得值了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;2021 结束之际，总结一下这一年内通关过的主要游戏作品和购买的主要的消费电子产品，纯粹个人向，纯粹主观感受。&lt;/p&gt;
+&lt;h1 id=&quot;电子游戏&quot;&gt;&lt;a href=&quot;#电子游戏&quot; class=&quot;headerlink&quot; title=&quot;电子游戏&quot;&gt;&lt;/a&gt;电子游戏&lt;/h1&gt;&lt;p</summary>
+      
+    
+    
+    
+    
+    <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+    <category term="随笔" scheme="http://iifatree.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="体验" scheme="http://iifatree.com/tags/%E4%BD%93%E9%AA%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在 M1 芯片的 Mac 上通过 Parallels Desktop 16 体验 Windows 11</title>
+    <link href="http://iifatree.com/2021/07/01/win11-arm-on-parallels-desktop/"/>
+    <id>http://iifatree.com/2021/07/01/win11-arm-on-parallels-desktop/</id>
+    <published>2021-07-01T07:52:09.000Z</published>
+    <updated>2021-08-14T12:52:42.760Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p><strong>Update: Parallels Desktop 17 已经发布，可以直接安装 Windows 11。</strong></p><hr><p><a class="link"   href="https://www.microsoft.com/en-us/windows/windows-11" >Windows 11<i class="fas fa-external-link-alt"></i></a> 发布了，自然也想要在第一时间体验一番，最终决定在 M1 芯片的 MacBook Air 上用 Parallels Desktop 安装 ARM 版本的 Windows 11 体验一番。</p><p>注意：以下所有内容都是在虚拟机内测试的，不建议使用主力电脑进行操作！！！</p><h1 id="安装-Windows-11-on-ARM"><a href="#安装-Windows-11-on-ARM" class="headerlink" title="安装 Windows 11 on ARM"></a>安装 Windows 11 on ARM</h1><p>首先是正常下载 Windows 11 的安装镜像，由于想在 M1 芯片的 mac 上体验，所以需要下载 ARM 版本的镜像，这里下载的是微软提供的 <a class="link"   href="https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewARM64" >Windows 11 Insider Preview ARM64<i class="fas fa-external-link-alt"></i></a>，注意需要首先登录微软账户并加入 Windows 预览计划。</p><p>之后就是正常在 Parallels Desktop 中进行安装工作了，安装过程中会遇到提示：此设备无法运行 Windows 11。</p><p>众所周知本次的 Windows 11 要求 TPM 2.0，虽然 Parallels Desktop 提供了虚拟 vTPM，但是是 Pro 版本专享功能，我个人的订阅是标准版，并不包含 vTPM 的支持，因此还是需要想办法绕过这一限制才能体验 Windows 11。（希望 Parallels 官方早日把 vTPM 下放标准版啊！）</p><p>解决方法如下：</p><ol><li><p>使用组合键 Shift+F10，打开命令行界面，输入 regedit 打开注册表；</p></li><li><p>定位到<code>HKEY_LOCAL_MACHINE\SYSTEM\Setup</code>，创建一个名为<code>LabConfig</code>的项；</p></li><li><p>在<code>LabConfig</code>下创建两个<code>DWORD</code>值：</p><ul><li><p>键为<code>BypassTPMCheck</code>，值为<code>00000001</code></p></li><li><p>键为<code>BypassSecure BootCheck</code>，值为<code>00000001</code></p></li></ul></li><li><p>保存，回到上一步，重新点击下一步，之后正常安装即可。</p></li></ol><h1 id="加入-Dev-预览通道"><a href="#加入-Dev-预览通道" class="headerlink" title="加入 Dev 预览通道"></a>加入 Dev 预览通道</h1><p>安装成功，进入系统后，版本为<code>10.0.22000.1</code>，目前的最新版本为<code>10.0.22000.51</code>，进入设置检查更新发现无法检测到更新内容，需要加入 Windows Insider Preview Dev 通道才能正常检测到更新。然而目前在不支持 TPM 的环境中，是无法切换到 Dev 通道的，但是也有解决办法：</p><ol><li>登录微软账户，在设置中加入 Insider 计划并选择 Release Preview 通道；</li><li>重启，然后打开注册表编辑器（Win+R，运行<code>regedit</code>）</li><li>定位到<code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection</code>：<ol><li>将<code>UIBranch</code>中的值更改为<code>Dev</code></li><li>将<code>ContentType</code>中的值更改为<code>Mainline</code></li><li>将<code>Ring</code>中的文本更改为<code>External</code></li></ol></li><li>定位到<code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsSelfHost\Applicability</code>：<ol><li>将<code>BranchName</code>中的值更改<code> Dev</code></li><li>将<code>ContentType</code>中的值更改为 <code>Mainline</code></li><li>将<code>Ring</code>中的值更改为<code>External</code></li></ol></li><li>退出注册表编辑器，重启;</li><li>重新检查更新，如无意外，可以更新到<code>10.0.22000.51</code>，即本次推送的预览版本，enjoy it！</li></ol><p><img                       lazyload                     src="/images/loading.svg"                     data-src="/images/win11.png"                                     ></p><p>#参考资料</p><ol><li><a class="link"   href="https://www.ithome.com/0/559/669.htm" >绕过 TPM 2.0 安装微软 Win11 的三种方法，注册表大法回归<i class="fas fa-external-link-alt"></i></a></li><li><a class="link"   href="https://www.ithome.com/0/559/679.htm" >Win11 预览版即将到来：即使不满足最低硬件要求，你仍可升级 Dev（附方法）<i class="fas fa-external-link-alt"></i></a></li><li><a class="link"   href="https://changewindows.org/timeline/pc" >Change Windows<i class="fas fa-external-link-alt"></i></a></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Update: Parallels Desktop 17 已经发布，可以直接安装 Windows 11。&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;a class=&quot;link&quot;   href=&quot;https://www.microsoft.com/</summary>
+      
+    
+    
+    
+    
+    <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="体验" scheme="http://iifatree.com/tags/%E4%BD%93%E9%AA%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Unity 找不到 Android SDK 及编译失败的终极解决方案</title>
+    <link href="http://iifatree.com/2021/01/10/unity-android-sdk/"/>
+    <id>http://iifatree.com/2021/01/10/unity-android-sdk/</id>
+    <published>2021-01-10T14:03:42.000Z</published>
+    <updated>2021-06-13T15:28:54.778Z</updated>
+    
+    <content type="html"><![CDATA[<p>做 Unity 开发也三年多了，从一开始就经常受到 Android SDK 的困扰，最常见的问题就是在 Preference-&gt;External Tools 中指定 Android SDK 的时候，经常遇到说 Unable to detect SDK in the selected directory。由此还可能引发编译时候的出错。</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s3.ax1x.com/2021/01/10/s1siyF.png"                      alt="Unable to detect SDK in the selected directory"                ></p><p>此问题一般常见于使用了较新版本的从 Android Studio 中安装的 Android SDK 时，网上有很多解决办法，比如手动下载旧版本的 build tools 然后解压到 SDK 路径，但是这样显然不是很优雅。</p><p>解决办法：</p><ol><li>打开 Android Studio 中的 SDK Manager；</li><li>切换到 SDK Tools 选项卡；</li><li>取消选择 Hide Obsolete Packages；</li><li>勾选上 Android SDK Command-line Tools (latest) 和 Android SDK Tools (Obsolete) 两项，Apply 根据提示安装即可。<br><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s3.ax1x.com/2021/01/10/s1sFL4.png"                      alt="SDK Manager"                ></li></ol><p>之后问题已经解决，进入 Unity 正常选取 Android SDK 路径，已经不会有提示了，之后正常编译，过程中可能会出现此提示：<br><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s3.ax1x.com/2021/01/10/s1sPQU.png"                      alt="Android SDK is outdated"                ><br>无视之，选择 Use Highest Installed 即可。</p><p>愉快地开发你的 Android 游戏吧。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;做 Unity 开发也三年多了，从一开始就经常受到 Android SDK 的困扰，最常见的问题就是在 Preference-&amp;gt;External Tools 中指定 Android SDK 的时候，经常遇到说 Unable to detect SDK in the s</summary>
+      
+    
+    
+    
+    
+    <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>从双拼到汉语拼音方案——日常使用双拼的几个小问题</title>
+    <link href="http://iifatree.com/2021/01/08/double-pinyin/"/>
+    <id>http://iifatree.com/2021/01/08/double-pinyin/</id>
+    <published>2021-01-08T04:39:39.000Z</published>
+    <updated>2021-06-15T02:18:49.596Z</updated>
+    
+    <content type="html"><![CDATA[<p>目前我的中文输入完全依赖于双拼，日常主要使用的操作系统平台包括 iOS、Android、Windows 和 macOS，使用的双拼方案为『微软双拼』。</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://i.loli.net/2021/06/15/YzNvK9mqdbopMnU.gif"                      alt="微软双拼输入法方案图"                ></p><p>选择微软双拼的原因很简单，因为几乎所有的输入法都会提供原生的微软双拼支持，省事。但是正是因为这个选择，导致了一些体验上的让人不适的点：</p><h1 id="分号键"><a href="#分号键" class="headerlink" title="分号键"></a>分号键</h1><p>微软拼音使用分号键输入韵母 ing，实体键盘在使用的时候没有任何问题，iOS 的虚拟键盘处理得较好，会自动在键盘第二行显示分号键，方便输入。</p><p>Andorid 平台的输入法，包括个人使用过的 Gboard、百度输入法、讯飞输入法、搜狗输入法、同文输入法的默认布局，都没有这一功能，普遍采用分词键输入 ing 的方式。在这些输入法或键盘中，分词键一般都位于实体键盘 Shift 键的位置，即 Z 键的左边，所以导致输入的时候体验跟其他平台极为割裂。</p><p>同文输入法可以通过自定义布局解决此问题，百度输入法可以通过自定义双拼方案一定程度上解决这个问题（我的方法是把韵母 ing 放到 L 键，会导致和韵母 ai 重码，并且没有彻底解决）。</p><p>而其他几个 Android 平台的输入法则没有办法解决这个问题。</p><h1 id="韵母-ue"><a href="#韵母-ue" class="headerlink" title="韵母 üe"></a>韵母 üe</h1><p>这个问题是一个比分号键更令人抓狂的问题，说起来还有点复杂。关于韵母 üe，可能大多数人包括之前的我自己都没有仔细注意过这个问题。</p><h2 id="汉语拼音方案对于-ue-的规定"><a href="#汉语拼音方案对于-ue-的规定" class="headerlink" title="汉语拼音方案对于 üe 的规定"></a>汉语拼音方案对于 üe 的规定</h2><p>根据《汉语拼音方案》，汉语拼音的 39 个韵母中，<a class="link"   href="https://zh.wikipedia.org/wiki/%E6%92%AE%E5%8F%A3%E5%91%BC" >撮口呼<i class="fas fa-external-link-alt"></i></a>的单元音韵母为 üe（音『约』）。</p><p>可以和 üe 组合的声母有 n，l，j，q，x 五个。</p><p><strong>其中，n，l 和 üe 组合时，按照规范写法，应该写为 nüe 和 lüe，并不能写作 nue 和 lue。</strong></p><p><strong>j，q，x 和 üe 组合时，根据汉语拼音方案的规定，可以略去 ü 上的两点，写作 jue，que，xue。</strong></p><p>具体的原规定为： ü 列的韵母跟声母 j、q、x 拼的时候，写成 ju（居）、qu（区）、xu（虚），ü 上两点省略；但是跟声母 l、n 拼的时候，仍然写成 lü（吕）、nü（女）。</p><p><strong>无声母的情况，即表示 üe 本身的『约』音，写作 yue，略去 ü 上的两点。</strong></p><p>具体的原规定为：ü 列的韵母，前面没有声母的时候，写成 yu（迂）、yue（约）、yuan（冤）、yun（晕）；ü 上两点省略。</p><p><strong>汉语拼音中并不存在韵母 ue。</strong></p><h2 id="全拼输入对-ue-的处理"><a href="#全拼输入对-ue-的处理" class="headerlink" title="全拼输入对 üe 的处理"></a>全拼输入对 üe 的处理</h2><p>在全拼输入环境下，关于韵母 üe 并不会遇到太大的问题。首先是 nüe 和 lüe，虽然规范写法如此，但是在输入的时候，不论是输入 nüe/lüe 还是 nue/lue 都是没有问题的。虽然按照汉语拼音方案的规定，此处 ü 上的两点是不可以省略的，但是由于刚才提到，汉语拼音中并不存在韵母 ue，所以即使输入成 ue，也不会造成任何歧义和重码问题。而几乎所有的全拼输入法也都是这么做的，直接输入 N、U、E 三个键，都可以打出『虐』字。</p><p>至于 jue，que，xue 和 yue 的情况，则一般都是直接输入键盘上的 U 和 E 两个键。没有任何问题。</p><p>我反思了一下自己以前在使用全拼输入的时候，输入 nüe/lüe 的时候，实际上都是直接打 nue/lue，输入 jue，que，xue 的时候自然也是直接打 U 和 E。实际上在全拼输入的时候，根本不会去打 üe 这个韵母，在任何情况下都是用 ue 来代替的。</p><p>总结而言就是，虽然并不存在 ue 这个韵母，但是所有用到 üe 的时候都可以用 ue 来代替。在全拼输入的时候，自然也都是直接输入 ue 即可。</p><h2 id="微软双拼中的-ue-和-ue-问题"><a href="#微软双拼中的-ue-和-ue-问题" class="headerlink" title="微软双拼中的 ue 和 üe 问题"></a>微软双拼中的 ue 和 üe 问题</h2><p>在微软双拼方案中，T 键在韵母输入的时候代替 ue，V 键在韵母输入的时候代替 ui 和 ve（即 üe），这样的情况下，在输入韵母 üe 的时候就会产生一点点不适。</p><p>在意识到这个问题之前，我没有注意过输入 nüe、lüe、jue、que、xue、yue 五个音节的时候，自己到底应该用 ve(üe) 还是 ue，都是凭借直觉输入。在意识到这个问题后，我发现自己在双拼模式下输入这些音节的时候，实际上会混用 ue 和 üe，也就是有时候会按 T，有时候会按 V，而且已经形成了肌肉记忆。对于某些输入法来说，在这五个音节输入时，都可以混用二者，但是有的输入法就不行，导致了在输入同一个音节的时候，在不同平台上的体验会有所不同。</p><h2 id="产生问题的原因：不同输入法对于-ue-处理的不同"><a href="#产生问题的原因：不同输入法对于-ue-处理的不同" class="headerlink" title="产生问题的原因：不同输入法对于 üe 处理的不同"></a>产生问题的原因：不同输入法对于 üe 处理的不同</h2><p>说到底，产生这种体验割裂的原因就在于不同的输入法对于韵母 üe 的处理不同。而在微软双拼模式下，由于 üe(ve) 和 ue 都作为韵母被分配了不同的按键，而不同输入法在处理微软双拼输入时候 nüe、lüe、jue、que、xue、yue 这几个音节时候的表现又有一定的不同。</p><p>下面对比一下自己测试过的几个输入法，包括：Windows 10 自带输入法、RIME 中的 MSPY 双拼方案、 iOS/iPadOS/macOS 自带输入法、Gboard (Android)、百度输入法（Android）、讯飞输入法（Android）、搜狗输入法（Android）、RIME 中的 MSPY 双拼方案。</p><h3 id="Windows-10-自带输入法-RIME-中的-MSPY-双拼方案-Gboard-Android-讯飞输入法（Android）"><a href="#Windows-10-自带输入法-RIME-中的-MSPY-双拼方案-Gboard-Android-讯飞输入法（Android）" class="headerlink" title="Windows 10 自带输入法/RIME 中的 MSPY 双拼方案/Gboard (Android)/讯飞输入法（Android）"></a>Windows 10 自带输入法/RIME 中的 MSPY 双拼方案/Gboard (Android)/讯飞输入法（Android）</h3><p>Win 10 自带输入法在这一问题上的体验是最好的，对于 nüe、lüe、jue、que、xue、yue 这五个音节，ve(üe) 和 ue 都可以混用，无论输入哪个都可以得到想要的结果。在微软双拼模式下，输入 n/l/j/q/x/y+t/v 均可。</p><p>RIME 引擎中的 MSPY 双拼方案也比较好地解决这个问题，同样是在所有五个音节中都支持混用，输入 n/l/j/q/x/y+t/v 均可。</p><p>Android 上的 Gboard、讯飞输入法也支持完全混用。在微软双拼模式下，输入 n/l/j/q/x/y+t/v 均可。</p><h3 id="iOS-iPadOS-macOS-自带输入法"><a href="#iOS-iPadOS-macOS-自带输入法" class="headerlink" title="iOS/iPadOS/macOS 自带输入法"></a>iOS/iPadOS/macOS 自带输入法</h3><p>苹果的处理就有一点点奇怪，但是还能接受，大部分情况下不会感到不适。具体而言：</p><ul><li>对于 nüe、lüe，ve(üe) 和 ue 可以混用。在微软双拼模式下，输入 n/l+t/v 均可。</li><li>对于 jue，必须输入 ue，不能输入 ve。在微软双拼模式下，必须输入 j+t，不能输入 j+v。</li><li>对于 que、xue，ve(üe) 和 ue 可以混用。在微软双拼模式下，输入 q/x+t/v 均可。</li><li>对于 yue，必须输入 ue，不能输入 ve。在微软双拼模式下，必须输入 y+t，不能输入 y+v。</li></ul><p>苹果的输入法比较让人不爽的一点在于 j、q、x 同为<a class="link"   href="https://zh.wikipedia.org/wiki/%E9%BD%A6%E9%A1%8E%E9%9F%B3" >龈颚音<i class="fas fa-external-link-alt"></i></a>，实现的方法确不一样，实在很是割裂，没有什么道理可言。对于音节 yue，其实就是 üe 本身，却反而不能用 ve 输入，也有点不爽。</p><h3 id="百度输入法（Android）"><a href="#百度输入法（Android）" class="headerlink" title="百度输入法（Android）"></a>百度输入法（Android）</h3><ul><li>对于 nüe、lüe，必须输入 ue，不能输入 ve。在微软双拼模式下，必须输入 n/l+t；<strong>如果输入 n/l+v，会得到 lü（吕） 和 nü（女）的音节</strong>。</li><li>对于 jue、que、xue，必须输入 ue，不能输入 ve。在微软双拼模式下，必须输入 j/q/x+t，不能输入 j/q/x+v。</li><li>对于 yue，必须输入 ue，不能输入 ve。在微软双拼模式下，必须输入 y+t，不能输入 y+v。</li></ul><p>总结就是，在百度输入法的微软双拼模式下，都不能使用 ve。但是奇怪的是，在百度输入法的全拼模式下，又都是可以混用 ve 和 ue 的。全拼和双拼下体验不统一，很奇怪。</p><h3 id="搜狗输入法（Android）"><a href="#搜狗输入法（Android）" class="headerlink" title="搜狗输入法（Android）"></a>搜狗输入法（Android）</h3><ul><li>对于 nüe、lüe，ve(üe) 和 ue 可以混用。在微软双拼模式下，输入 n/l+t/v 均可。</li><li>对于 jue、que、xue，必须输入 ue，不能输入 ve。在微软双拼模式下，必须输入 j/q/x+t，不能输入 j/q/x+v。</li><li>对于 yue，必须输入 ue，不能输入 ve。在微软双拼模式下，必须输入 y+t，不能输入 y+v。</li></ul><p>比百度的实现要好一些，起码在逻辑上自洽。但是对于音节 yue，其实就是 üe 本身，却反而不能用 ve 输入，也有点不爽。</p><h1 id="各平台微软双拼方案的输入法选择小结"><a href="#各平台微软双拼方案的输入法选择小结" class="headerlink" title="各平台微软双拼方案的输入法选择小结"></a>各平台微软双拼方案的输入法选择小结</h1><p>最不纠结的是 Windows 平台，选择自带输入法或者 RIME 均可较完美解决此问题，并且因为是实体键盘，不会受到分号键的困扰。</p><p>macOS 平台，自带输入法略微有点奇怪，选择 RIME 即可，同样因为是实体键盘，不会受到分号键的困扰。</p><p>iOS/iPadOS 平台，自带输入法实现方式略微有些怪，但是可以较好解决分号键问题，所以还是选择自带输入法，大部分情况下可以适应。</p><p>Android 平台，Gboard、讯飞输入法的解决都较好，但是这两者没法在 L 键的右边增加分号键，输入体验不是很好。RIME 的解决也较好，而且可以通过自定义布局的方式解决分号键的问题，但是使用门槛有点高。至于百度输入法的实现是最让人难受的，完全无法接受。搜狗输入法的解决方法也很不舒服。</p><h1 id="总之一句话——微软双拼的锅"><a href="#总之一句话——微软双拼的锅" class="headerlink" title="总之一句话——微软双拼的锅"></a>总之一句话——微软双拼的锅</h1><p>后来因此而去研究了其他的双拼方案，惊讶地发现其他的几种主流的双拼方案，比如小鹤双拼、自然码、搜狗双拼、智能 ABC 都是把 ve(üe) 和 ue 放在同一个按键上，拼音加加方案则是没有设置 ve(üe) 这个韵母，都通过一定的方法规避了这个奇怪的问题。</p><p>根据百度输入法的表现，还想到另一个问题，对于韵母 ü，在英文键盘上都是使用 v 代替，但是微软双拼却为其特别安排了一个按键 Y，是否也有些不合理？</p><p>唯一存在这个问题的主流双拼方案，好像就是微软双拼，所以最终方法是——换方案？但是实在是懒得去换了，先用着再说吧。怪自己没选好方案。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;目前我的中文输入完全依赖于双拼，日常主要使用的操作系统平台包括 iOS、Android、Windows 和 macOS，使用的双拼方案为『微软双拼』。&lt;/p&gt;
+&lt;p&gt;&lt;img  
+                     lazyload
+                 </summary>
+      
+    
+    
+    
+    
+    <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OpenWrt 路由器作为无线 AP 的配置</title>
+    <link href="http://iifatree.com/2020/03/13/openwrt-dumb-ap/"/>
+    <id>http://iifatree.com/2020/03/13/openwrt-dumb-ap/</id>
+    <published>2020-03-13T09:21:03.000Z</published>
+    <updated>2023-01-31T10:01:59.295Z</updated>
+    
+    <content type="html"><![CDATA[<p>需求描述：把 OpenWrt 系统的路由器设置为二级路由，使用 LAN 口连接主路由的 LAN 口，同时保留 OpenWrt 路由器的 SSH 和 Web 访问功能，方便修改各种配置和 opkg 升级等操作。局域网网段为非 192.168.1.1 的其他网段。</p><p>网络描述：光猫连接主路由，主路由拨号并作为 DHCP 服务器自动分配 IP 地址，主路由 LAN 口连接二级路由 LAN 口，其他设备通过 LAN 口或 WLAN 连接二级路由访问局域网和互联网，主路由 IP 地址为 192.168.7.1，设置后希望二级路由地址也位于该网段内，方便访问。</p><p>设备：主路由 + 二级路由（我的测试设备是斐讯 K2）</p><p>OpenWrt 版本：OpenWrt 19.07.2（发布于 2020 年 2 月 29 日）</p><p>准备工作：主路由已经配置完毕，二级路由已经刷好 OpenWrt 固件</p><p>具体步骤（以 LuCI 中的配置为例，命令行配置请参看<a class="link"   href="https://openwrt.org/docs/guide-user/network/wifi/dumbap" >官方文档<i class="fas fa-external-link-alt"></i></a>）：</p><ol><li>二级路由的 LAN 口与主路由 LAN 口直连，并将另一个 LAN 口连接到设备；</li><li>此时 OpenWrt 会自动设置，设备应该已经可以上网，自动分配 IP 地址为 192.168.7.100；</li><li>手动设置设备 IP 地址为 192.168.1.100/24，网关和 DNS 服务器均为 192.168.1.1，之后设备无法连接互联网；</li><li>设备访问 192.168.1.1，进入 OpenWrt LuCI 界面；</li><li>进入 Network-&gt;Interfaces，此时 LAN 口设置应为静态 IP 192.168.1.1，更改设置为静态 IP 192.168.7.2（此处必须设置为紧邻主路由地址的地址，若主路由为 192.168.7.1 则必须设置为 192.168.7.2），网关与 DNS 服务器均为 192.168.7.1；</li><li>在 DHCP Server 选项卡中的 General Setup 中勾选 Ignore interface，并在 IPv6 Settings 中将前三项设为 disabled，保存；</li><li>进入 System-&gt;startup，将 dnsmasq、firewall 和 odhcpd 设为 Disabled；</li><li>点击右上角，Save &amp; Apply，如果遇到 rollback 的提示，选择 Apply unchecked；</li><li>将设备的 IP 地址重新设为自动获取，大功告成，以后可以通过 192.168.7.2 访问或者连接二级路由了。</li></ol><p>P.S.  因为我自己用的网段是非 192.168.1.1 的网段，所以设置步骤和官方教程略有不同，如果直接使用 192.168.1.1 网段，则直接参看<a class="link"   href="https://openwrt.org/docs/guide-user/network/wifi/dumbap" >官方文档<i class="fas fa-external-link-alt"></i></a>即可。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;需求描述：把 OpenWrt 系统的路由器设置为二级路由，使用 LAN 口连接主路由的 LAN 口，同时保留 OpenWrt 路由器的 SSH 和 Web 访问功能，方便修改各种配置和 opkg 升级等操作。局域网网段为非 192.168.1.1 的其他网段。&lt;/p&gt;
+&lt;p</summary>
+      
+    
+    
+    
+    
+    <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>即点即用 Office 365 与 Visio 2016 共存问题</title>
+    <link href="http://iifatree.com/2020/02/17/Office-click-to-run-and-visio-2016/"/>
+    <id>http://iifatree.com/2020/02/17/Office-click-to-run-and-visio-2016/</id>
+    <published>2020-02-17T05:01:03.000Z</published>
+    <updated>2021-06-13T15:28:54.773Z</updated>
+    
+    <content type="html"><![CDATA[<p>自己从 2014 年开始一直订购了 Office 365，其中并不包含 Visio。同时，写论文避免不了要用到 Visio，学校提供了集体授权的正版 Visio，于是从学校的正版软件站下载 Visio 2016 的安装镜像，安装时候发现提示说不能和即点即用的 Office 共准。卸载 Office 365 是不可能的，太麻烦了，于是查了一下微软的官方文档，发现可以<a class="link"   href="https://docs.microsoft.com/zh-cn/DeployOffice/use-the-office-deployment-tool-to-install-volume-licensed-editions-of-visio-2016?redirectSourcePath=%25252fzh-cn%25252farticle%25252f82691bd7-a3d5-47ca-8d8a-0ee43ec2c01f" >通过 Office 部署工具来安装 Visio 和 Project 的批量许可版本<i class="fas fa-external-link-alt"></i></a>。</p><p>步骤简单记录如下：</p><ol><li><p>下载 <a class="link"   href="https://www.microsoft.com/en-us/download/details.aspx?id=49117" >Office 部署工具（Office Deployment Tool）<i class="fas fa-external-link-alt"></i></a>；</p></li><li><p>打开下载到的部署工具安装文件，选择任意路径解压；</p></li><li><p>解压后路径内有一个 Setup.exe 文件和若干个配置文件；</p></li><li><p>新建配置文件，例如命名为 configuration.xml，内容如下：</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Configuration</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Add</span> <span class="attr">OfficeClientEdition</span>=<span class="string">&quot;64&quot;</span> <span class="attr">Channel</span>=<span class="string">&quot;Monthly&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Product</span> <span class="attr">ID</span>=<span class="string">&quot;VisioProXVolume&quot;</span> <span class="attr">PIDKEY</span>=<span class="string">&quot;69WXN-MBYV6-22PQG-3WGHK-RM6XC&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">Language</span> <span class="attr">ID</span>=<span class="string">&quot;zh-cn&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Product</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Add</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Configuration</span>&gt;</span></span><br></pre></td></tr></table></figure></li><li><p>在当前路径下运行<code>setup.exe/download configuration.xml</code>，等待命令运行完成，需要下载，可能时间较长；</p></li><li><p>运行<code>setup.exe/configure configuration.xml</code>，完成安装。</p></li></ol><p>其实就是通过配置文件来指定 Office 部署工具需要部署哪个软件及其版本，此示例指定的是 Visio 2016 专业版。如果需要安装标准版或者 Project 也是同理，参考以下表格更改对应参数即可：</p><table><thead><tr><th><strong>Product</strong></th><th><strong>ID</strong></th><th><strong>PIDKEY</strong></th></tr></thead><tbody><tr><td>Project Standard 2016</td><td>ProjectStdXVolume</td><td>D8NRQ-JTYM3-7J2DX-646CT-6836M</td></tr><tr><td>Project Professional 2016</td><td>ProjectProXVolume</td><td>WGT24-HCNMF-FQ7XH-6M8K7-DRTW9</td></tr><tr><td>Visio Standard 2016</td><td>VisioStdXVolume</td><td>NY48V-PPYYH-3F4PX-XJRKJ-W4423</td></tr><tr><td>Visio Professional 2016</td><td>VisioProXVolume</td><td>69WXN-MBYV6-22PQG-3WGHK-RM6XC</td></tr></tbody></table>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;自己从 2014 年开始一直订购了 Office 365，其中并不包含 Visio。同时，写论文避免不了要用到 Visio，学校提供了集体授权的正版 Visio，于是从学校的正版软件站下载 Visio 2016 的安装镜像，安装时候发现提示说不能和即点即用的 Office </summary>
+      
+    
+    
+    
+    
+    <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2020 来了，我很期待</title>
+    <link href="http://iifatree.com/2020/01/03/2020s-are-coming/"/>
+    <id>http://iifatree.com/2020/01/03/2020s-are-coming/</id>
+    <published>2020-01-03T14:01:51.000Z</published>
+    <updated>2021-06-13T15:28:54.772Z</updated>
+    
+    <content type="html"><![CDATA[<p>21 世纪的 20 年代就这样来了，在我毫无准备的情况下。十年前进入 2010 年，我在杂志上看着对 2000 年代的十年盘点，也在自己心中盘点着自己的 2000 年代，怀念着 2000 年代。一转眼，怀念着过去的那时候也成了需要被怀念的过去了。</p><p>2019 年的最后几天，总觉得这次跨年意味着很多，一个十年的交替是件大事，忐忑又有点期待，甚至有种还未准备好的感觉，2010 年代的最后一天就不真实地到来了。后来仔细想了一下，大概是因为 2020 年的元旦只有一天假期，所以会有这种毫无准备的感觉。可是真的跨完年了，还是一切照常，就好像什么都没有发生过。当然了，不然要怎么样呢？</p><p>2010 年代对于我自己而言还是发生了很多事情，好的坏的，哪一个更多一点我也记不清楚。大概发生了很多足以改变未来人生走向的事情。不过从不后悔，因为历史不可以假设，人生当然也不可以假设，后悔没有意义，一切已经做出的选择都是最好的选择。</p><p>2019 对于身边的很多人来说是极为关键的一年，于我倒未必，接下来的 2020 可能更关键一点。最近总有人在说小时候都写过的畅想未来的作文，似乎到了 2020 这个听起来颇为科幻的年代什么都没实现。但是，从别的角度而言，也发生了很多以前即使是天马行空也想象不到的事情，这似乎更为重要吧。于是，2020 年，我还是喜欢我不知道的事情。</p><p>现在的互联网不如十年前有意思了，不知道是真的这样，还是只是因为我自己变得无趣了。不过最真实的那些乐趣始终都在，倒是不必太过担心。如果说有什么在 2020 年期待的东西，那还是挺多的，新的游戏机，新的电子设备，新的未知的生活。</p><p>附上一首 Aimer 的 Live 版《_BEYOND THE TIME ～メビウスの宇宙を超えて～_》，从机战 X 到机战 T，一直用它。</p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=438466464&auto=0&height=32"></iframe><p>希望越来越好。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;21 世纪的 20 年代就这样来了，在我毫无准备的情况下。十年前进入 2010 年，我在杂志上看着对 2000 年代的十年盘点，也在自己心中盘点着自己的 2000 年代，怀念着 2000 年代。一转眼，怀念着过去的那时候也成了需要被怀念的过去了。&lt;/p&gt;
+&lt;p&gt;2019 年</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="http://iifatree.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>多个 Github Pages 项目主页 DNS 配置方式</title>
+    <link href="http://iifatree.com/2019/12/13/dns-configuration-for-github-pages-project/"/>
+    <id>http://iifatree.com/2019/12/13/dns-configuration-for-github-pages-project/</id>
+    <published>2019-12-13T04:25:40.000Z</published>
+    <updated>2021-06-13T15:28:54.773Z</updated>
+    
+    <content type="html"><![CDATA[<p>昨天干了件事情，把博客从主域名（<a href="https://iifatree.com/">https://iifatree.com/</a>）切换到了二级域名（<a class="link"   href="https://blog.iifatree.com/" >https://blog.iifatree.com/<i class="fas fa-external-link-alt"></i></a>），然后想在主域名放另一个用 Github Pages 托管的页面。迁移过程中发现 Github 官方关于这种需求的 DNS 配置方式说得有点不太清楚，摸索了一段时间才搞定。</p><p>博客托管于自己的 Github Pages 项目，也就是仓库名为 <code>&lt;username&gt;.github.io</code> 的仓库，我想把它绑定到自定义的二级域名 <code>blog.iifatree.com</code>，另一个项目用于托管网站的静态主页，Github 的访问路径为 <code>&lt;username&gt;.github.io/&lt;projectname&gt;</code>，我想将其绑定到自己的域名 <code>iifatree.com</code>。</p><p>配置方法如下：</p><ol><li>在 Github 给两个项目 <code>&lt;username&gt;.github.io</code> 和 <code>&lt;projectname&gt;</code> 都设置 Custom Domain，分别指向需要的域名；</li><li>在 DNS 管理商处，添加 A 记录，指向 Github Pages 的 IP 地址：<code>185.199.108.153</code>、<code>185.199.109.153</code>、<code>185.199.110.153</code>、<code>185.199.111.153</code>；</li><li>添加 CNAME 记录，域名 <code>subdomain.domain.com</code>，指向 <code>&lt;username&gt;.github.io</code>；</li><li>至此其实已经完成了，Github 会自动处理两个项目各自对应的域名，当然也可以再添加一条 www 二级域名的 CNAME 记录，仍旧指向 <code>&lt;username&gt;.github.io</code>；</li><li>同理，如果还有一个项目位于 <code>&lt;username&gt;.github.io/&lt;project2&gt;</code>，需要用 <code>subdomain2.domain.com</code> 访问，同样添加一条 CNAME 记录让 <code>subdomain2.domain.com</code> 指向 <code>&lt;username&gt;.github.io</code> 即可；</li><li>总结一下就是，只要是要用某个域名 <code>domain.com</code> 来访问某个 Github Pages 项目，无论是一级域名还是二级域名，都只要首先添加 CNAME 记录使其指向 <code>&lt;username&gt;.github.io</code>，然后对应仓库的 Settings 里设置对应域名即可，剩下的交给 Github 处理即可。</li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;昨天干了件事情，把博客从主域名（&lt;a href=&quot;https://iifatree.com/&quot;&gt;https://iifatree.com/&lt;/a&gt;）切换到了二级域名（&lt;a class=&quot;link&quot;   href=&quot;https://blog.iifatree.com/&quot; &gt;h</summary>
+      
+    
+    
+    
+    
+    <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2019 年 12 月的 iPad Pro 体验</title>
+    <link href="http://iifatree.com/2019/12/12/ipad-productivity-on-dec-2019/"/>
+    <id>http://iifatree.com/2019/12/12/ipad-productivity-on-dec-2019/</id>
+    <published>2019-12-12T14:16:43.000Z</published>
+    <updated>2021-06-13T15:28:54.775Z</updated>
+    
+    <content type="html"><![CDATA[<p>因为双十一给 <a class="link"   href="https://www.apple.com.cn/cn/ipad-pro/" >iPad Pro<i class="fas fa-external-link-alt"></i></a> （11 英寸）购入了<a class="link"   href="https://www.apple.com.cn/shop/product/MU8G2CH/A" >键盘式智能双面夹<i class="fas fa-external-link-alt"></i></a>，所以终于在购入接近一年以后把 iPad Pro 进化为了完全体，于是这几周内一直尝试在跑到另一个校区上自习的时候故意不带电脑，来看看完全使用 iPad 办公的体验如何。</p><p>先说结论：在 iPad OS 13.2.3 下，这台 iPad Pro 显然比去年十一月首发购入的时候要更加 Pro 了。实际上从今年七月开始使用预览版的 iPad OS 以后，它能做的事情的确比以前多了很多。而产生这个变化的最主要的功臣，在我看来还是 Safari。从 iOS 变成 iPad OS 以后，最大的也最有用的变化，就是这个『桌面级』的浏览器了。</p><h1 id="Safari"><a href="#Safari" class="headerlink" title="Safari"></a>Safari</h1><p>现在在我的 iPad Pro 上，同时用 Safari 打开十多个浏览器标签页是很常见的情况，并且比较少出现需要重新加载的情况。这应该还是主要归功于 A12X 的强大性能。我现在一般会用 Safari 来干的事情如下：</p><ol><li>看视频网站，主要是 YouTube 和 B 站，个人认为体验比 app 要更好；</li><li>看直播，主要是 B 站和斗鱼，体验和 app 各有千秋，主要的痛点在于 iPad OS 上的 Safari 不能启用视频自动播放，所以打开直播间页面必须手动刷新一次播放器才能开始播放，另外就是没法息屏播放，这一点上不如 app 的体验好；但是优势也非常明显，可以以画中画模式播放，前述的三个平台的 app 都不行；</li><li>中国知网以及 WebOfKnowledge 查文献以及浏览文献，知网的 CAJ 格式体验不佳，还好目前知网大部分论文可以以 HTML 形式直接预览，下载 PDF 也是不错的选择，配合上文件.app 体验还行；</li><li>刷各类社区、论坛，可以基本告别专用 app 了；</li><li>玩 <a class="link"   href="https://play.pokemonshowdown.com/" >Pokemon Showdown<i class="fas fa-external-link-alt"></i></a>，没 Switch 的时候也来两把。</li></ol><p>这些事情其实也是我用电脑的大部分时间在做的事情，也正是因此，我觉得平时在学校里可以不背着电脑去上自习了，问题不大。</p><p>所以 Safari 已经成了目前我在 iPad 上使用频率最高的 app 了，没有之一。排在 Safari 之后的，是 Tweetbot 和奇点，一般是左右对开同时刷微博和 Twitter。然后是因为有了键盘，所以偶尔会用 Termius 连上服务器干点活，不过一般是躺在床上的时候应急。同样是应急的情况，还会用微软的 RD Client (Microsoft Remote Desktop) 来远程桌面连接 PC。</p><h1 id="Microsoft-Remote-Desktop"><a href="#Microsoft-Remote-Desktop" class="headerlink" title="Microsoft Remote Desktop"></a>Microsoft Remote Desktop</h1><p>RD Client 可以展开说一下，去年有了全面屏的 iPad Pro 以后，这个微软自家的远程桌面客户端一直没有适配，所以使用的时候一直都要忍受大黑边。两周前 10.0.0 大版本更新后，终于适配了全面屏，不过之后就经历了下架再上架的过程。重新上架更新 10.0.1 版本以后，出现的最大问题是没法在远程连接的 Windows 10 里输入中文了，无论是用 iPad OS 本身的中文键盘还是 iPad 调至英文键盘使用 Windows 10 上的中文输入法都不行，但是在 10.0.0 版本是没问题的。这个是个很致命的问题，『生产力』也很受影响，希望赶紧修复。</p><p>==更新：2019 年 12 月 20 日推出的 10.0.2 版本已经解决了中文输入问题。==</p><p>类似的通过网络连接其他设备干本来不能干的事情还有一个就是用 R-Play 这个软件在局域网跨网段连接 PS4 愉快摸鱼，详情可见<a href="/2019/06/20/slacking-off-remote-play/">另一篇博客</a>。</p><h1 id="Microsoft-Office-365"><a href="#Microsoft-Office-365" class="headerlink" title="Microsoft Office 365"></a>Microsoft Office 365</h1><p>还是微软家的东西，果然微软才懂生产力。Office 三件套目前最大的问题是还没有支持窗口多开，这个很关键，没有这个功能难谈生产力，希望画下的大饼尽快兑现。除此以外，基本功能上是问题不大了，配合 OneDrive 也很好用。</p><h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>从三年前就开始用 Day One 写日记，用手机打字写总是容易倦怠，以前经常会用蓝牙键盘连上 iPad 来写，不过毕竟蓝牙键盘不会随时带着，现在因为自带键盘了，所以每天写日记的感觉也好多了。</p><p>以上说的都是最近一年多来新增的体验，至于 iPad 本来就做得很好的事情，比如看电子杂志看 PDF 看 Kindle 客户端（虽然买了 Kindel Oasis，但是用的次数远远不及 iPad）以及当作『影碟机』自不必说，还是同样舒服。</p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>去年一冲动首发入了 iPad Pro 11 英寸，一开始新鲜感来自于 Apple Pencil，写写画画挺舒服的，但是实际上现在不怎么上课听讲座，做笔记的机会少之又少，所以其实 Apple Pencil 的使用频率也没那么高，每次都当个截图工具用。不过现在过了一年零一个月，这台 iPad 能做的事情确实越来越多了，我对它也越来越满意。不爽的感觉还是每天都有，我多么希望它能够变成一台完整的电脑。不过既然现在还不行，就只能慢慢等咯。起码现在，我出门的背包轻多了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;因为双十一给 &lt;a class=&quot;link&quot;   href=&quot;https://www.apple.com.cn/cn/ipad-pro/&quot; &gt;iPad Pro&lt;i class=&quot;fas fa-external-link-alt&quot;&gt;&lt;/i&gt;&lt;/a&gt; （11 英寸）购入了&lt;a </summary>
+      
+    
+    
+    
+    
+    <category term="体验" scheme="http://iifatree.com/tags/%E4%BD%93%E9%AA%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《宝可梦 剑/盾》日记（一周目总结篇）</title>
+    <link href="http://iifatree.com/2019/11/19/pokemon-sw-sh-dairy-345/"/>
+    <id>http://iifatree.com/2019/11/19/pokemon-sw-sh-dairy-345/</id>
+    <published>2019-11-19T06:46:23.000Z</published>
+    <updated>2021-06-13T15:28:54.777Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>可能涉及剧透。</li><li>一周目通关，时间 35 小时。</li><li>实际只通关远远不用那么长时间，大量时间耗费在了抓怪和极巨团体战中。</li><li>旷野地带带来的一系列新玩法是这一作最大的特点和优点，的确给系列带来了全新的感觉。</li><li>剧情十分失望，白开水一般。</li><li>从日月到现在剑盾，以后看来是都没有以前『正经』的邪恶组织反派了。这一作的组织敌人莫名其妙。</li><li>部分 NPC 设计还算有可圈可点之处。</li><li>流程全程一本道，没有任何让人印象深刻的迷宫和道路。</li><li>结合上一条，流程方面历代最差，没有之一。</li><li>地图设计也十分敷衍，毫无亮点，和 GEN 5、6、7 都没法比。</li><li>通关后旷野地带以外终于有了『正常』的昼夜，这个一周目昼夜由系统设定好的规则个人认为还行，后续作品可以保留。</li><li>一周目结尾部分车轮战，结合剧情还算有意思。玩的时候不禁想起《黑/白》，但是差远了。</li><li>神兽相关主线剧情莫名其妙，全程 NPC 都在跟你说你小孩子就赶紧收集徽章吧，这些事交给大人。<br><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/11/19/MgW2WR.md.jpg"                                     ></li><li>究极剑盾预定。</li><li>一周目结束没有封面神抓，有点出乎预料，</li><li>本来对于没有四天王有些不满，不过以这样的方式让道馆馆主再出场还算可以，不能不让人想起《日/月》。</li><li>通关连个队伍登录都没有，实在失望。</li><li>极巨团体战刷刷刷目前来看还算有趣，后面环境会变成什么样拭目以待。</li><li>官方把一些重要的道具强行和旷野地带、极巨团体战绑定增加游玩度，现在还不好评价如何。</li><li>开始二周目。</li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;ol&gt;
+&lt;li&gt;可能涉及剧透。&lt;/li&gt;
+&lt;li&gt;一周目通关，时间 35 小时。&lt;/li&gt;
+&lt;li&gt;实际只通关远远不用那么长时间，大量时间耗费在了抓怪和极巨团体战中。&lt;/li&gt;
+&lt;li&gt;旷野地带带来的一系列新玩法是这一作最大的特点和优点，的确给系列带来了全新的感觉。&lt;/li&gt;
+</summary>
+      
+    
+    
+    
+    
+    <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+    <category term="评论" scheme="http://iifatree.com/tags/%E8%AF%84%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《宝可梦 剑/盾》日记（2）</title>
+    <link href="http://iifatree.com/2019/11/16/pokemon-sw-sh-dairy-2/"/>
+    <id>http://iifatree.com/2019/11/16/pokemon-sw-sh-dairy-2/</id>
+    <published>2019-11-16T13:17:45.000Z</published>
+    <updated>2021-06-13T15:28:54.777Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>第二天游戏时间 5 小时，总计 15 小时，进度迷光森林通过。今天白天出门，没玩太久，主要补漏昨天的。</li><li>主要深入体验了旷野地带，总体令人满意，主要还是来自于足够多数量的宝可梦支撑。</li><li>新作我个人的玩法还是见到的没有登录图鉴的 PM 一律抓，目前图鉴进度 116 只。</li><li>因为此次快速球需要在旷野地带用能量换而非以往的商店直接购买，没有快速球捕捉费事不少，但也有趣挺多。</li><li>比如今天在迷光森林遇到灯罩夜菇，一共第三只才抓到，费了几十个球。堪比以前作品抓神兽的体验。<br><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/11/16/MBYneA.md.jpg"                                     ></li><li>昨天忘记提的，道馆玩法更加有趣了，比之上代没有道馆不知道高到哪里去了。</li><li>第一个草系道馆的玩法来自于系列衍生作品，希望以后这样的吸取能多一些。</li><li>今天看到一个说法：有这套收集、培育的核心在，宝可梦正作必然差不到哪里去。但是本作显然也没有做得很好，到处都是问题。这个观点我很同意。去年的 LGPE 也是一样的问题。</li><li>当然，有 400+ 只宝可梦支撑，还是比去年的 LGPE 好很多。</li><li>不如 LGPE 的点：迷宫设计。实际上从 XY 开始，就再也没有让人印象深刻的迷宫了。</li><li>不禁回忆起从前作品的诸多经典卡关点：岩山隧道迷宫走不出去、红莲岛道馆进不去、梧桐林不会赶大葱鸭、树才怪拿不到喷壶。现在再也没有那样的体验了。</li><li>但是也不是说难度全无。发售前消息说本作没有学习装置，从游戏一开始就是全队获得经验。但是实际玩下来，等级压制没有前几作严重，加上我不停在抓怪，有时候打某些 NPC 还略有吃力，当然只是略有。</li><li>现在队伍里的几只新怪都很喜欢，当然还有没在队伍里的一些，<br><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/11/16/MBU9ds.md.jpg"                                     ></li><li>顺便这个水系御三家三段的翻译，从日月的西狮海壬到这次的千面避役，好评，希望多来点这样的翻译。点赞中文化团队。</li><li>说到译名，现在神兽强制音译实在无趣。</li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;ol&gt;
+&lt;li&gt;第二天游戏时间 5 小时，总计 15 小时，进度迷光森林通过。今天白天出门，没玩太久，主要补漏昨天的。&lt;/li&gt;
+&lt;li&gt;主要深入体验了旷野地带，总体令人满意，主要还是来自于足够多数量的宝可梦支撑。&lt;/li&gt;
+&lt;li&gt;新作我个人的玩法还是见到的没有登录图鉴的 P</summary>
+      
+    
+    
+    
+    
+    <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+    <category term="评论" scheme="http://iifatree.com/tags/%E8%AF%84%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《宝可梦 剑/盾》日记（1）</title>
+    <link href="http://iifatree.com/2019/11/15/pokemon-sw-sh-dairy-1/"/>
+    <id>http://iifatree.com/2019/11/15/pokemon-sw-sh-dairy-1/</id>
+    <published>2019-11-15T11:17:45.000Z</published>
+    <updated>2021-06-13T15:28:54.777Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>第一天游戏时间 10 小时，进度三个道馆结束，抵达拳关市。</li><li>《盾》版数字，昨天 23 点日服解锁第一时间进入游戏。</li><li>开头引导个人觉得过于啰嗦，节奏过慢。</li><li>画面第一感觉：贴图材质敷衍，视角不能旋转非常难受。</li><li>视角过近，掌机模式还好，主机模式在大屏幕上看总是感觉可见内容过少。</li><li>进入游戏后第一反应：怎么没有昼夜交替？</li><li>后来发现，本作在非旷野地带的昼夜是由剧情设定的，并非像以往作品一样跟随系统时间。<br><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/11/15/Md0pGV.md.jpg"                                     ></li><li>UI 操作略有不便，但是总体而言比去年 LGPE 好看。还是怀念曾经的触屏操作。</li><li>没有了 GTS，对于完成图鉴来说太不方便，大退步。</li><li>奇迹交换变魔法交换更方便了。</li><li>旷野地带卡顿掉帧严重。</li><li>旷野地带比想象的有意思。</li><li>旷野地带缺少小地图，体验不好。</li><li>极巨团体战比预期的要简单。</li><li>玩到现在最满意的地方：出现的宝可梦数量够多。是的，这是目前感觉本作突出的优点之一。而且结合旷野地带，光是捕捉就有足够的可玩性了。当然，不能抱住所有人都对此有兴趣。</li><li>因为在捕捉上花了大量时间，导致进度不快。</li><li>旷野地带如之前媒体评测所说，是一个很有想法的系统，也是本作最核心的玩法之一，算是系列发展到第八世代的一个重大变化。</li><li>极巨化使用范围极其有限，存在感不是很高，感觉是前两个世代 Mega 进化和 Z 技能的结合，目前个人感觉一般，略好于 Z 技能，当然还是最喜欢 Mega 进化。</li><li>新旧怪结合出现，频率把握较好，新怪中不乏出色设计，伽勒尔型态相比于三年前的阿罗拉形态更有诚意，也更有惊喜，也终于不是无脑舔 G1 了。</li><li>提前看了资料，通关前图鉴数量 400 只，非常满意，对『断代』的愤怒少了很多。</li><li>画面是真的需要加强。</li><li>第一天总结而言，可以看出 GF 也并非一无是处，但是技术力落后是明摆着的事实。希望这次开个好头，后面的作品一步步变好。</li><li>存档 BUG 太吓人了，求求你赶紧推送补丁解决了。</li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;ol&gt;
+&lt;li&gt;第一天游戏时间 10 小时，进度三个道馆结束，抵达拳关市。&lt;/li&gt;
+&lt;li&gt;《盾》版数字，昨天 23 点日服解锁第一时间进入游戏。&lt;/li&gt;
+&lt;li&gt;开头引导个人觉得过于啰嗦，节奏过慢。&lt;/li&gt;
+&lt;li&gt;画面第一感觉：贴图材质敷衍，视角不能旋转非常难受。&lt;/</summary>
+      
+    
+    
+    
+    
+    <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+    <category term="评论" scheme="http://iifatree.com/tags/%E8%AF%84%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tomcat 多实例配置方式</title>
+    <link href="http://iifatree.com/2019/11/10/tomcat-multiple-instances-guide/"/>
+    <id>http://iifatree.com/2019/11/10/tomcat-multiple-instances-guide/</id>
+    <published>2019-11-10T12:55:15.000Z</published>
+    <updated>2021-06-13T15:28:54.778Z</updated>
+    
+    <content type="html"><![CDATA[<p>对于 Tomcat 的运行而言，需要两个路径：<code>CATALINA_HOME</code> 和 <code>CATALINA_BASE</code>。 <code>CATALINA_HOME</code> 代表 Tomcat 的安装根路径，例如 <code>/home/tomcat/apache-tomcat-9.0.27</code>。</p><p><code>CATALINA_BASE</code> 代表某个 Tomcat 运行实例的配置根路径。在默认情况下，<code>CATALINA_HOME</code> 和 <code>CATALINA_BASE</code> 是指向同一路径的，即 Tomcat 的安装路径。</p><p>当需要开启多个实例的时候，可以分别指定 <code>CATALINA_HOME</code> 和 <code>CATALINA_BASE</code>。相对于同时复制多个 Tomcat，这样做的好处是在需要升级 Tomcat 版本的时候，只需要更新 <code>CATALINA_HOME</code> 下的文件即可。所有的 Tomcat 实例都会共享一个 <code>CATALINA_HOME</code>。</p><p>而对于 <code>CATALINA_BASE</code>，可以为每个不同的 Tomcat 实例指定不同的路径。<code>CATALINA_BASE</code> 应当包含以下文件夹：logs、webapps、work、temp 和 conf。<code>CATALINA_BASE</code> 至少应该包含 conf/server.xml 和 conf/web.xml。</p><p>说了那么多，实际上部署多实例非常简单，进入 Tomcat 的安装路径，例如 <code>/home/tomcat/apache-tomcat-9.0.27</code>，首先创建一个文件夹，并将 logs、webapps、work、temp 和 conf 这几个文件夹复制到其中：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir catalina_base_1</span><br><span class="line">mv logs webapps work temp conf catalina_base_1/</span><br></pre></td></tr></table></figure><p>如果有修改过 conf/server.xml 中的 Context path，记得根据新的路径进行更改。接下来就可以启动实例了，在 Tomcat 安装路径下执行：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CATALINA_BASE=catalina_base_1 bin/catalina.sh start</span><br></pre></td></tr></table></figure><p>停止等操作同理，例如：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CATALINA_BASE=catalina_base_1 bin/shutdown.sh</span><br></pre></td></tr></table></figure><p>如果需要配置第二个实例，同样创建 catalina_base_2 文件夹即可，只要在启动之前指定对应的 <code>CATALINA_BASE</code> 即可，例如：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CATALINA_BASE=catalina_base_2 bin/catalina.sh run</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;对于 Tomcat 的运行而言，需要两个路径：&lt;code&gt;CATALINA_HOME&lt;/code&gt; 和 &lt;code&gt;CATALINA_BASE&lt;/code&gt;。 &lt;code&gt;CATALINA_HOME&lt;/code&gt; 代表 Tomcat 的安装根路径，例如 &lt;code&gt;/hom</summary>
+      
+    
+    
+    
+    
+    <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【视点】Nintendo Switch Lite 与未来的 Nintendo Switch</title>
+    <link href="http://iifatree.com/2019/07/11/nintendo-switch-lite-announced/"/>
+    <id>http://iifatree.com/2019/07/11/nintendo-switch-lite-announced/</id>
+    <published>2019-07-11T06:10:19.000Z</published>
+    <updated>2021-06-13T15:28:54.776Z</updated>
+    
+    <content type="html"><![CDATA[<p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://www.nintendo.co.jp/hardware/switch/lite/img/08-local-galleryPhoto/gallery-pic01.jpg"                                     ></p><p>昨晚又是在毫无预兆的情况下，任天堂<a class="link"   href="https://www.youtube.com/watch?v=59yuBFRSZdg" >公布<i class="fas fa-external-link-alt"></i></a>了期待和传言已久的 <a class="link"   href="https://www.nintendo.co.jp/hardware/switch/lite/index.html" >Nintendo Switch Lite<i class="fas fa-external-link-alt"></i></a>。虽然名字和猜测中的 Nintendo Switch mini 有所出入，不过总体的形态还是跟传闻中差不多，甚至有人挖出了几个月前就已经泄露出来的保护壳外形，事实证明和最后公布的完全一致。</p><p>这次的 Nintendo Switch Lite 是一个完完全全的掌机。在之前的传闻中大概都已经知道会有一个掌机版本的 Switch 出现，手柄不可拆卸，实际公布以后我们还知道了这个 Switch Lite 将完全不支持桌面模式和 TV 模式。外观方面，首发三种颜色，从渲染图和<a class="link"   href="https://www.youtube.com/watch?v=59yuBFRSZdg" >预告片<i class="fas fa-external-link-alt"></i></a>来看都非常好看。屏幕变小、续航提升。由于不再需要可拆卸的 Joy-Con 结构，十字键也终于回归。</p><p>官方的<a class="link"   href="https://www.youtube.com/watch?v=59yuBFRSZdg" >预告片<i class="fas fa-external-link-alt"></i></a>风格，还是让人想起 Switch 两年多以前初公布时期的预告片，只不过这次更加强调的是可以『带出去玩』的体验，也就是掌机游戏的体验。预告片中的使用场景：运动之后在球场边和朋友联机玩一下马车、攀岩的间隙拿出 Switch Lite 在海拉鲁冒险一番、和朋友随时随地联机玩大乱斗、野营休闲之时玩一玩马里奥奥德赛、躺在床上玩火纹风花雪月……</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://www.nintendo.co.jp/hardware/switch/lite/img/08-local-galleryPhoto/gallery-pic02.jpg"                                     ></p><p>而官网上的宣传图片也随时在提醒我们：这就是一台掌机，一台可以放进包里带出去玩的掌机。虽然官方说 <a class="link"   href="https://www.theverge.com/2019/7/10/20687937/nintendo-switch-lite-3ds-2ds-future" >Nintendo Switch Lite 并不会替代 3DS<i class="fas fa-external-link-alt"></i></a>，但是任天堂继续再推出一个新掌机的可能性已经无限接近于零了。我们当然可以把 Switch Lite 就当作任天堂的新掌机，但是这个新掌机和之前的掌机家族又有着显著的不同：这是一个和一台主机共享游戏阵容的掌机。</p><p>前天在<a href="/2019/07/09/pokemon-sword-shield-info-20190708/">讨论《宝可梦 剑/盾》的一些争议</a>的时候，就提到了很多 Switch 游戏，尤其是从任系掌机平台上延续下来的作品续作现在会面临的一个尴尬境地：从一个掌机游戏变成了一个家用机游戏。登录了 Switch 平台，几乎所有的游戏定价都会按照家用机的标准来，对于厂商来说，每份游戏可以多卖 20 美元。但是问题是，玩家愿意为了这 20 美元买账吗？原来是在一个家用机上花了家用机的价格买到了一个掌机游戏品质的游戏，而现在问题会进一步复杂化，在一台掌机上花家用机游戏的价格来买一个掌机游戏，是不是会有一些问题？还是回到那个问题，玩家愿不愿意多花这个钱呢？</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://www.nintendo.co.jp/hardware/switch/modal/img/lineup/img-gallery--soadselad_01.jpg"                                     ></p><p>Switch Lite 将在 9 月 20 日和《塞尔达传说 织梦岛》一起发售，《织梦岛》虽然和《旷野之息》同属《塞尔达传说》系列，但是二者显然不是一个级别的游戏。《织梦岛》足够优秀，但是显然不够一个 3A 家用机游戏的级别。Switch Lite 选在这一天发售，再加上昨天一同公布的<a class="link"   href="https://www.nintendo.com/switch/buy-now/#nintendo-switch-lite-zacian-and-zamazenta-edition" >《宝可梦 剑/盾》限定机<i class="fas fa-external-link-alt"></i></a>，任天堂的想法也耐人寻味。</p><p>Switch Lite 以低于标准版 Switch 100 美元的售价带来了大致相同甚至更好一些的掌机游戏体验，但是也缺失了连接电视游玩的功能。不得不说这样的定位还是非常精准的。对于我个人而言，如果这次的 Switch Lite 还是可以连接电视，那么原版 Switch 会瞬间失去竞争力，但是就是这个 TV 模式的存在，把两台设备的定位差异做得非常清晰。是不是要多花这 100 美元，就看玩家具体的使用场景了。</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://www.nintendo.com/content/dam/noa/en_US/images/switch/lite/lite-photo-01.jpg"                                     ></p><p>Switch Lite 的目标人群到底是谁呢？我认为大概是三类人：第一类自然是儿童和青少年群体，较低的售价加上更加便携的特性、更加亮丽的外观，都更加符合之前任系掌机类似于『玩具』的定位；第二类就是不那么在意 TV 模式的、希望拥有更加优秀的掌机游戏体验的玩家；第三类应该是已经拥有一台标准版 Switch 并且追求更佳的便携体验的核心玩家。</p><p>不过，对于已经拥有一台 Switch 的玩家而言，以目前任天堂的账户和云存档系统，拥有第二台 Switch 其实显得不是那么方便。理想的情况当然是能像 iOS 设备那样提供无缝的跨设备同账户体验，但是至少目前看起来，距离这一步还有很远，希望任天堂在网络服务方面继续努力吧。</p><p>至于传闻中的另一款改良款 Switch Pro，起码在今年之内不会出现。而在未来，相比于出一个售价更高的 Pro 版本，我更倾向于会推出一个改良版本直接取代标准版本的 Switch，而售价保持不变。</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://www.nintendo.co.jp/hardware/switch/lite/img/08-local-galleryPhoto/gallery-pic05.jpg"                                     ></p><p>Switch Lite 真的好像 PS Vita 啊。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img  
+                     lazyload
+                     src=&quot;/images/loading.svg&quot;
+                     data-src=&quot;https://www.nintendo.c</summary>
+      
+    
+    
+    
+    
+    <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+    <category term="评论" scheme="http://iifatree.com/tags/%E8%AF%84%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【视点】《宝可梦 剑/盾》七月新情报和目前的一些争议</title>
+    <link href="http://iifatree.com/2019/07/09/pokemon-sword-shield-info-20190708/"/>
+    <id>http://iifatree.com/2019/07/09/pokemon-sword-shield-info-20190708/</id>
+    <published>2019-07-09T14:49:07.000Z</published>
+    <updated>2021-06-13T15:28:54.778Z</updated>
+    
+    <content type="html"><![CDATA[<p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://www.pokemon.co.jp/ex/sword_shield/assets/img_story04_01.jpg"                                     ></p><p>昨晚官方公布了<a class="link"   href="https://www.pokemon.co.jp/ex/sword_shield/" >《宝可梦 剑/盾》<i class="fas fa-external-link-alt"></i></a>（以下简称《剑/盾》）的最新情报并公布了新的 PV（<a class="link"   href="https://www.youtube.com/watch?v=uzPexjVHF5I" >日文版<i class="fas fa-external-link-alt"></i></a>、<a class="link"   href="https://www.youtube.com/watch?v=xhIc6UwnHj8" >英文版<i class="fas fa-external-link-alt"></i></a>），再一次引起了巨大的争议。在经历了上个月 <a class="link"   href="https://www.youtube.com/watch?v=TmWu-f6L0Mo&t=187s" >E3 树屋直播<i class="fas fa-external-link-alt"></i></a>的差评事件之后，似乎现在骂《剑/盾》已经成为了一种政治正确。不过这次的情况似乎有所好转，至少 YouTube 上的赞踩比不再像上次树屋直播录像那样惨不忍睹了。</p><p>对于这次的新情报，因为之前的全国图鉴事件，所以争论自然还是少不了。前段时间增田顺一在树屋直播事件基本冷却后又给所有宝可梦系列游戏粉丝发<a class="link"   href="https://www.pokemon.com/us/a-message-for-pokemon-video-game-fans/" >公开信<i class="fas fa-external-link-alt"></i></a>，态度被很多玩家解读为『知道错了但是就是不改』，自然是再次引来骂声一片。从上个月的直面会后，最近一个多月以来对于《剑/盾》的不满情绪达到了一个很高的程度。自然，在这次的新情报公布以后，还是有很多的不满声音存在。</p><p>谈论这些争议之前，还是先谈谈这次的新情报。本次新公开情报相比于上个月<a class="link"   href="https://www.youtube.com/watch?v=T76OciLZJk0&t=297s" >直面会<i class="fas fa-external-link-alt"></i></a>以来的一系列情报，『超极巨化』起码显得不那么敷衍了。官方用『<a class="link"   href="https://swordshield.portal-pokemon.com/sc/system/08.html" >不仅是大小，连外型都发生改变<i class="fas fa-external-link-alt"></i></a>』来形容之，似乎是又一个 MEGA 进化的诞生。</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://www.pokemon.co.jp/ex/sword_shield/assets/img_system_190708_01_04.jpg"                                     ></p><p>平心而论此次公布的几只可以进行『超极巨化』的宝可梦的造型都还可以。虽然体型巨大化的点子目前看来还不是那么容易让人接受，但是相比于上个月工具『极巨化』的时候，已经令人印象改观不少了。Reddit 上相关的调侃立马就开始了，结合新冠军那只帅气的喷火龙，要是喷火龙没有个『超极巨化』的新形态那简直都对不起观众。当然也有可能我猜错了，毕竟现在的情报说只有特别的暴噬龟与钢铠鸦才能进行『超极巨化』，且『极其罕见』。『极巨化』这个系统必然要和旷野地带、宝可梦巢穴和极巨团体战紧密结合在一起了。更多的信息只能等待官方进一步公布。</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://www.pokemon.co.jp/ex/sword_shield/assets/img_story04_05.jpg"                                     ></p><p>所以综合来看本次公布的新信息，基本还算令人满意。不同版本拥有不同道馆的设定在我看来也没什么大问题，版本限定不是什么值得黑的点。两个新的道馆馆主形象也都不错。当然，要指望能像 GEN5 那样良心，似乎不太可能，还是不要抱太高的期待为好。</p><p>说这么多自然没有要为 GF 洗地的意思。全国图鉴这个事情怎么洗也洗不白，而几乎已经确认了不会通过追加更新的形式追加新的宝可梦，似乎也是在某些程度上证明着 GF 的无力。造成目前这样的局面，其实仔细想来也毫不意外。</p><p>在关于《剑/盾》的讨论中，很容易被忽视的一个事实就是这次的《剑/盾》是系列正统续作<strong>第一次以一个家用机游戏的形态出现</strong>。二十余年来，宝可梦系列的正统作品，或者叫做主系列 RPG 游戏，都是作为掌机游戏而存在的。但是这一次情况不一样。以 GF 的能力，3DS 上的掌机游戏都被做得一团糟，直接大跨步进入真正的家用机 60 美元级别的标准化大作开发，出现各种各样的问题几乎是一个必然的问题。其实这样的问题也不是宝可梦或者 GF 才会遇到，最近《火焰纹章 风花雪月》总监接受采访时候也提到『<a class="link"   href="https://www.vg247.com/2019/07/05/fire-emblem-three-houses-interview/" >没有光荣特库摩的帮忙，火纹风花雪月根本不可能做得出来<i class="fas fa-external-link-alt"></i></a>』。IS 面临着和 GF 相似的问题，《火纹》系列也是时隔十多年才再次回归成为家用机游戏，必须借助外援的力量才有能力完成新作的开发。GF 的问题相对而言只多不少，甚至连个自由视角都没有能力做好，作为监督的大森滋也只说游戏将会<a class="link"   href="https://metro.co.uk/2019/06/18/pokemon-sword-and-shield-hands-on-and-interview-we-try-to-implement-new-things-fairly-gradually-10002483/" >循序渐进引入新要素<i class="fas fa-external-link-alt"></i></a>。</p><p>往深一步来说，任天堂目前将家用机掌机二合一的策略，必然会给很多任系掌机上曾经的『大作』都带来类似的困境。在掌机游戏标准看来的『大作』或者说一线作品，如今被放到家用机游戏的标准下来看，自然是上不了台面的。如何面对这样的问题？恐怕这样的问题不仅是 GF 要面对的，也是很多曾经给任系掌机做游戏的厂商要面对的，很多日厂要面对的。</p><p>只不过，IS 能找光荣特库摩帮忙，GF 愿不愿意、能不能够找谁帮帮忙呢？</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img  
+                     lazyload
+                     src=&quot;/images/loading.svg&quot;
+                     data-src=&quot;https://www.pokemon.co</summary>
+      
+    
+    
+    
+    
+    <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+    <category term="评论" scheme="http://iifatree.com/tags/%E8%AF%84%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>手动安装 Google Play 服务</title>
+    <link href="http://iifatree.com/2019/06/29/install-google-play-service-manually/"/>
+    <id>http://iifatree.com/2019/06/29/install-google-play-service-manually/</id>
+    <published>2019-06-29T05:50:45.000Z</published>
+    <updated>2021-06-13T15:28:54.775Z</updated>
+    
+    <content type="html"><![CDATA[<p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/29/ZQf5WD.md.jpg"                      alt="Google Play Service"                ></p><p>最近频繁接触到的一件事情是折腾 Android 手机，由于一些特殊的原因导致近一个月频繁切换手上的主要 Android 设备，每一次切换设备刚开始用的时候都很头疼，没有上网手段没有密码填充器也没有 Play 服务，几乎是陷入一个没法正常使用手机的地步。</p><p>每次都是手动给手机安装 Google Play 服务，这样也不用去接触网上那些所谓的安装器，避免出问题。具体的方法说来也简单，我一般是手动在 <a class="link"   href="https://www.apkmirror.com/" >ApkMirror<i class="fas fa-external-link-alt"></i></a> 去下载 <a class="link"   href="https://www.apkmirror.com/apk/google-inc/google-play-services/" >Google Play Service<i class="fas fa-external-link-alt"></i></a> 的最新版本 apk，这里唯一需要注意的是 Google Play Service 版本众多，我一般是挑选最新版本，然后根据自己设备的架构、Android 系统版本和屏幕 dpi 直接找到对应的 apk 文件。如果不清楚 dpi，可以选择 nodpi 版本。例如适合我的 <a class="link"   href="https://www.mi.com/redmik20pro/" >Redmi K20 Pro<i class="fas fa-external-link-alt"></i></a> 手机的版本应该是 arm64-v8a + armeabi-v7a 以及 Android 9.0+ 的版本。</p><p>接下来手动下载 <a class="link"   href="https://www.apkmirror.com/apk/google-inc/google-play-store/" >Google Play Store<i class="fas fa-external-link-alt"></i></a> 的 apk 文件，这次就简单多了，直接选择最新版本的 apk 即可。例如我现在看到的最新版本是 15.5.22-all[0][PR]254908059 版本。</p><p>然后在手机上手动安装这两个 apk 文件，之后打开 Play Store 登录 <a class="link"   href="https://myaccount.google.com/" >Google Account<i class="fas fa-external-link-alt"></i></a> 即可（怎么登录的问题请自行解决）。Google 全家桶的其他组件我一般会选择登录 Play Store 以后再在 Store 里直接下载，然后打开就可以自动登录了。</p><p>有了 Google 全家桶，Android 设备的使用体验还是要好上不少的。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img  
+                     lazyload
+                     src=&quot;/images/loading.svg&quot;
+                     data-src=&quot;https://s2.ax1x.com/20</summary>
+      
+    
+    
+    
+    
+    <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>远程玩 PS4 的正确姿势</title>
+    <link href="http://iifatree.com/2019/06/20/slacking-off-remote-play/"/>
+    <id>http://iifatree.com/2019/06/20/slacking-off-remote-play/</id>
+    <published>2019-06-20T08:18:50.000Z</published>
+    <updated>2021-06-13T15:28:54.778Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>2019-11-11 更新：R-Play 已于近日更新 2.0，支持 PS4 7.0 以上系统的远程遥控。</strong></p><p><del>摸鱼一时爽，一直摸鱼一直爽。</del></p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/20/VvtwDO.md.jpg"                                     ></p><p>伴随着 <a class="link"   href="https://www.apple.com/ipados/ipados-preview/" >iPadOS<i class="fas fa-external-link-alt"></i></a> 的到来，我一直梦寐以求的<del>摸鱼</del>玩游戏方式终于得到了实现。效果如图所示。简单补充，这是我在学校的实验室工位利用 iPad 串流我放在宿舍里的 PS4，并且使用 Xbox One 的手柄来操作的效果。这样我就可以愉快地坐在实验室玩一公里以外宿舍里的 PS4 上的游戏，而不用为了玩游戏非要待在宿舍了。</p><p>实现这一效果需要的一个 iOS 软件叫做 <a class="link"   href="https://apps.apple.com/cn/app/r-play-remote-play-for-ps4/id1222889057" >R-Play<i class="fas fa-external-link-alt"></i></a>，这是一个收费软件，当时买它的时候，SONY 官方的 PS4 Remote Play 还没有推出 iOS 版，彼时我只能用 PSV 来串流 PS4。虽然当时我的需求只是在离 PS4 距离不超过五米的床上躺着玩游戏，然而 PSV 串流的质量还是没办法很好地满足我的需求，实在是非常无奈。后来发现了这个软件，一开始只把它当作普通的串流软件来用，但是后来就突然发现 R-Play 的设定中有一个非常重要的项目叫做手动 PS4 IP 地址，使用这个配置，就可以完美地让我在校园局域网内实现我想要的游玩体验。</p><p>发现这个方法是在几个月前，但是当时距离一个好的体验最后的一块拼图就是操控方式。R-Play 自带的触控操作自不必说是非常难用，为了使用手柄游玩买了一个 mfi 手柄，但是手感实在是一言难尽。直到 iPadOS 的出现，支持 Xbox One 和 PS4 手柄对我而言是 iOS 13 和 iPadOS 最重要的更新之一。</p><p>于是，我就把前段时间买的『白丝』Xbox One 手柄（<a class="link"   href="https://www.xbox.com/zh-CN/xbox-one/accessories/controllers/phantom-white" >Xbox 无线控制器 – 绝对领域：白<i class="fas fa-external-link-alt"></i></a>）给我的 iPad 用了，电脑只要委屈一下用另一个 Xbox 手柄啦！</p><p>完美。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;strong&gt;2019-11-11 更新：R-Play 已于近日更新 2.0，支持 PS4 7.0 以上系统的远程遥控。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;摸鱼一时爽，一直摸鱼一直爽。&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img  
+                   </summary>
+      
+    
+    
+    
+    
+    <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>追忆逝去之时</title>
+    <link href="http://iifatree.com/2019/06/17/dragon-quest-xi-review/"/>
+    <id>http://iifatree.com/2019/06/17/dragon-quest-xi-review/</id>
+    <published>2019-06-17T09:16:52.000Z</published>
+    <updated>2021-06-13T15:28:54.774Z</updated>
+    
+    <content type="html"><![CDATA[<p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/17/VHjywD.md.jpg"                      alt="每一个角色都很喜欢，但是还是最爱小红帽"                ></p><p>DQ11S 没有几个月就要发售了，虽然从最初说的夏季最后变成了九月底，但是也无伤大雅，多等几天也可以消化一下夏天的其他游戏，比如某个重新定义春季的游戏（风花雪月，说的就是你）。E3 上公布的 60 多项新改进还是挺令人激动的。原版中的很多遗憾之处，看起来都可以得到不同程度的弥补，算是真正的完全版了。</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/17/VHO2He.md.jpg"                      alt="为数不多我能打到白金奖杯的游戏"                ></p><p>今年过年前后，我也是花了一百多个小时在原版上，其实还是留下了不少美好的回忆，最后也白金了，日式 RPG 都是吃时间大户，加强版当然会买，但是估计也是要跟原版一样，等一个长假的时候才有空去好好体验了。不过好在这次是 Switch 平台，随拿随玩的话，会比之前玩 PS4 版一定要『正襟危坐』要好得多了吧。说点题外话，Switch 这台游戏机的最大『缺点』，就是它的存在让你想要在上面玩所有的游戏，虽然有些游戏你并不会真的坐在电视机前玩然后睡觉还真的要躺着玩，但是 Switch 带给人的这种可能性，真的是让人在玩所有游戏的时候，都想要一个 Switch 版本。</p><p>说回游戏本身，当时 PS4 官方中文版出来后不久就买了数字版，然后是长久的吃灰，放了有一年多直到 19 年初才有时间好好体验这个游戏。虽说这样看来，当初全价买的有些亏，还不如等到后面买打折的。一月底的时候刚通了生化 2RE，觉得要换个画风明亮的游戏玩一玩，首先映入脑海的就是 DQ11。果然游戏没有让我失望，接下来的整个春节假期都献给它了，一气呵成直到白金，中间都没怎么碰其他游戏。说来也奇怪，对比整个系列而言，DQ11 无疑是显得有些过于『简陋』的。这种『简陋』感体现在游戏中的各个方面：转职系统没有，技能盘有一定可玩性但毕竟不高；DQ9 中我最爱的纸娃娃系统基本等于没有（只有少数的一些换装，还做成了全游戏最耗时——至少是我认为最耗时最麻烦——的一个奖杯）；角色没有语音虽然在当时被包装成了系列特色，但是从后面的美版以及即将发售的 S 版看来，其实就是应该加上的，尤其是坐在一个大屏幕前拿着手柄玩的时候，还一点语音都没有，实在不太说得过去。</p><p>不过这样就代表游戏的内容不丰富吗？完全不是。超过一百小时的流程体验，虽然我属于打得比较慢的，但是就算打很快也是数十小时的主线体验，剧情说老实话，超乎我的预期太多，尤其是游戏后段的剧情，令人意犹未尽。但是这种意犹未尽中又总是带着一种缺憾和悲伤的情绪。就好像游戏最后主角和双子姐妹再次来到这个场景的时候，玩家心里肯定是五味杂陈的。说到底，剧情还是这个游戏最吸引人的地方。这个故事刚开始看起来老套，但是到最后带给人的惊喜以及感动，又让你觉得它一点也不老套。在看似『重复』的数次流程中，体会到的是完全不一样的心境。在通关游戏很长一段时间后，这个剧情仍然让人意犹未尽，然后对加强版充满期待。</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/17/VHOWAH.md.jpg"                      alt="有些回忆总让人感慨万分"                ></p><p>游戏里的每一个角色，有些脸谱化，但是又都塑造得很好。很多剧情上的小细节，就把这些人物给立起来了。而伴随着主线剧情的发展，每个角色身上的故事也在推动，对每个角色的了解也就更多更深入。虽然因为主线剧情的关系，也让几位伙伴角色的部分剧情有了缺憾，让人感觉『少了什么』（这种感觉来自于只有主角一个人经历了所有，而伙伴们会因为世界的改变而缺失部分经历）。这算是在剧情上唯一的不满意之处，不知道在 DQ11S 宣传中提到的追加每个伙伴的剧情，能不能从某种程度上弥补这个遗憾。同时，也正是因为伙伴们都塑造得极佳，才会有最后很多玩家对主角结婚对象的不满。不过，这也将在完全版中得到弥补。</p><p>游戏的系统和传统的 JRPG 相比是有些简单了。锻造系统感觉可以做得更好。当然由于原作的双版本发售策略，两个版本各自的独占内容都有一些吸引力，但是 PS4 版的独占要素其实跟 3DS 版相比还是差点意思。不过，这一点将会在 Switch 的完全版中得到弥补。随时切换不同风格的游戏画面，在一个游戏里体验从过去到现在的 JRPG，我从 DQ11 刚公布双平台的时候就觉得这是一个太伟大的想法了。今后会不会还有这样的游戏，其实真的很难说了，这样的体验也就让人更加期待 DQ11S。也希望 DQ11S 可以让 DQ11 这部系列『集大成』之作，能够更加完整，然后真的成为一代神作。</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://www.dq11.jp/s/_common/img/logo.png?190327"                      alt="非常期待 DQ11S"                ></p><p><a class="link"   href="https://space.bilibili.com/13297724" >Gamker<i class="fas fa-external-link-alt"></i></a> 的《就知道玩游戏》系列有个《第九艺术的尾巴》，我这里也想写个尾巴。 JRPG 这种动辄需要投入上百小时的游戏类型，与今天的游戏业界和这个时代怎么看都格格不入。但是就是在这样的环境下，还是有很多优秀的作品用各种各样的方式让我们体会着 JRPG 独特的魅力。感谢这些伟大的作品吧，感谢这两年来涌现出来的这几款优秀的 JRPG，感谢 P5，感谢 DQ11S，感谢《歧路旅人》。也希望今年的 P5R 和 DQ11S，都能让我把这种持续数百小时的美妙体验，再进一步。</p><p>我继续玩《歧路旅人》去了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img  
+                     lazyload
+                     src=&quot;/images/loading.svg&quot;
+                     data-src=&quot;https://s2.ax1x.com/20</summary>
+      
+    
+    
+    
+    
+    <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+    <category term="评论" scheme="http://iifatree.com/tags/%E8%AF%84%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>博客迁移到 Hexo</title>
+    <link href="http://iifatree.com/2019/06/14/blog-migration/"/>
+    <id>http://iifatree.com/2019/06/14/blog-migration/</id>
+    <published>2019-06-14T15:34:22.000Z</published>
+    <updated>2021-06-13T15:28:54.773Z</updated>
+    
+    <content type="html"><![CDATA[<p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/14/V5Oibn.md.jpg"                                     ></p><p>想了很久，还是决定把博客换成静态的，这次选择了 <a class="link"   href="https://hexo.io/zh-cn/" >Hexo<i class="fas fa-external-link-alt"></i></a>，几年前听了<a class="link"   href="https://kernelpanic.fm/" >《内核恐慌》<i class="fas fa-external-link-alt"></i></a>的<a class="link"   href="https://kernelpanic.fm/3" >《静态网页生成器》<i class="fas fa-external-link-alt"></i></a>，给自己弄过一个 <a class="link"   href="https://github.com/jekyll/jekyll" >Jekyll<i class="fas fa-external-link-alt"></i></a> 的个人博客，但是很不幸地只写了两篇文章就荒废了。后来才有的这个博客。</p><p>现在回顾一下自己的个人博客之路，搞过不记得多少个了，文章写了又丢丢了又写。从最早的用国内某博客平台写，到后面初识 WordPress，再到这个博客的数次迁移之路。这次迁移的时候，因为把评论从 Typecho 迁移过来很麻烦，就直接放弃了，算是一点小小的损失吧，就只把文章弄过来了，界面也尽可能还原。于是就成了现在这个样子了。</p><p>还是希望自己以后可以多写博客吧，起码两年前说的想要记录一下玩过的游戏，就断断续续的，很多玩过的游戏也没有写。希望这次折腾后能多坚持一段时间。</p><p>看完了 E3，期待的东西很多，闹心的东西也有。还好有题图那样的游戏，光是在里面随便逛逛，都可以让人心情舒畅。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img  
+                     lazyload
+                     src=&quot;/images/loading.svg&quot;
+                     data-src=&quot;https://s2.ax1x.com/20</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="http://iifatree.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>主机游戏的未来</title>
+    <link href="http://iifatree.com/2019/04/25/video-game-future/"/>
+    <id>http://iifatree.com/2019/04/25/video-game-future/</id>
+    <published>2019-04-25T07:52:51.000Z</published>
+    <updated>2021-06-13T15:28:54.779Z</updated>
+    
+    <content type="html"><![CDATA[<p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/04/25/EeQD4U.md.jpg"                                     ><br>最近一段游戏界大事很多，从软件到硬件，不管是从一月到四月接连不断的新作热潮，还是最近频繁出现的各种关于硬件的未来的新闻及讨论，再加上由一些游戏引申出的一些辩论，看似是一些没有关系的事情，但是这些事情往深入了去说，好像又都触及到了一个很严肃的话题：主机游戏的未来在何方？</p><p>这个话题实在是太大，我也不敢在此做出什么有见地的预测，只不过是整理一下有意思的思路而已。起源是今天在 <a class="link"   href="https://www.gamesindustry.biz/" >GameIndustry<i class="fas fa-external-link-alt"></i></a> 上看到的顽皮狗前创意总监 <a class="link"   href="https://www.gamesindustry.biz/articles/2019-04-24-amy-hennig-streaming-must-be-more-than-just-an-invisible-console" >Amy Hennig 的关于云游戏的一些看法<i class="fas fa-external-link-alt"></i></a>，感觉颇值得一读。</p><p>Amy Hennig 说目前以 Google Stadia 为代表的云游戏，或者说 Streaming 类游戏，只不过是 invisible console，并没有随着媒介的进化，带来全新的内容。我个人是很认同这样的看法的。Stadia 的发布会上，重点在于谷歌以一个科技巨头的体量，在全世界假设了多少服务器，能够提供如何高质量的云游戏体验，但是偏偏作为一个“游戏机”发布会上最应该着墨的游戏阵容部分，少得可怜。唯一一个拿得出手的 3A 游戏，还是已经发售的并且已经云游戏化了的《刺客信条 奥德赛》。</p><p>当然，谷歌毕竟是这个战场中的新玩家，花大力气优化云游戏的游戏体验当然无可厚非。不过 Stadia 的问题应该不止于只有《奥德赛》，要是上面还有 GTA，有 RDR2，有我们熟悉的那些第三方 3A 游戏，就够了吗？</p><p>当然不够，因为 Stadia 不应该只是想做一个 Amy Hennig 口中的 invisible console。如果云游戏还是只能吸引原本就愿意花钱买主机买游戏的那群人，那么它就真的只是把主机变得看不到了而已，仅此而已。游戏玩家应该比其他群体更加清楚，一个平台存亡的关键，应该是内容。当平台本身进化的时候，内容如果跟不上，那么平台也就没有多大的意义，尤其是对于游戏机这种专门设备而言。</p><p>所以在 Amy 看来，游戏开发者们需要去探求适合全新的 streaming 体验的游戏形式，她甚至已经不再称之为游戏，而是称之为一种实时互动娱乐，她多次提到了《黑镜：潘达斯奈基》。于是，开发者们应该重新考虑现有的游戏形式和吸引用户的方式，到了这里，这件事就被和之前关于《只狼》难度的讨论联系上了。</p><p>不过 Amy 的愿景也有值得讨论之处。也并非什么新颖的观点，首先就是游戏是不是应该变得越来越简单，而去“讨好”所谓的轻度用户。这种问题大概永远都没有答案，两方都有自己的理由，也都有能支持自己的证据。数百美元的主机，数十美元的游戏，再加上十多个按键的复杂手柄和操作方式，这样的游戏到底要不要改变自己去吸引所谓的轻度玩家呢？</p><p>其次就是，内容的演化是不是真的能够赶上平台演化的速度。虽然 Stadia 还前途未卜，云游戏整个概念要多久能成为现实也是个不太好说的问题，到底是几年内真的能够落地，还是成为我们这一代人可能都无法看到的有生之年系列，现在也不好妄加判断。假设，云游戏真的会在未来的几年内成为主流，那就真的如 Amy 所言，游戏的平台产生了巨大的进化，甚至是一个革命性的变革，那么内容也需要跟上。而且，需要服务更多的受众。然而，内容的演化速度真的能够跟得上平台或者说工具的演化速度吗？恐怕很难。</p><p>似乎面对主机游戏的未来，第一次，巨头们都给出了完全不同的答案，下一个世代，也许我们能看到各家朝着完全不同的方向的演进，领先者求稳，落后者求变，有另辟蹊径的老厂，有加入战局的新厂，云游戏、订阅制，一个个新概念出现，到底能否行得通，还要看各家怎么打好自己手上的牌了。不过在这样的情况下，作为玩家，应该会感到幸福吧。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img  
+                     lazyload
+                     src=&quot;/images/loading.svg&quot;
+                     data-src=&quot;https://s2.ax1x.com/20</summary>
+      
+    
+    
+    
+    
+    <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+    <category term="评论" scheme="http://iifatree.com/tags/%E8%AF%84%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>怀念那个充满好奇心的自己</title>
+    <link href="http://iifatree.com/2019/01/09/curiosity/"/>
+    <id>http://iifatree.com/2019/01/09/curiosity/</id>
+    <published>2019-01-09T05:35:00.000Z</published>
+    <updated>2021-06-13T15:28:54.773Z</updated>
+    
+    <content type="html"><![CDATA[<p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://images2.imgbox.com/18/2c/pvQveu6w_o.jpg"                      alt="new 2DS LL"                ><br>因为最近买了一台 new 2DS LL，来换掉自己已经用了很久的 3DS，折腾机器搬家、破解、自制系统还有各种自制软件，突然就想起了十余年前，天天折腾自己手上的那台 NDSL（准确来说应该是神游的 iDSL）的年代。都说 new 2DS LL 是任天堂 DS 家族掌机的最终形态了，从 DS 到 3DS，从儿时在游戏杂志上看到 DS 时候的向往到今天想把这台最终形态作为终极收藏，不知不觉也是十多年过去了啊。<br><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/01/21/kie2ut.jpg"                      alt="iDSL"                ><br>正好在家，就把这台也是陪伴我很久，通关过很多游戏，留下过很多美好回忆的机器翻了出来，似乎又看到了以前那个对于游戏、自制软件等等充满好奇心的自己，那个折腾了好几张烧录卡，尝试各种游戏、自制软件和模拟器的自己。<br><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/01/21/kieRDP.jpg"                      alt="iDSL"                ><br>现在记性是越来越差了，每次折腾一下自己的游戏机，过不了多长时间，很多东西也就记不住了。<br>不过过去那样真的是很美好呀！、<br><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/01/21/kiecjI.jpg"                                     ></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img  
+                     lazyload
+                     src=&quot;/images/loading.svg&quot;
+                     data-src=&quot;https://images2.imgbox</summary>
+      
+    
+    
+    
+    
+    <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+    <category term="随笔" scheme="http://iifatree.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>评 Pokémon Let&#39;s Go Pikachu &amp; Let&#39;s Go Eevee</title>
+    <link href="http://iifatree.com/2018/11/18/pokemon-letsgo-review/"/>
+    <id>http://iifatree.com/2018/11/18/pokemon-letsgo-review/</id>
+    <published>2018-11-18T08:09:51.000Z</published>
+    <updated>2021-06-13T15:28:54.776Z</updated>
+    
+    <content type="html"><![CDATA[<p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/Vh9sJ0.md.jpg"                      alt="我的一周目通关队伍"                ></p><p>到今天刚好是游戏发售一个星期，目前进度伊布版本基本该做的都做了，除了图鉴没收集全。相比而言，本作的图鉴收集难度自然是很低很低的了，所以也打算收集全了。再往后的刷闪，估计就没什么太大动力了，除了红色暴鲤龙外我对闪光也没什么执念。所以现在就可以来写写自己的主观看法了。</p><p>也许是我对本作的期待值放得很低，所以实际上手后，虽然谈不上“真香”，但是总体而言还是满意的体验。没有着急忙慌进入 GEN8，算是很值得高兴的一点。我一直觉得每个世代四年左右是很好的节奏，但是从 GEN5 到 GEN6 都只持续了三年时间，我始终觉得有些操之过急了。PM 系列的门槛越来越高是个现实，所以我一直希望每一个世代的节奏都可以放慢一点，这样也许对新玩家会友好一些吧。当然这就牵扯到了这次颇具争议的一点了，就是只有 GEN1，如果非要说还有美路坦，那似乎也没什么办法。但是只有 GEN1 这样的做法真的好吗，我觉得就真的不好，让游戏的内容显得在今天来看十分单调，尤其是二周目非常之单调无趣。虽然在玩本作的时候，我多次暗自感慨，这个基本完全照搬的二十二年前的游戏流程还是显得很丰富有趣的，但是在通关之后就完全不是那么回事了。我自己特意把三鸟留到了通关后再去抓，然后呢，就剩个华蓝洞窟，最多强行加上一系列重要 NPC 的重复挑战（碧蓝的登场是最大的惊喜）。这个内容丰富度，对比一下十四年前的火红叶绿，实在是让人感觉十分尴尬。至于宝可梦大师挑战，在我个人看来属于强行拉长游戏时间的设定，除了自己一周目重点培养的几只，其他的丝毫没有去挑战的欲望（也许这是我自己的问题吧）。至少我自己认为，如果能加上七岛会好得多。</p><p>跟随系统，有好也有不好。每只 PM 的跟随动作能看得出来有好好设计，但是一碰到个什么东西就收回球里去，又像是随时提醒着你这个系统是多么地随便和不走心。好歹希望今后的作品也有跟随系统的话，能做得更用心一点吧。说到底，本作随时都在提醒着你，这是一款赶工出来的游戏，为什么砍了那么多系统，为什么很多地方那么简陋，为什么只做了 GEN1 的 151 只 PM？因为赶工，因为时间不够。</p><p>相比原作来说，在游戏流程里新的内容，其实还是有不少的，比如很多重新设计的场景啊，新增的剧情演出啊（虽然大多很短），还有一些官方微妙的玩梗啊（这是我的孙子，他叫什么来着？/大岩蛇在进屋的时候会自己回到球里之类）。不过这些顶多只能算是锦上添花吧。关键性的新体验还是太少了。都在说着考虑新玩家，考虑多年未完的老玩家，那一直在玩的老玩家呢，就不用考虑了吗？</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/Vh9hw9.md.jpg"                      alt="部分新的剧情演出"                ></p><p>说回只有初代 PM 这个问题上，还是想提黑白，当年黑白一周目只有 GEN5 的 PM，那种大胆的尝试你还相信今天的 GF 敢做出来吗？说来说去还是觉得黑白各方面都是系列的巅峰了，也对得起 FAMI 通的满分评价。相比而言，无论是这次的 GPGE，还是这两年的 SM/USUM，都让人诸多失望。除了大幅阉割的 PM 数量，还有大幅阉割的系统深度，没有昼夜，没有天气，没有生蛋，没有特性，没有携带道具，没有完整的联机系统，没有的东西太多，倒是真的在某种程度上回归了初代的体验，所以这才是真·初代重制啊！</p><p>情怀被用得太多了，也会引人反感。我希望 Pokémon 系列不止有情怀，我希望它能一直进步。我自己很吃情怀这一套，尤其对 GEN1 到 GEN3 都有很深的感情，但是我真的不希望系列以后变成只会卖情怀。比如可以互动的皮卡丘和伊布，居然还能拿出来大肆宣传，前作明明 800+ 只 PM 都可以一样互动，这就真的让知道的人感觉很恶心（当然，本作的互动系统要比之前更真实了）。</p><p>当然有人会拿销量说事了。日本首周销量公布的时候，双版本合计 66 万，综合这是双版本合计，在系列内进行一下对比，似乎很是惨淡了，但是结合装机量一看的话，其实是很高的销量。果不其然，刚刚公布的全球销量，本作成为目前为止首周销量最高的 Switch 游戏。</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/Vh9HSK.md.jpg"                      alt="首周销量（三天）300 万达成"                ></p><p>不过我自己也要唱唱反调，虽然销量很不错，但是我觉得这跟游戏质量没什么必然联系，纯粹是 Switch 这个游戏机本身的成功而已。身边确实有很多人在多年不玩宝可梦之后买了本作，但是他们真的是因为游戏本身而回来的吗？其实只是因为他们有了 Switch 而已。当然了，也许这就是本作的使命，从这个角度来看的话，本作已经成功了，而且以这样的质量来看的话，对于任天堂和 GF 来说，简直是性价比太高了。唯一的一点好处就是，本作真的可能能起到 GF 想让它起到的作用：吸引更多玩家。</p><p>但是不满终究是不满的，卖得再好也弥补不了这些游戏本身的缺陷，不过能在家用机上玩到 Pokémon Core RPG，也算是很满足了。就像 Nintendo Power 的播客里说的一样，可以在电视上玩到 Pokémon 我也是期待已久了，不过只能用 Joy-Con 而不能用 Pro 手柄这一点，又实在是让我无法很满意，就像本作的很多地方一样，想夸它，但是立刻有牵扯到一堆缺点。也推荐各位可以去听听 Nintendo Power Podcast 关于本作的<a class="link"   href="https://soundcloud.com/nintendopowerpodcast/pokemon-lets-go-5-features-for-longtime-fans" >这一期<i class="fas fa-external-link-alt"></i></a>：</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/Vh9LOe.jpg"                      alt="Nintendo Power Podcast S1E10"                ></p><p>最后，前两天看到玩笑说，GPGE 卖得好的话，也许会成为一个常设系列，跟所谓的正传并行，比如一两年后就来个金银再重制，那样的话我倒觉得也没什么不好吧。官方在游戏里也是各种暗示了，比如西尔佛公司的某些相框啊，还有下面的这种啊。那么，会不会真的有 Pokémon Let’s Go Togepi &amp; Let’s Go Marill 呢？也许真的可以期待一下呢。只不过希望到时候，不要再这么明显地砍掉不该砍的内容，保留原作一周目体验的同时，在通关后引入新世代 PM，明明是毫无问题的做法。</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/VhCMlT.md.jpg"                      alt="明示了"                ></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img  
+                     lazyload
+                     src=&quot;/images/loading.svg&quot;
+                     data-src=&quot;https://s2.ax1x.com/20</summary>
+      
+    
+    
+    
+    
+    <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+    <category term="评论" scheme="http://iifatree.com/tags/%E8%AF%84%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>新作传言和我想要的 Pokémon 游戏作品</title>
+    <link href="http://iifatree.com/2018/05/16/pokemon-new-title/"/>
+    <id>http://iifatree.com/2018/05/16/pokemon-new-title/</id>
+    <published>2018-05-16T03:11:21.000Z</published>
+    <updated>2021-06-13T15:28:54.776Z</updated>
+    
+    <content type="html"><![CDATA[<p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/VhwOTU.jpg"                      alt="pokemon switch rumour logo"                ></p><p>最近 Pokémon 新作的传言是越传越多越传越真了，一方面 Emily Rogers 的消息曝出来，一方面官方也在不断暗示，如此看来今年出新作是板上钉钉的事情了。如此看来系列上 Switch 的第一款作品会比我预想得要早一些出现（宝拳就暂且不算了）。<br>传闻挺有意思的，一点点说说自己的看法（条目来自 4chan）：</p><ul><li>Yellow remakes for Switch</li><li>Two versions, Pikachu and Eevee</li><li>Red and Blue play a role in the story, you and your rival are new trainers</li></ul><p>以上三点其实是最有意思的，这其实是我从黑白 2 之后就设想过无数次的旧世界新故事套路，也是我最想看到的 PM 正统续作形态，也许自己真的年纪大了，对新的地区真的没什么太多激情了。GEN1 到 GEN4 的地图现在都能直接画出来，GEN5 勉强，GEN6 以后真的是没太多印象了，当然也跟自己玩得少有关。我一直觉得以前塑造的几个地区拿出来再用一次完全不是什么太大的问题，旧瓶装新酒挺好的。如果真的是这样，也就没必要强调是什么黄的重制了，既然已经是全新的主角，那也就是全新的作品了。双版本与否不太重要，有也挺好，没有也没什么。卖情怀来一波皮神也没什么的。</p><ul><li>Following Pokémon return</li><li>HMs still replaced with Pokeride from Alola</li><li>Online has a hub for players</li></ul><p>这三点算是游戏机制的传闻，跟随系统能有自然是很妙，8012 年了加个自由选择我觉得挺好。HM 是应该想想怎么替代了，但是阿罗拉的那一套工具 PM 我是觉得不太好，毕竟不是自己的 PM，我觉得 HM 是不是考虑做成非战斗技能会好一点，还是让自己的 PM 学，然后就是地图上用就好了。Online hub 我希望还是能随时联机的好，别搞 SM 的那套圆庆广场了，实在难用，随时随地联机最好。</p><ul><li>Pokémon GO integration</li><li>Catching Pokémon works like in GO</li><li>Rewards in game and in GO for linking the two together</li><li>New accessory can be used with both GO and the games</li></ul><p>和 GO 的联动其实也好也不好，我觉得加个联动的手游很有必要了，也会让代入感和耐玩性增加很多，甚至搞个官方 APP 什么的。但是如果是跟 GO 联动，国内这个大环境就始终很让人头疼了。游戏内加入和 GO 类似的小游戏也不错，但是我始终觉得这个不是很重要，小游戏玩一两次还行，多了也就腻了。</p><ul><li>Announcement soon, releasing this year</li></ul><p>最近公布的话，也就是 E3 前或者 E3 上了，然后年内发售，我觉得是挺好的节奏。<br>总而言之就是，希望新作好好做，上点心。虽然随便做做也能卖得不错，但是 GEN7 实在是有点失望。最好别着急上 GEN8，等等也无妨，旧 PM 挖掘一下，对新人也相对友好一点。<br>玩了那么多年了，还是希望这个系列好。<br>当然了，最后要是今年是个衍生作，其实我也能接受，好好提升一下画面吧，别掉帧了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img  
+                     lazyload
+                     src=&quot;/images/loading.svg&quot;
+                     data-src=&quot;https://s2.ax1x.com/20</summary>
+      
+    
+    
+    
+    
+    <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+    <category term="评论" scheme="http://iifatree.com/tags/%E8%AF%84%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PSP 升级 6.61 并完美破解记录</title>
+    <link href="http://iifatree.com/2018/04/11/psp-6-61-infinity/"/>
+    <id>http://iifatree.com/2018/04/11/psp-6-61-infinity/</id>
+    <published>2018-04-11T08:48:02.000Z</published>
+    <updated>2021-06-13T15:28:54.778Z</updated>
+    
+    <content type="html"><![CDATA[<p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/VhCtt1.jpg"                      alt="PlayStation Protable"                ></p><p>前两天收拾东西，翻出了吃灰已久的 PSP 3000，想把它带到办公室，闲暇时候玩玩老游戏或者模拟器。看了一下自己的机器，系统版本是 6.60，Pro-C 系统，还是处于破解后不能关机的状态，多年不折腾它了，搜索了一下发现 6.61 系统已经完美破解了，于是又升级并破解了一下，算是画上个句号。主要分为两步：升级官方 6.61；Infinity+LME/Pro（可自行选择）。所有操作仅在 PSP 3000 上进行过测试，请自行承担刷机风险。详细记录如下，首先是升级：</p><ol><li>下载官方 6.61 升级文件（<a class="link"   href="http://du01.psp.update.playstation.org/update/psp/image/us/2014_1212_6be8878f475ac5b1a499b95ab2f7d301/EBOOT.PBP" >点我下载<i class="fas fa-external-link-alt"></i></a>）；</li><li>PSP 使用 USB 模式连接到电脑，进入 GAME 文件夹，在 GAME 文件夹下新建 UPDATE 文件夹；</li><li>将 EBOOT.PBP 文件放入刚才新建的 UPDATE 文件夹内；</li><li>打开 PSP，根据提示进行系统更新。</li></ol><p>其次是破解：</p><ol><li>首先下载破解傻瓜包（<a class="link"   href="http://bbs.a9vg.com/thread-4820356-1-1.html" >来源点我<i class="fas fa-external-link-alt"></i></a>）（<a class="link"   href="https://pan.baidu.com/s/1YkIahQAVYU81EYRZQxQZ-Q" >下载点我<i class="fas fa-external-link-alt"></i></a>，密码：v7b1）<strong>（不适用于 PSP GO！！）</strong>；</li><li>PSP USB 连接，将解压后的所有文件夹都复制到 PSP/GAME 下；</li><li>退出 USB 模式，运行 6.61 infinity Firmware Builder，如果成功，连接 USB 后会在 PSP\GAME\MAKER 中生成一个 DATA.MFC 文件；</li><li>将刚才生成的 DATA.MFC 文件复制到 PSP\GAME\FLASHER 下；</li><li>退出 USB 模式，运行 6.61 Inifity Firmware Flasher；</li><li>根据提示，自行选择安装 PRO 或 LME 系统；</li><li>运行 BOOTLOADER CONFIG，按左键，看到 PRO 和 ME 的选项，根据自己安装的系统选择，退出，至此结束。</li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img  
+                     lazyload
+                     src=&quot;/images/loading.svg&quot;
+                     data-src=&quot;https://s2.ax1x.com/20</summary>
+      
+    
+    
+    
+    
+    <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>人類に栄光あれ</title>
+    <link href="http://iifatree.com/2017/07/30/nier-automata-notes/"/>
+    <id>http://iifatree.com/2017/07/30/nier-automata-notes/</id>
+    <published>2017-07-30T10:42:14.000Z</published>
+    <updated>2021-06-13T15:28:54.775Z</updated>
+    
+    <content type="html"><![CDATA[<p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/VhCght.md.jpg"                      alt="Nier"                ></p><p>其实游戏白金已经快有一个月了，想记录点东西，关于这款游戏可以说的很多，对于整个系列我也没有多深入的了解，只想记录一点自己印象深刻的点。</p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=468490608&auto=0&height=32"></iframe><p>E 结局自不必说，只说操控 9S 时候的弹幕射击游戏其实我还挺喜欢的，对于我这种手残党而言也是大大降低了部分战斗的难度。不过这个已经听过四遍（当然是三种不同语言版本）的 ED 再次响起的时候，从 8bit 的音效到逐渐响起的和声，以及终于明白为什么之前 C 和 D 两个结局的职员表要倒着放，那一刻就只想说这游戏真伟大。</p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=468490576&auto=0&height=32"></iframe><p>2B 和 9S 的故事固然足够感人，但是有些支线也是让人拿着手柄能看着画面、听着音乐发一下午呆。逃亡的人造人情侣，从一开始见他们躲在机械生命体的村落里，到见证他们亡命天涯，感觉这就是末世里的普通人。当他们的钱被骗，又感慨人心，可是早已经没有人类了啊。最后看到系列任务的结局，为了构建完美的爱人，数次将其格式化清除记忆。在清除记忆前，女性人造人肯定地对她的伴侣说：即使清除了记忆，我们还是会爱上彼此。</p><p>通讯官 6O 是活泼的小姐姐，她想到地球上看看，可惜没有机会，2B 送了她沙漠玫瑰的照片，她到最后都还在想着沙漠玫瑰。通讯官 21O 是表面严肃其实内心温柔的小姐姐，她在研究过去人类的生活方式，发现了人类会以家庭为单位聚集。在通讯里，21O 说如果战争结束了，我们人造人也以家庭为单位生存，说到这里就切断了通讯。</p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=468490583&auto=0&height=32"></iframe><p>森之王国是游戏里我最喜欢的场景，一方面是因为图书馆，一方面是因为这首曲子。脱离网络的机械生命体建立了自己的国家，守护着自己的国家。机械生命体好像从人类的历史和文化中学到了很多啊。已故的国王，长不大又被杀了的新国王，这个王国今后会怎样呢？唉，国王那么可爱，为什么 A2 要杀他呢？</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/VhCO3V.md.jpg"                      alt="king of the forest"                ></p><p>人类早已经不存在了，为了消灭人类而被制造出来的机械生命体，从来都没见过人类。可是人造人、机械生命体，都在不断改变。如果说他们就是新的人类，好像也没什么不可以呢。</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/VhCL90.md.jpg"                      alt="Engels"                ></p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=468490600&auto=0&height=32"></iframe><p>埃米尔，迪瓦菈和波波菈，数千年的时光，留下了什么？而活上数千年，又是何种感受？双子总把赎罪挂在嘴边，平时总是笑嘻嘻唱着歌的埃米尔背负着堪称绝望的记忆，甚至是早已被抛弃的 A2，只能不断地战斗、战斗，直到最后继承了一个和自己长着一样脸的新型的记忆。</p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=468490607&auto=0&height=32"></iframe><p>有些时候你想自己骗自己，比如游戏要是就像一周目那样结束了不是很好吗？虽然很多疑问，虽然连 BOSS 的名字都看不到，可是那又有什么关系？可是那时候还不知道 2B 说的“总是这样”是什么意思。可是知道得越多就越绝望，游乐园的舞女，想让自己变得更美，吸引心上人的注意；追求极致武艺的机械生命体、追求速度的机械生命体，在一切结束后选择了自爆，到处都是令人绝望的故事。遇到 21O 的时候，不想下手，不想杀死她，可是没有选择。迪瓦菈和波波菈在塔的大门前帮助 9S 的时候，想要和她们一起去面对敌人，但是不行。不想看到 A2 和 9S 兵刃相向，可是还是没有办法。 </p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=468490565&auto=0&height=32"></iframe><p>似乎是在慵懒的午后，沐浴着阳光，营地内，空地上有小小的草坪，和一朵花。可是卖武器的大叔说，我总觉得卖出去的武器害死了我的同伴；供应商大叔说不再修自己那只坏掉的腿了，因为自己全身的零件都换得差不多了，只剩下这只腿，要是也换了，不知道自己还是不是自己呢。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img  
+                     lazyload
+                     src=&quot;/images/loading.svg&quot;
+                     data-src=&quot;https://s2.ax1x.com/20</summary>
+      
+    
+    
+    
+    
+    <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+    <category term="评论" scheme="http://iifatree.com/tags/%E8%AF%84%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Life Will Change</title>
+    <link href="http://iifatree.com/2017/05/21/life-will-change/"/>
+    <id>http://iifatree.com/2017/05/21/life-will-change/</id>
+    <published>2017-05-20T16:43:24.000Z</published>
+    <updated>2021-06-13T15:28:54.775Z</updated>
+    
+    <content type="html"><![CDATA[<p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/VhPSHJ.md.jpg"                      alt="Persona 5 Protagonists Mashup Wallpaper by TakeThatObjection"                ></p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=454231902&auto=0&height=32"></iframe><p>怎么判断一个游戏是不是好游戏，对于我来说异常简单。好游戏当通关的时候，总是怅然若失。基本上在知道自己即将要通关的时候，就会舍不得结束这一切，尤其是对于《Persona 5》这种二周目需要重新开始（当然也不是严格的从头再来，还是有继承要素）的游戏，就更加舍不得了。</p><p>我之前从未接触过 P 系列的任何作品，哪怕是 PSV 上大名鼎鼎的 P4G，我也就是停留在知道的层面，也想过要玩，但是总之都没玩。女神转生系列的大名自然是听过的，但是更加从没接触过，对于 ATLUS 的印象，大概也就玩过一点点《超执刀》。所以 P5 是这个系列真正的初接触，而且也并没有在中文化的第一时间开玩，玩的过程中其实也不可避免地被剧透了一些，但是最后还是觉得玩这游戏花的时间真值，毫不犹豫地又开始了二周目。</p><p>一周目最后的通关记录是 115 小时，应该很久没有在一个游戏的通关上花那么长时间了，但是还是觉得不够。一周目大概花掉了一个月的时间，除了少数几天事情多以外，基本上是每天都玩。很多次凌晨一个人关了灯静静地玩，不知不觉看到窗外开始泛白，才赶紧跑去睡觉，坦白说已经很久没有一个游戏能让我如此入迷了。难得的是，这还是一个 JRPG。</p><p>P5 这个游戏的代入感极强，强到游戏结束的时候，你会真的认为自己就是主角，在四轩茶屋住了一年，认识了形形色色的人，和一只奇怪的猫，现在你真的要和他们分别了，回到没有他们的老家去，回到没有 Persona 的日常中去。有朋友问你，以后一个人，会寂寞吗？那一刻我的想法是，也许会的吧。那一刻真的感觉有些寂寞。好在还有朋友们开车，送你最后一程。</p><p>游戏进行到 3 月 19 日，在那个好天气里，你要到这一年里经常去的地方，去最后见一见一年来帮助过你的伙伴们，跟他们道别。四轩茶屋的小巷在这一天看来格外美，路边行人的话语让你忍不住驻足聆听，你想起了去年 4 月第一次来到这里的时候，天好像灰蒙蒙的，你第一次推开了卢布朗咖啡馆的门。</p><p>地图上那些观光景点，在 3 月 19 日这一天的时候，把光标移动过去，上面的提示语写着，下次来东京的时候再和人去吧。我突然又觉得，自己真的会在不久后回来，找这些朋友们的。咖啡馆的老板说要请我喝一杯，仅限一杯，武器店的老板说要和他儿子一起跟我吃饭，酒吧的老板说等我成年了，他会准备上好的酒等我，我还答应了学姐，要和她上同一所大学。好基友重拾了跑起来的信心，坐前桌的漂亮妹子如愿登上了杂志封面，妹妹一样的超级宅女也要去上高中了。到了最后，还有那只每天催我睡觉的猫，会陪着我，回老家，然后继续每天催我上床睡觉吧。</p><p>你看，带入感就是那么强，我好像真的就是主角，经历了不平凡的一年。白天当学生，放学做怪盗，这是我中二时期幻想过无数次的场景，没有人知道我的真实身份，所以我上课还是会被老师扔粉笔头，考试前也还是要突击复习。虽然现实生活有着无数的烦恼，但只要我在手机上点一下，就可以进入那个无人知晓的异世界，然后华丽地来一场冒险。</p><p>最终决战的时候，看着涩谷街上的人们逐渐想起了怪盗团，支持率的数字一路飞涨，第一次达到了 100%，这种明明很老套的少年漫画剧情还是让人湿了眼眶。可是之后，讽刺地，拯救世界的英雄还是要进少年感化所，好在这一次，换成我帮助过的同伴们来帮助我了，最终我成功无罪释放，过了一个完美的情人节。</p><p>一路走来战胜了很多心灵扭曲的大人，他们各有各的扭曲，可恨，但一切结束之后又觉得他们可怜，最后还很酷地矫正了社会。但是相应地，也就不再是什么怪盗了。从此回归一个普通学生的生活，甚至离开了繁华的大都市，离开了这些熟悉的人，回到自己以前的家去。</p><p>生活改变了吗？好像确实改变了，又好像回到了原点。</p><p>所以我又开始了二周目，2016 年 4 月 11 日星期一，来到东京以后的第一天上学，路上遇到了长得很漂亮的妹子，看见她上了老师的车，然后遇到了黄毛的不良少年，入学第一天，就搞出了不得了的动静。</p><p>P5 天下第一。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img  
+                     lazyload
+                     src=&quot;/images/loading.svg&quot;
+                     data-src=&quot;https://s2.ax1x.com/20</summary>
+      
+    
+    
+    
+    
+    <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+    <category term="评论" scheme="http://iifatree.com/tags/%E8%AF%84%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>梦之 Zanarkand</title>
+    <link href="http://iifatree.com/2017/03/09/final-fantasy-x-hd-remaster-notes/"/>
+    <id>http://iifatree.com/2017/03/09/final-fantasy-x-hd-remaster-notes/</id>
+    <published>2017-03-09T05:23:08.000Z</published>
+    <updated>2021-06-13T15:28:54.774Z</updated>
+    
+    <content type="html"><![CDATA[<p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/VhP3gf.md.jpg"                      alt="Final Fantasy X blade"                ></p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=540418&auto=0&height=32"></iframe><p>从 17 年开始，想把自己玩过的好游戏记录一下。会有这个想法，主要是现在玩游戏的时间实在不多，所以会更加珍惜每一个游戏的过程。 15 年的时候在 PSV 上玩 FFXHD，虽然都在博客里写了<a href="http://iifatree.com/index.php/2015/04/29/press-start.html">一篇相关文章</a>，但是最后还是因为一些原因烂尾了。这次再捡起来的原因是在 Steam 上看到 FFXHD 合集打折，两部作品加起来也就不到 60 人民币的价格，这就没有什么理由不买了。上一次在 PC 上好好玩《最终幻想》还是很多年前用 PS 模拟器补 FF9 的时候了，这次再来玩 10 代这样的名作，确意外地没有太浮躁，100 多小时的流程，前后持续了一个月，实属难得。</p><p>作品本身的地位无需赘述，虽然是 16 年前的作品，但是在今天依然好玩，作为一个 RPG 而言该具备的要素都具备了。十多年前的战斗系统，在很多人看来节奏过慢了，不过我本身就是个喜欢慢节奏游戏的人，所以也就并没有太多的感觉。游戏的剧情就是那样，很多年前看过游戏杂志的全剧情视频，但是远没有自己玩来得印象深刻，一方面是当年年纪还小，另一方面也是直接看剧情 CG 代入感不足吧。这一次玩的时候，拿完了所有的成就，当然其实还是依靠了 Steam 版自带的金手指，要不然 100 小时肯定是不够的。</p><p>剧情方面没什么多说的了，很多人评价 10 代的剧情过于慢热，确实有这个问题，前期有些不知所以，不过我倒是觉得这就是 10 代的特色。玩家和主角是在同样的立场，来到一个什么都不了解的世界，然后一步步解答心中的疑问。至于爱情、父子情等元素，玩过的人自然印象深刻了。尤娜在今天来看仍旧是那么让人喜欢的女孩，而最后的结局还是一样催泪。</p><p>FF X 是 FF XIV 之前植松伸夫作曲的最后一代正统游戏，除了人人皆知的催泪主题曲《素敌だね》（据说这是冲绳唱腔），配乐也是相当出彩，比如这首《萌动》，每次在地图上响起的时候，都让人忍不住停下来听一会，然后再接着玩。</p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=540276&auto=0&height=32"></iframe><p>整个系列每一作不同的风格是很有意思的事情，这一代有一点后启示录的意思，不是欧洲中世纪，也不是现代风格，总之也是系列中独树一帜了。重制版的画面在高分辨率下虽然清晰了，但是由于分辨率的提高建模上的生硬也更加明显，反而不如当年 PS2 上的原版，不过完全 16:9 化还算是良心吧。</p><p>X-2 的 HD 版还没玩，准备过一段时间再说，画风有些突变，最重要的还是编剧换了的原因，有点偏离野岛一成自己的想法了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img  
+                     lazyload
+                     src=&quot;/images/loading.svg&quot;
+                     data-src=&quot;https://s2.ax1x.com/20</summary>
+      
+    
+    
+    
+    
+    <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+    <category term="评论" scheme="http://iifatree.com/tags/%E8%AF%84%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>chAngE</title>
+    <link href="http://iifatree.com/2016/08/26/death-and-strawberry/"/>
+    <id>http://iifatree.com/2016/08/26/death-and-strawberry/</id>
+    <published>2016-08-26T15:55:04.000Z</published>
+    <updated>2021-06-13T15:28:54.773Z</updated>
+    
+    <content type="html"><![CDATA[<p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/VhPW5R.md.jpg"                      alt="Bleach"                ></p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=22778883&auto=0&height=32"></iframe><p>我一向是不怎么追少年漫画的，确切地说我根本就谈不上多喜欢漫画，当年三大台柱的时代，我一个没看过。直到将近七年前因为某些机缘巧合看了《Bleach》，也就成为了我到现在为止唯一在追的 JUMP 系少年漫。</p><p>到底是喜欢这部作品的什么？我说不太清，是少年漫中少见的完全架空设定？是很文艺很装的风格？ 是不知不觉就背下来了的数十个个性鲜明的人物？是对于我个人来说某些比主角更吸引人的配角？还是仅仅因为别人的关系呢？我也不知道啊，总之就是喜欢咯。</p><p>第一次见到假面军势之后，看论坛上有人说平子早在第一卷就登场了，于是开始从头看漫画。但我还是很喜欢动画，尤其是喜欢鷺巣詩郎的配乐，配合那些似懂非懂的标题，感觉是恰到好处。前期的故事是标准的少年漫画套路，直到大白和恋次登场，尸魂界揭开全貌的时候还是感觉太过惊艳。</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/VhPRa9.md.jpg"                      alt="斩月"                ></p><p>我相信 98 在雨龙登场的那一刻就想到了最后的千年血战，不过斩月是千年前的友哈巴赫，总觉得是临时起意的发挥，但是也觉得是神来一笔，蛮符合 98 的气质。当年动画中这段解放词配合上 BGM 真是气势十足，屏幕前的正中二的我都差点跟着喊出来了。</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/VhPcb4.md.jpg"                      alt="假面"                ></p><p>最爱的一部分就是番外篇，说来也是奇怪。但真的很喜欢假面军势，尤其是平子。猜想过无数次他的卍解，不过最终也没能看到。破面篇之后，再也没见过这帮时髦值爆表的人虚化，不得不说遗憾。还看过设定集，感觉百年前的护庭十三番组成也很有趣，也会幻想那些只存在于设定中的角色身上的故事。</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/VhP6rF.md.jpg"                      alt="别离"                ></p><p>最后对结局有多不满倒也说不上，一露没成就没成吧，只是觉得这样的处理未必最佳。破面篇戛然而止的时候，也许很多人都有过不太好的预感吧，不过转眼也是好多年前的事情了。总还是能想起一护和露琪亚打招呼的方式：哟。</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/VhP2VJ.md.jpg"                      alt="重逢"                ></p><p>当年的《Death&amp;Strawberry 2》这一话，光是标题就看得人热血沸腾又感慨万千，似乎又回到了那个中二的年纪。</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/VhP48x.md.jpg"                      alt="过去"                ></p><p>少年漫画的主角总是有个厉害的爹，老爹也一直都是最喜欢的角色之一。这一幕之前看了无数的猜想分析，最终还是作者高明，而且其实早早就埋下了伏笔，解释让人心服口服。</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/VhPhP1.md.jpg"                      alt="未来"                ></p><p>于是不知不觉就到了这一刻，终于也该结束了。</p><p>真人版也算挺好的消息，如果能把动画重开补完，那就再好不过了。</p><p>死神，再见。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img  
+                     lazyload
+                     src=&quot;/images/loading.svg&quot;
+                     data-src=&quot;https://s2.ax1x.com/20</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="http://iifatree.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="ACG" scheme="http://iifatree.com/tags/ACG/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>3DS 游戏转换 CIA 格式教程</title>
+    <link href="http://iifatree.com/2016/07/16/3ds-games-to-cia-format/"/>
+    <id>http://iifatree.com/2016/07/16/3ds-games-to-cia-format/</id>
+    <published>2016-07-16T07:46:43.000Z</published>
+    <updated>2021-06-13T15:28:54.773Z</updated>
+    
+    <content type="html"><![CDATA[<p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/VhPjPI.md.jpg"                      alt="new Nintendo 3DS XL"                ></p><p>有时候我们从网上找到的 3DS 游戏资源是 .3ds 格式的，但是在无卡破解中需要 .cia 格式，于是我们需要自己将格式进行转换后再安装游戏。需要的工具为一台无卡破解的老 3DS （有 rxTools） ，可以参看《<a href="/2016/01/15/3ds-downgrade/" target="_blank">老 3DS（非 LL）10.3 正版降级 9.2 并无卡破解记录</a>》，本教程所有操作仅在按这篇教程破解的老 3DS 上测试过。</p><ol>     <li>下载需要的工具（链接:<a class="link"   href="http://pan.baidu.com/s/1qWPspAG" >http://pan.baidu.com/s/1qWPspAG<i class="fas fa-external-link-alt"></i></a> 密码:f5xx）并解压，一同分享的有 Python 环境的 Windows 安装文件，如果 PC 没有安装过 Python 环境，请先安装对应的 Python 环境；</li>     <li>将转换工具中的 For 3DS SD Card 文件夹内的所有内容复制到 3DS 的 SD 卡根目录下，如果提示有同名文件，直接替换即可；</li>     <li>把需要转换的 .3ds 格式的 3DS 游戏 ROM 复制到 step2 文件夹中，改名为 rom.3ds ，在另一个资源管理器窗口中打开 step1 文件夹，将 rom.3ds 拖动到 ctrKeyGen.py 上，会在 step1 文件夹中生成一个名为 ncchinfo.bin 的文件；</li>     <li>将 ncchinfo.bin 放入 SD 卡的根目录，插入 3DS 后，开机长按 L 键进入 HBL ，找到 rxTools，长按 L 的同时按 A 进入 rxTools 菜单，通过左右键选择 DECRYPTION 选项，按 A 确认进入；</li>     <li>选择 GENERATE XORPADS，等待出现文字： 「Processing ncchinfo.bin... Error opening SDinfo.bin! Press A to continue」 时，按 A 继续，再按 B 退出 DECRYPTION 菜单；</li>     <li>关机，拔卡，将 SD 卡根目录中新生成的所有 .xorpad 拓展名的文件复制到转换工具的 step2 文件夹中，运行 decrypt and make - 汉化.bat 文件，根据提示进行操作（包括是否破解锁区、是否插入说明书等），成功后可以看到提示，并在 step2 文件夹中找到 install.cia 文件，即为转换后的 CIA 文件；</li>     <li>如果第 6 步中失败，可以重新解压工具并重复之前的步骤（不再需要重新生成 xorpad ，直接复制即可，即可以跳过第 4、5 步），尝试更改第 6 步中的几个选项（锁区、说明书等），直至成功；</li>     <li>将 CIA 文件放入 SD 卡中，在 3DS 中进入虚拟系统，打开 DevMenu （根据之前的破解教程有安装过），使用左右键选择 Import 项，通过文件管理器找到 CIA 文件安装即可。</li></ol>【注】不同游戏对应的 xorpad 文件不同，所以每次生成的 xorpad 文件只适用于一个游戏，需要转换其他游戏时，请重新生成 xorpad 文件，即需要重复所有步骤。当然，如果在网上找到的资源中已经有该 3ds 文件对应的 xorpad 文件，则无需自己生成，直接将 .3ds 文件和 .xorpad 文件放入 step2 文件夹中进行第 6 步即可。<p>参考资料：</p><ol>     <li><a class="link"   href="http://tieba.baidu.com/p/3553139034" >http://tieba.baidu.com/p/3553139034<i class="fas fa-external-link-alt"></i></a>（3DS 转 CIA 完整教程）</li>     <li><a class="link"   href="http://tieba.baidu.com/p/4042721453" >http://tieba.baidu.com/p/4042721453<i class="fas fa-external-link-alt"></i></a>（3DS 转 CIA 简易教程）</li>     <li><a class="link"   href="http://tieba.baidu.com/p/3839098009" >http://tieba.baidu.com/p/3839098009<i class="fas fa-external-link-alt"></i></a>（生成 xorpad 文件教程）</li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img  
+                     lazyload
+                     src=&quot;/images/loading.svg&quot;
+                     data-src=&quot;https://s2.ax1x.com/20</summary>
+      
+    
+    
+    
+    
+    <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Seven Try To Be Free</title>
+    <link href="http://iifatree.com/2016/04/27/seven-try-to-be-free/"/>
+    <id>http://iifatree.com/2016/04/27/seven-try-to-be-free/</id>
+    <published>2016-04-27T15:43:08.000Z</published>
+    <updated>2021-06-13T15:28:54.778Z</updated>
+    
+    <content type="html"><![CDATA[<p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/VhiCqg.md.jpg"                      alt="Digimon Adventure Tri. CDs"                ></p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=408629374&auto=0&height=32"></iframe><p>听说今天是 DM 官方给光叔办的追悼会的日子，订的《Seven <del>tri.Version</del>》也恰巧在今天到了。</p><p>一路走好。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img  
+                     lazyload
+                     src=&quot;/images/loading.svg&quot;
+                     data-src=&quot;https://s2.ax1x.com/20</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="http://iifatree.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="ACG" scheme="http://iifatree.com/tags/ACG/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>3DS 虚拟系统连接 e-shop 出现 022-2634 错误解决办法</title>
+    <link href="http://iifatree.com/2016/03/06/3ds-error-022-2634/"/>
+    <id>http://iifatree.com/2016/03/06/3ds-error-022-2634/</id>
+    <published>2016-03-06T15:15:04.000Z</published>
+    <updated>2021-06-13T15:28:54.772Z</updated>
+    
+    <content type="html"><![CDATA[<p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/VhiKLF.md.jpg"                      alt="Nintendo 3DS"                ></p><p>3DS 破解后，在虚拟系统下如果连接 e-shop 或者登陆某些需要 e-shop 验证的软件（比如 Pokémon Bank 时出现 022-2634 错误，说明在分离系统的时候操作有误，导致 NNID 信息出现错误。在需要保留虚拟系统内容的情况下修复此问题，需要按照如下步骤操作：</p><ol>    <li>将 SD 卡取出，在 PC 端使用 emuNANDTool（链接: <a class="link"   href="http://jump.bdimg.com/safecheck/index?url=x+Z5mMbGPAvVIlwZePSt0B3tEqEFWbC4tOatFxkC6cKIvtQs4TJPm+y8dhMMw/VBRbCH/IIBD97aLxBvbRj0pq6rUaMMXYCnCRjU+v+VCaULaQ5wXiu+0+ITQu3FpCSJ0WBcZ7NbOsV2Pah4egTNMg=="  target="_blank">http://pan.baidu.com/s/1eQ92YyA<i class="fas fa-external-link-alt"></i></a> 密码: pm2z）备份虚拟系统，备份的方法是在 emunandtool.exe 中点击 Extract emuNAND 按钮，选择路径保存 emuNAND.bin 文件，请妥善保管好此文件；</li>    <li>备份 SD 卡中的 Nintendo 3DS 目录，注意要备份整个文件夹，包括其所有子文件夹；</li>    <li>插卡开机，进入虚拟系统，在设置中选择本体初始化操作；</li>    <li>完成后重新进入虚拟系统，在设置中，登陆自己的 NNID ，如果已有 NNID 则选择已有 NNID 选项登陆，三个信息分别为账号、密码和邮箱地址（目前 NNID 已经和最新的 Nintendo Account 整合，可以在任天堂官网将 NNID 升级为 Nintendo Account ，便于今后的任天堂服务使用；若无 NNID ，可以在 3DS 上或者任天堂官网进行注册，网上都能找到对应的教程）；</li>    <li>关机，重新进入虚拟系统，进入 e-shop ，如果之前操作无误，此时已经可以登录 e-shop 了；</li>    <li>关机，将 SD 卡取出插入 PC ，在 PC 上使用 emuNANDTool 恢复虚拟系统，即点击 Inject NAND to emuNAND 按钮，选择之前生成的 emuNAND.bin 文件即可；</li>    <li>将备份的 Nintendo 3DS 文件夹整个复制回 SD 卡根目录，重复的文件选择覆盖或忽略均可；</li>    <li>插卡开机，进入虚拟系统， e-shop 已经可以正常使用。</li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img  
+                     lazyload
+                     src=&quot;/images/loading.svg&quot;
+                     data-src=&quot;https://s2.ax1x.com/20</summary>
+      
+    
+    
+    
+    
+    <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>所以，在家一个月的收获是什么</title>
+    <link href="http://iifatree.com/2016/02/25/winter-holiday-2016/"/>
+    <id>http://iifatree.com/2016/02/25/winter-holiday-2016/</id>
+    <published>2016-02-25T11:46:33.000Z</published>
+    <updated>2021-06-13T15:28:54.779Z</updated>
+    
+    <content type="html"><![CDATA[<p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/14/V5OPDs.png"                                     ></p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=579557&auto=0&height=32"></iframe><p>在我的记忆里，2006 一直都是很重要的一年，所以十年后的 2016 也免不了时常在脑中出现十年前如何如何的想法。在家的时候，大部分时间都在一个人整理一些过去的东西，常常会被一些小小的物件把思绪带回到过去，好像是看到小时候的自己。</p><p>我有时候会在想：十年前的我和现在的我有多大程度上的不同？年龄的增长带来的变化自然是天翻地覆，但是我却惊讶地发现我的兴趣爱好在十年前就已经基本上定型了，直到现在也没有什么变化。我不知道这算好事还是坏事，但是从我自己内心深处来看，我还是很高兴的，真的。</p><p>最近在重看当年的入宅神作《凉宫春日的忧郁》，即便是时隔十年以后，看着还是神作，到处都是感动的细节，十年啊整整十年。</p><p>这次配的这首歌就是十年前在某杂志附增的 CD 上听到的，番没看过，就记得这首 ED 了。似乎这番还是泽野弘之做的配乐，真是神奇。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img  
+                     lazyload
+                     src=&quot;/images/loading.svg&quot;
+                     data-src=&quot;https://s2.ax1x.com/20</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="http://iifatree.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>老 3DS（非 LL）10.3 正版降级 9.2 并无卡破解记录</title>
+    <link href="http://iifatree.com/2016/01/15/3ds-downgrade/"/>
+    <id>http://iifatree.com/2016/01/15/3ds-downgrade/</id>
+    <published>2016-01-15T12:55:20.000Z</published>
+    <updated>2021-06-13T15:28:54.772Z</updated>
+    
+    <content type="html"><![CDATA[<p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/VhiYz6.jpg"                      alt="Nintendo 3DS"                ></p><blockquote><p><strong>此破解方法已经过于陈旧，现在想要破解的朋友可以直接使用 B9S，网上可以找到非常详细的教程。</strong></p></blockquote><p>前不久 3DS 全线告破，也想给手上的一台专门用来玩下载版口袋妖怪的老 3DS 来个无卡破解。 DS 时代非常关注破解和自制，但是进入 3DS 时代以后一直没怎么关注过这方面的动向，一直当着正版党，烧录卡都没买过，这次听说终于全线告破还是有些小小的激动，早就想尝试汉化游戏了，无奈之前手上并没有可以破解的机器，于是决定动手一试。折腾了几个小时，最后有惊无险地成功了，遂将全过程记录一下，方便以后查阅。</p><p>以下所有步骤都只针对<strong>日版小3DS（非 LL，非 new 3DS）</strong>。理论上老 3DS LL 也适用，但是我并没有测试过。</p><p>【第一阶段】降级</p><ol>     <li>确认系统版本为 10.3-28j ；</li>     <li>可以准备一张 SD 卡，我因为原来机器用的是一张 16G 的卡，就直接沿用了；</li>     <li><strong>如果需要保留购买的下载版游戏、存档和主题等内容，请备份 SD 卡全部内容（因为我想保留正版下载版游戏和存档以及主题等内容）至电脑；</strong></li>     <li>下载 <a class="link"   href="http://jump.bdimg.com/safecheck/index?url=x+Z5mMbGPAvVIlwZePSt0B3tEqEFWbC4tOatFxkC6cLJn6P3w1SeZYGf3LFTffKYRbCH/IIBD95TYcE1Uo0K+q9fpC+RneAWN7hkqBUS7+KD6Zgrlix0uSuFNkBsy9hEBZPCg3UZbxJ2Pah4egTNMg=="  target="_blank">http://pan.baidu.com/s/1i4cky8X<i class="fas fa-external-link-alt"></i></a> （密码：ogsm），将所有内容复制到 SD 卡根目录下；</li>     <li>插卡开机，切换主题至红色，再切换回白色默认主题（如果开了自动换主题，最好关闭），打开浏览器，点下屏的扳手图标，选择初始化；</li>     <li>输入网址： <a class="link"   href="http://yls8.mtheall.com/spider28hax.php" >http://yls8.mtheall.com/spider28hax.php<i class="fas fa-external-link-alt"></i></a> ，等待下屏依次变成黄、灰、绿、红后，自动进入 HBL (The Homebrew Launcher) ，如果进入失败或卡在某一步，长按电源键强行关机，从 5 开始重做，直至成功为止；</li>     <li>进入 HBL 以后，选择 menuhax_manager v2.0 一项，进入黑底白字界面，按 A 键选择“ Install ”，看到 successful 字样后表明 menuhax 安装成功，长按电源键关机；</li>     <li>开机同时按住 L 键，会看到上屏花屏，下屏依次切换颜色，待进入 HBL 菜单（蓝色波纹界面）后即可松手，选择 ftBRONY 一项，进入后等待 10 秒以上，按 B 键，退出回到 HBL 菜单；</li>     <li>在 HBL 中选择 sysUpdater ，进入后按 Y 键运行，待所有 CIA 安装完毕后，等待 10 秒，机器自动重启，降级至 9.2 完成；如果此时未重启或无反应，请等待 10 秒以上手动关机，重新进入系统，如果看到版本变为 9.2 则同样降级成功；<strong>请不要在 CIA 安装过程中关机，否则机器变砖！</strong></li></ol>【第二阶段】无卡破解<ol>     <li>首先确认系统版本为 9.2 ；</li>     <li>将 SD 卡格式化为 FAT32 格式，<strong>如果要保留以前的内容，务必备份（主要是备份 Nintendo 3DS 文件夹），不要初始化 3DS 本体</strong>；</li>     <li>下载 Launcher.dat 文件（链接：<a class="link"   href="http://jump.bdimg.com/safecheck/index?url=x+Z5mMbGPAvVIlwZePSt0B3tEqEFWbC4tOatFxkC6cIzdwuOAMl2UjIcnmZuxQMiRbCH/IIBD95TYcE1Uo0K+q9fpC+RneAWN7hkqBUS7+KD6Zgrlix0uSuFNkBsy9hEBZPCg3UZbxJ2Pah4egTNMg=="  target="_blank">http://pan.baidu.com/s/1o6XW7RO <i class="fas fa-external-link-alt"></i></a>密码：fbt9），置于 SD 卡根目录，插入 3DS 开机；</li>     <li>使用 3DS 扫描此二维码：</li>     <li><img                       lazyload                     src="/images/loading.svg"                     data-src="https://ws1.sinaimg.cn/large/82f49c22ly1fz096rbly9j20ak0akjru.jpg"                                     ></li>     <li>扫描后进入红色龙的 GW 菜单，选择 backup sysNAND ，待备份完成后会回到红龙界面，长按电源键关机；</li>     <li>将此时 SD 卡内的 NAND.bin 备份好，供今后手贱升级了重新降级使用；</li>     <li>重复 4、5 步，选择 FORMAT EMUNAND ，待完成后会回到红龙界面，长按电源键关机；</li>     <li><strong>接下来的步骤请全程联网</strong>；</li>     <li>确认 SD 卡的可见容量少了 1G ，说明虚拟系统制作成功；</li>     <li>下载 <a class="link"   href="http://pan.baidu.com/s/1o7kNI0E" >http://pan.baidu.com/s/1o7kNI0E<i class="fas fa-external-link-alt"></i></a>（密码：bp9r），将所有内容置于 SD 卡根目录；</li>     <li>开机，切换一次红色主题后，再切换回默认白色主题，打开浏览器，初始化浏览器，输入网址：<a class="link"   href="http://yls8.mtheall.com/sliderhax.php" >http://yls8.mtheall.com/sliderhax.php<i class="fas fa-external-link-alt"></i></a> ，待下屏出现一条短横线，用触摸笔点击后，会进入 HBL 菜单（之前见过的蓝色波纹界面）；</li>     <li>如果失败，请不断重复第 12 步，每个步骤都不要省略，直至成功进入 HBL 为止；</li>     <li>进入 HBL 以后，选择 menuhax_manager v2.0 一项，进入黑底白字界面，按 A 键选择“ Install ”，看到 successful 字样后表明 menuhax 安装成功，长按电源键关机；</li>     <li>开机同时长按 L ，直至进入 HBL ，选择 rxTools 一项；</li>     <li>待 rxTools 安装完毕后会自动进入虚拟系统，查看系统版本，如果为 RX-E 9.2.0-20J 说明成功，退出设置后会自动回到真实系统，这是正常现象，今后破解完成后也是如此；</li>     <li>关机，重新开机同时长按 L 进入 HBL ，选择 rxTools ，下屏会先变红，红屏消失时立刻开始长按 L 键，会进入 rxTools 菜单（蓝色界面，如果不按 L 键，则会直接进入虚拟系统）；</li>     <li>用左右键选择 ADVANCE 一项，再选择 INSTALL FBI ，按 Y 键选择 emuNAND ，再按 B 选择 check TMD only，<strong>此时会显示 Region 和 Version of TMD 两项信息，记录下来后面有用</strong>；</li>     <li>下载 FBI 文件包（链接 <a class="link"   href="http://jump.bdimg.com/safecheck/index?url=x+Z5mMbGPAvVIlwZePSt0B3tEqEFWbC4tOatFxkC6cIWbrjgwvP0SHbhWRgBtNABRbCH/IIBD95TYcE1Uo0K+q9fpC+RneAWN7hkqBUS7+KD6Zgrlix0uSuFNkBsy9hEBZPCg3UZbxJ2Pah4egTNMg=="  target="_blank">http://pan.baidu.com/s/1eQSNm8q<i class="fas fa-external-link-alt"></i></a> 密码：yr3h），根据刚才的 Region 和 Version of TMD 找到对应文件夹，将其中的两个文件复制到 SD 卡根目录；</li>     <li>下载文件：<a class="link"   href="http://jump.bdimg.com/safecheck/index?url=x+Z5mMbGPAvVIlwZePSt0B3tEqEFWbC4tOatFxkC6cJX7KIZIlSNnGvkGS8lxjaeRbCH/IIBD95TYcE1Uo0K+q9fpC+RneAWN7hkqBUS7+KD6Zgrlix0uSuFNkBsy9hEBZPCg3UZbxJ2Pah4egTNMg=="  target="_blank">http://pan.baidu.com/s/1bnKLLmv<i class="fas fa-external-link-alt"></i></a> （密码：m2ao），放到 SD 卡中 Nintendo 3DS\xxxxxxxxxxx\xxxxxxxxxxx\ 路径下（每台机器不同的两串字符）；</li>     <li>下载文件：<a class="link"   href="http://jump.bdimg.com/safecheck/index?url=x+Z5mMbGPAvVIlwZePSt0B3tEqEFWbC4tOatFxkC6cIhzVptN4ounIL9TRdRuuhTRbCH/IIBD95TYcE1Uo0K+q9fpC+RneAWN7hkqBUS7+KD6Zgrlix0uSuFNkBsy9hEBZPCg3UZbxJ2Pah4egTNMg=="  target="_blank">http://pan.baidu.com/s/1jHvfvBw<i class="fas fa-external-link-alt"></i></a> （密码：w0wc），置于 SD 卡根目录；</li>     <li>开机，进入真实系统，进入本体设定，进入左下角数据管理，选择 3DSdate 管理，选择第一项，报错之后点击“初期化する”，完成后关机；</li>     <li>重复 17 进入 rxTools 菜单；</li>     <li>选择 ADVANCE ，再选择 INSTALL FBI ，按 Y 键选择虚拟系统，再按 Y 选择注入 FBI ，待完成后回到 rxTools 菜单，选择第一项，会进入虚拟系统，选择黄色叹号项，若看到黑底白字的 FBI 界面，则说明之前的操作成功；</li>     <li>此时下屏为文件管理界面，移动光标至 TOOLS_CIA ，安装其中的两个文件 DEVMENU 和 BBM ，完成后按 HOME 键回到虚拟系统首页，会看到新软件提示，就是刚才安装的两个工具；</li>     <li>关机拔卡，在无 SD 卡的情况下初始化 3DS 本体，机器重启过程中看见屏幕上出现 3DS LOGO ，强行关机；</li>     <li>查看 SD 卡，若有这几个文件则删除： ropbinpayload_menuhax_JPN15360_old3ds.bin, screenshots_raw.bin, webkithax_tmp.bin；</li>     <li>将 SD 卡插入，开机，经过初始化设置进入真实系统后关机；</li>     <li><strong>重复第 12 步</strong>：开机，切换一次红色主题后，再切换回默认白色主题，打开浏览器，初始化浏览器，输入网址：<a class="link"   href="http://yls8.mtheall.com/sliderhax.php" >http://yls8.mtheall.com/sliderhax.php<i class="fas fa-external-link-alt"></i></a> ，待下屏出现一条短横线，用触摸笔点击后，会进入 HBL 菜单（之前见过的蓝色波纹界面）；</li>     <li><strong>至此免卡破解完成</strong>，今后开机长按 L 键进入 HBL ，选择 rxTools 即可进入虚拟系统，虚拟系统可以直接通过 eshop 升级至最新的 10.3-28j 系统，如果不需要恢复原有的数据，至此破解结束；</li>     <li>今后所有游戏都在虚拟系统中玩，在网络上找到 CIA 格式的游戏，放入 SD 卡中，进入 DevMenu 选择 import 选项，找到 CIA 文件安装即可，安装之后可以删除 SD 卡中的 CIA 文件；</li>     <li>如果要恢复购买的下载游戏、存档及主题，请继续；</li>     <li>重新将最初备份的 Nintendo 3DS 文件夹中的随机乱码个人游戏数据文件夹放回 SD 卡并替换已有的文件夹（ Nintendo 3DS\xxxxxxxxxxx\xxxxxxxxxxx\ 文件夹内的内容，其中应该是有 DevMenu_2x 和 BBM 两个工具）后，虚拟系统成功读取到了降级之前的所有本地内容（我自己的包括两款下载版正版以及若干 eshop 试玩版游戏还有几款主题），如果 DevMenu_2x 和 BBM 找不到了，重新在虚拟系统进入 3DS 的黄色叹号项安装即可（参考第 25 步）；</li>     <li>此时我遇到了最崩溃的一件事：打开口袋 OR 正版下载版后提示存档不支持（当时我就蒙逼了，毕竟是几百小时 + 600 多图鉴的存档啊），但是奇怪的是口袋 X 正版下载版能正常进入游戏且存档完好，不过好在找到了解决办法；</li>     <li>造成问题的原因是口袋妖怪游戏的存档验证机制，简单来说就是避免复制存档的，实际上此时游戏的存档只是被锁定了而并没有被删除<strong>（千万不要手贱新开存档）</strong>，所以使用神器 SDF ( SaveDataFiler ，戳此下载：<a href="http://iifatree.com/usr/uploads/2017/05/601130455.rar" target="_blank">SaveDataFiler</a>)即可解除锁定，安装的过程同样是将 CIA 文件放入 SD 卡，进入虚拟系统的黄色叹号项找到对应项目安装即可；</li>     <li>在虚拟系统中找到口袋 OR 游戏，按一次 SELECT 键，然后进入 SDF ，找到选项或者直接找到游戏对应的代码，按下 R + X 解除锁定，之后就可以继续享受游戏啦！顺便记录一下查到的 3DS 四作口袋妖怪正统作的 SDF 内代码：</li></ol><pre>口袋妖怪 X —— 0055D口袋妖怪 Y —— 0055E口袋妖怪 始源蓝宝石—— 011C5口袋妖怪 终极红宝石—— 011C4</pre>至此整个【降级 + 破解】过程结束，可以享受汉化游戏了，破解后也有很多有意思的内容比如玩 GBA、GBC 游戏以及各种自制软件、自制系统等，今后再慢慢研究！<p>参考资料：</p><ol>     <li><a class="link"   href="http://tieba.baidu.com/p/4252892169" >http://tieba.baidu.com/p/4252892169<i class="fas fa-external-link-alt"></i></a>（降级 + 破解全过程，其他破解系统使用技巧也可以看这里）</li>     <li><a class="link"   href="http://tieba.baidu.com/p/4295434536" >http://tieba.baidu.com/p/4295434536<i class="fas fa-external-link-alt"></i></a>（保留数据方法）</li>     <li><a class="link"   href="http://bbs.tgbus.com/thread-6123055-1-1.html" >http://bbs.tgbus.com/thread-6123055-1-1.html<i class="fas fa-external-link-alt"></i></a>（找回口袋妖怪游戏存档方法）</li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img  
+                     lazyload
+                     src=&quot;/images/loading.svg&quot;
+                     data-src=&quot;https://s2.ax1x.com/20</summary>
+      
+    
+    
+    
+    
+    <category term="技术" scheme="http://iifatree.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="游戏" scheme="http://iifatree.com/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>梦寐以求的冬天</title>
+    <link href="http://iifatree.com/2015/12/01/winter-in-dream/"/>
+    <id>http://iifatree.com/2015/12/01/winter-in-dream/</id>
+    <published>2015-12-01T05:24:31.000Z</published>
+    <updated>2021-06-13T15:28:54.779Z</updated>
+    
+    <content type="html"><![CDATA[<p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/VhirFA.md.jpg"                                     ></p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=566603&auto=0&height=32"></iframe><p>2015 年的最后一个月了，十年前是 2005 年，我读着来自北京的杂志，想象着北京的冬天，想象中那是下着雪的十二月，街边有小店，亮着暖色的灯光。</p><p>从那时候起，看了、听了很多跟北京有关的东西，但是并未去过北京，甚至并未去过北方，直到三年前才第一次踏上北方的大地。</p><p>今天是寂静岭还是丧尸围城都不重要了，反正下一次蓝天出现的时候，人们还是会在社交网络上晒照片。可是过去的我是从来没想过要记录一下蓝天的。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img  
+                     lazyload
+                     src=&quot;/images/loading.svg&quot;
+                     data-src=&quot;https://s2.ax1x.com/20</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="http://iifatree.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>未来的 Reality</title>
+    <link href="http://iifatree.com/2015/11/09/future-reality/"/>
+    <id>http://iifatree.com/2015/11/09/future-reality/</id>
+    <published>2015-11-09T14:54:16.000Z</published>
+    <updated>2021-06-13T15:28:54.774Z</updated>
+    
+    <content type="html"><![CDATA[<p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://s2.ax1x.com/2019/06/13/VhFCSx.md.jpg"                      alt="Augmented Reality"                ></p><p>不管你情愿还是不情愿，关注还是不关注，虚拟现实、增强现实、 VR 、AR 这样的字眼出现在我们语境里的次数已经越来越频繁了，可能在几年前这些概念还只是会在少数人的对话中出现，不过现在似乎人人都或多或少有资格在这个领域说上几句了。2014 年对于整个 Reality 领域（VR 和 AR）而言自然是一个重要的年份，微软、谷歌和 Facebook 三大厂商在这一领域的布局都已经完成。无数的科技媒体甚至是传统媒体都在鼓吹着未来被 VR 和 AR 修饰的美好的生活，暂且不论多少人能弄清楚二者的区别以及有没有必要去刻意区分二者，至少人们对于它们的期待值已经被提到到了一个前所未有的程度了。之前自己也写过一些文字总结了一下这一阵热潮：</p><blockquote><p>在20世纪90年代，虚拟现实就已经成为一种热潮，那时人们已经意识到，二维的屏幕始终不能真实地再现我们所熟知的现实世界，只有提供足够的“浸入式体验”，才能更大程度地让虚拟世界接近真实世界。在当时部分人甚至预言：只需要数年的时间，就会出现普通消费者也能买得起的虚拟现实设备。1995年，日本任天堂公司在美国和日本市场推出了一款在今天看来过于超前的游戏机产品：<br>Virtual Boy，一个硕大的头戴显示器连接着一个游戏玩家或许很熟悉的操作手柄。在早些时候，任天堂当时的主要竞争对手世嘉公司也推出了虚拟现实设备 Sega VR 。<br>事实证明，以当时的技术水平来说，提供沉浸式体验的虚拟现实设备还太过于超前， Virtual Boy 无法提供令普通人满意的体验，再加上昂贵的售价导致了这款产品的失败，今日它已经成为只有在高级收藏家的藏品柜中才能找到的稀罕玩意儿。从那以后，很少再有人提及虚拟现实设备的应用。<br>直至2007年， Google 公司在 Google Maps 中推出了街景功能，虚拟现实开始逐渐回到人们的视野当中，渐渐地，提供浸入式体验的虚拟现实设备也重新开始出现。2012年，创业公司 Oculus 在 Kickstarter 众筹成功，2014年， Facebook 以20亿美元将 Oculus 公司收购，将人们对虚拟现实设备的热情推向了一个更高点。<br>目前 Oculus 公司已经拥有两款虚拟现实设备，分别是 Oculus Rift 和其与三星公司合作推出的 Galaxy Gear VR（需要配合三星 Galaxy Note 4 手机使用）。这两款设备都属于纯粹的虚拟现实设备，在戴上这两个大家伙后，用户将看到一个全景的虚拟世界，就像你置身于真实世界中所看到的那样。你将完全脱离现实的世界，至于在虚拟世界中你可以做什么样的事情，就完全取决于之后的开发者们将在这个设备上呈现怎样的内容了。相比于90年代的 Virtual Boy ，今天的 Oculus 公司的产品在技术上更加成熟，能够提供给用户的体验也更加完善，我们可以预见类似的设备将会不断诞生，在虚拟实验室及其他教育领域也会出现越来越多的应用案例，它也许能给我们呈现更加真实的虚拟实验室。<br>其实，目前世界上的几大科技巨头都极为看重虚拟现实领域的未来发展，除了之前提到的 Facebook 收购 Oculus 并与三星进行合作外，Google则是早已推出了自己的头戴设备 Google Glass，虽然还处于开发者测试阶段，但其极富科幻气息的应用场景已经吸引了无数人的眼球，并且Google已经于2015年初投资了一家同样致力于提供相似体验的公司 Magic Leap 。除此以外，微软公司于其2015年初的 Windows 10 操作系统发布会上公布了一款头戴设备—— HoloLens，同样介入了这个领域，HoloLens 的研发团队来源于当年在体感操作和自然交互领域引起了轰动的微软Kinect团队，可以将其视作是 Kinect 在技术和产品上的又一次延伸。</p></blockquote><p>在越来越多人开始谈论这一领域的时候，作为一个专业（可能不够格，但起码算是半专业）人士，除了对未来的美好憧憬，我觉得我们应该想的和做的更多一些。</p><p>教育技术里各种新技术的运用总容易陷入一个怪圈，那就是所谓的“生动形象”，似乎什么新技术用到课堂里，最直接最简单的好处就是生动形象，这本身倒也没什么问题，各式各样的技术（当然包括 VR 和 AR ）能让人最先体验到的好处自然就是生动形象的呈现，可是若仅仅满足于此，那就会陷入到为了用技术而用技术的死循环中。如果我们作为比一般人更了解 VR 与 AR 的人群，对于其运用也只能想到这个程度的话自然是不够的。简单而言，这次观摩视频中的将 VR 运用于改善大班教学的教学效果就是一种全新的有价值的思路，也许其真正的作用还有待考证（而且那将是一个比技术本身复杂得多的问题），但是我认为我们应该有这样的思路，而不是满足于简单地将其用作展示。</p><p>其次我觉得我们应该更加冷静。就像上文贴出来的那一段以前写的东西总结的那样， VR 的热潮不是第一次出现，但是上一次的热潮最终没能延续下去，原因可能是多种多样的，但是当年阻碍其发展成为主流的因素在今日看来或多或少都还存在。去年让无数人激动不已的 Oculus 、 Hololens 等产品目前都还离消费者级别的电子产品有一定的距离，而试用者的体验也普遍不是很好，无数人画下了关于 VR 与 AR 的大饼，真正能做出能看能用产品的确始终不多，如果只是一味跟风鼓吹未来，并没有任何实际意义。</p><p>不过这并不意味着我们要一味悲观，与其去忧心忡忡地考虑未来会怎么样，踏踏实实积累一些知识，动手做一些东西，哪怕很简单，又或者是从更加深入的角度去思考他们，而不是一味跟风科技媒体，也许对我们帮助会更大一些。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img  
+                     lazyload
+                     src=&quot;/images/loading.svg&quot;
+                     data-src=&quot;https://s2.ax1x.com/20</summary>
+      
+    
+    
+    
+    
+    <category term="学习" scheme="http://iifatree.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+</feed>
