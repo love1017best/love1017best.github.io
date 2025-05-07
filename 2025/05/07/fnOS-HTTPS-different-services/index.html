@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="走遍千山万水，还想在此重逢">
+    <meta name="author" content="拾与拾柒">
+    
+    <title>
+        
+            使用 HTTPS 加密的不同子域名安全访问 NAS 上的不同服务 |
+        
+        Iifa Tree
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/favicon.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"iifatree.com","root":"/","language":"zh-CN"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpeg","favicon":"/images/favicon.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Iifa Tree" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/favicon.png">
+                </a>
+            
+            <a class="logo-title" href="/">
+                Iifa Tree
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">使用 HTTPS 加密的不同子域名安全访问 NAS 上的不同服务</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">拾与拾柒</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2025-05-07 22:09:15
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%8A%80%E6%9C%AF/">技术</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.2k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>4 分钟</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h1><ul>
+<li>家庭宽带有 IPv6 公网 IP（我只有 v6，没有 v4 的公网 IP）</li>
+<li>飞牛 OS 系统（以飞牛 OS 为例，其他系统理论上同理）</li>
+<li>有托管在 Cloudflare 的域名（以 Cloudflare 为例，其他域名托管商和 DNS 服务商理论上同理），例如 abc.com，分配一个子域名供公网访问 NAS 之用，例如 nas.abc.com</li>
+</ul>
+<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><ul>
+<li>NAS 有多个服务需要通过公网访问，希望通过不同的三级域名访问 NAS 上的不同服务，例如:<ul>
+<li>通过 fn.nas.abc.com 访问飞牛 OS 桌面</li>
+<li>通过 qb.nas.abc.com 访问 qBittorrent Web UI 等</li>
+</ul>
+</li>
+<li>上述所有访问均为 HTTPS，保证安全</li>
+</ul>
+<h1 id="折腾记录"><a href="#折腾记录" class="headerlink" title="折腾记录"></a>折腾记录</h1><p>飞牛 OS 的系统设置中已经集成了 DDNS 的相关功能，并且也支持 Cloudflare 作为服务商，不过在这里由于涉及后续的证书申请的反向代理设置，我们选择统一使用 lucky 来进行所有的相关设置，包括 DDNS，不使用飞牛 OS 自带的 DDNS 设置。</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ol>
+<li>通过飞牛 OS 的应用中心或 Docker 安装部署 lucky（<a class="link"   target="_blank" rel="noopener" href="https://lucky666.cn/" >https://lucky666.cn/<i class="fas fa-external-link-alt"></i></a>）</li>
+<li>首次登录 lucky 后（默认用户名与密码均为 666），进入「设置」菜单，进行登录验证等安全设置，确保可以正常通过局域网访问到 lucky 的管理后台</li>
+</ol>
+<h2 id="前往-Cloudflare-创建-API-令牌"><a href="#前往-Cloudflare-创建-API-令牌" class="headerlink" title="前往 Cloudflare 创建 API 令牌"></a>前往 Cloudflare 创建 API 令牌</h2><ol>
+<li>Cloudflare Dashboard-&gt;管理账户-&gt;账户 API 令牌-&gt;创建令牌，选择「API 令牌模板」中的「编辑区域 DNS」</li>
+<li>更改「区域资源」为「包括-特定区域-自己的域名」，例如 abc.com，其余选项默认，点击「继续以显示摘要」按钮</li>
+<li>获得 Cloudflare API Token，注意 Token 只会显示一次，自行保存好这个 Token</li>
+</ol>
+<h2 id="在-Cloudflare-添加必要的-DNS-解析"><a href="#在-Cloudflare-添加必要的-DNS-解析" class="headerlink" title="在 Cloudflare 添加必要的 DNS 解析"></a>在 Cloudflare 添加必要的 DNS 解析</h2><ol>
+<li>为 NAS 预定使用的二级域名添加 A 记录，名称自定义，例如 nas，IPv4 地址填写「1.1.1.1」，代理状态选为不代理（仅 DNS）</li>
+<li>为所有三级域名添加 CNAME 记录，名称为「*.nas」，目标填写「nas.abc.com」，代理状态为不代理（仅 DNS）</li>
+</ol>
+<h2 id="在-lucky-中设置-DDNS"><a href="#在-lucky-中设置-DDNS" class="headerlink" title="在 lucky 中设置 DDNS"></a>在 lucky 中设置 DDNS</h2><ol>
+<li>进入「动态域名」菜单，点击「添加任务」</li>
+<li>保持默认的「简易模式」，托管服务商选择 Cloudflare，填入刚才 API 令牌创建后得到的 Token，类型选择 IPv6，获取公网 IP 方式可以选择默认，域名列表填入「nas.abc.com」，之后添加任务</li>
+<li>成功添加后，等待数秒，确认已经获取到公网 IP</li>
+<li><strong>此时你应该已经可以通过 nas.abc.com 访问到你的 NAS Web 管理桌面了，会被自动重定向到飞牛 OS 的默认访问端口 5666</strong></li>
+</ol>
+<h2 id="申请证书"><a href="#申请证书" class="headerlink" title="申请证书"></a>申请证书</h2><ol>
+<li>前往 lucky 的「安全管理」，在「SSL 证书」中点击「添加证书」</li>
+<li>添加方式选择「ACME」，颁发机构保持默认，验证方式选择「Cloudflare」，填入之前获得的 Token</li>
+<li>域名列表填写两行，分别为「nas.abc.com」和「*.nas.abc.com」</li>
+<li>填入电子邮箱，算法可以保持默认，之后点击「添加」</li>
+<li>等待数分钟后，确认证书已经申请成功，可以看到证书有效期</li>
+<li>lucky 会在证书到期时帮我们自动续签证书，无需人工干预</li>
+</ol>
+<h2 id="设置反向代理"><a href="#设置反向代理" class="headerlink" title="设置反向代理"></a>设置反向代理</h2><ol>
+<li>终于到了关键步骤，在 lucky 中前往「Web 服务」，选择「添加 Web 服务规则」</li>
+<li>监听类型根据实际情况选择，例如我只有 IPv6 地址，那么我只选 tcp6 即可</li>
+<li>监听端口自由设置，例如设置为 56666</li>
+<li>打开 TLS，之后点击下方「添加 Web 服务规则」</li>
+<li>主体规则创建好后，点击其中的「添加子规则」按钮：<ol>
+<li>服务类型确认选择为「反向代理」</li>
+<li>前端地址填写你希望用来访问服务的地址，例如「fn.nas.abc.com」，用于访问飞牛 OS 桌面</li>
+<li>后端地址填写服务在局域网内的实际地址，由于 lucky 服务和要访问的服务都运行于 NAS 之上，可以填入「<a href="http://127.0.0.1:5666」（填写你实际要访问的服务的地址，此处为飞牛">http://127.0.0.1:5666」（填写你实际要访问的服务的地址，此处为飞牛</a> OS 桌面），注意必须有「http://」前缀</li>
+<li>设置完成后点击添加即可生效，如果有多个服务，就重复添加多个子规则，例如前端地址「qb.nas.abc.com」和后端地址「<a class="link"   target="_blank" rel="noopener" href="http://127.0.0.1/" >http://127.0.0.1<i class="fas fa-external-link-alt"></i></a>: 8085」</li>
+</ol>
+</li>
+<li>此时访问「fn.nas.abc.com:56666」（不要忘了端口号），会自动重定向到 HTTPS，并且正确访问到了飞牛 OS 桌面服务，其余服务同理</li>
+</ol>
+<h2 id="收尾安全处理"><a href="#收尾安全处理" class="headerlink" title="收尾安全处理"></a>收尾安全处理</h2><p>为了安全，可以通过防火墙关闭 80、5666 以及其他自建服务的默认端口（防止通过 HTTP 直接访问），统一通过三级域名和统一的监听端口形式访问。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：使用 HTTPS 加密的不同子域名安全访问 NAS 上的不同服务</li>
+        <li>本文作者：拾与拾柒</li>
+        <li>创建时间：2025-05-07 22:09:15</li>
+        <li>
+            本文链接：https://blog.iifatree.com/2025/05/07/fnOS-HTTPS-different-services/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2024/12/22/Steam-deck-signature-error/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Steam Deck 使用 Pacman 时的 PGP signature 问题解决</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'tx45B726pL0RmCTHG335fU83-gzGzoHsz',
+                    appKey: 'Uh3potIItHbtubdoBz1LB1QB',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = '拾与拾柒';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2010</span>&nbsp;-&nbsp;
+            
+            2025&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">拾与拾柒</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">前置条件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9C%80%E6%B1%82"><span class="nav-number">2.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95"><span class="nav-number">3.</span> <span class="nav-text">折腾记录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">3.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E5%BE%80-Cloudflare-%E5%88%9B%E5%BB%BA-API-%E4%BB%A4%E7%89%8C"><span class="nav-number">3.2.</span> <span class="nav-text">前往 Cloudflare 创建 API 令牌</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8-Cloudflare-%E6%B7%BB%E5%8A%A0%E5%BF%85%E8%A6%81%E7%9A%84-DNS-%E8%A7%A3%E6%9E%90"><span class="nav-number">3.3.</span> <span class="nav-text">在 Cloudflare 添加必要的 DNS 解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8-lucky-%E4%B8%AD%E8%AE%BE%E7%BD%AE-DDNS"><span class="nav-number">3.4.</span> <span class="nav-text">在 lucky 中设置 DDNS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B3%E8%AF%B7%E8%AF%81%E4%B9%A6"><span class="nav-number">3.5.</span> <span class="nav-text">申请证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86"><span class="nav-number">3.6.</span> <span class="nav-text">设置反向代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B6%E5%B0%BE%E5%AE%89%E5%85%A8%E5%A4%84%E7%90%86"><span class="nav-number">3.7.</span> <span class="nav-text">收尾安全处理</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
